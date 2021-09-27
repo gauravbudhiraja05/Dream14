@@ -1,0 +1,146 @@
+﻿@model IEnumerable<Dream14.ViewModels.SuperAdmin.AgentUser>
+@{
+	ViewData["Title"] = "Agent Users";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="top_filter_bar">
+    <div class="center_wrap">
+
+        <div class="top_filter_left">
+            <button type="button" class="add_new_list_item" onClick="window.location.href='@Url.Action("AddAgentUser","SuperAdmin")'">Add new</button>
+        </div>
+
+        <div class="top_filter_right">
+
+
+            <div class="form_group">
+                <fieldset>
+                    <input type="text" id="txtSearchAgentList" class="form-control" placeholder="Search">
+                    <input type="button" class="search_btn" value="go" />
+                </fieldset>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!--End top_filter_bar-->
+
+
+<div class="full_width">
+    <div class="center_wrap">
+
+        <div class="content_wrap">
+
+            <div class="page_heading">
+                <h1>Agent User List </h1>
+            </div>
+            <!--End page_heading-->
+
+            <div class="table_wrap">
+                <table id="tblAgents" class="table">
+                    <thead>
+                        <tr>
+                            <th style="width: 70px;">
+                                <div class="table_checkbox">
+                                    <input type="checkbox" id="checkall" class="check_all">
+                                    <label for="checkall">Accept</label>
+                                </div>
+                            </th>
+                            <th>
+                                <button type="button" class="table_title active"><i class="icon asc"></i> Name</button>
+                            </th>
+                            <th>
+                                <button type="button" class="table_title"><i class="icon"></i>UserName</button>
+                            </th>
+                            <th>
+                                <button type="button" class="table_title"><i class="icon"></i>Mobile Number</button>
+                            </th>
+                            <th>
+                                <button type="button" class="table_title"><i class="icon"></i>Balance</button>
+                            </th>
+                            <th>
+                                <button type="button" class="table_title"><i class="icon"></i>Deposit</button>
+                            </th>
+                            <th>
+                                <button type="button" class="table_title"><i class="icon"></i>Withdrawl</button>
+                            </th>
+                            <th>
+                                <button type="button" class="table_title"><i class="icon"></i>Profit/Loss</button>
+                            </th>
+                            <th>
+                                <button type="button" class="table_title"><i class="icon"></i>Active Status</button>
+                            </th>
+                            <th>
+                                <button type="button" class="table_title"><i class="icon"></i>BetLock Status</button>
+                            </th>
+                            <th class="editEndUser" style="width:75px;text-align: center;">Edit</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var agent in Model)
+						{
+                        <tr>
+                            <td style="width: 70px;">
+                                <div class="table_checkbox">
+                                    <input type="checkbox" id="checkitem1" class="check_item">
+                                    <label for="checkitem1"></label>
+                                </div>
+                            </td>
+                            <td>@agent.Name</td>
+                            <td>@agent.UserName</td>
+                            <td>@agent.MobileNumber</td>
+                            <td>@agent.Balance</td>
+                            <td>@agent.Deposit</td>
+                            <td>@agent.WithDrawl</td>
+                            <td>@agent.ProfitLoss</td>
+                            @if (@agent.IsActive)
+                            {
+                                <td>
+                                    <a href="#" onclick="ChangeAgentUserStatus('InActive','@agent.UserId')">Active</a>
+                                </td>
+                            }
+                            else
+                            {
+                                <td>
+                                    <a href="#" onclick="ChangeAgentUserStatus('Active','@agent.UserId')">InActive</a>
+                                </td>
+                            }
+                            @if (agent.IsBetLock)
+                            {
+                                <td>
+                                    <a href="#" onclick="ChangeAgentUserStatus('UnLocked','@agent.UserId')">Locked</a>
+                                </td>
+                            }
+                            else
+                            {
+                                <td>
+                                    <a href="#" onclick="ChangeAgentUserStatus('Locked','@agent.UserId')">UnLocked</a>
+                                </td>
+                            }
+                            <td style="width:75px;text-align: center;">
+                                <button type="button" class="edit_item" onClick="window.location.href='@Url.Action("EditAgentUser","SuperAdmin",new { Id=agent.UserId})'">edit</button>
+                            </td>
+                        </tr>
+
+						}
+                    </tbody>
+                </table>
+            </div>
+
+
+
+
+        </div>
+        <!--End content_wrap-->
+
+
+
+    </div>
+    <!--End center_wrap-->
+
+</div>
+<!--End full_width-->
+<!--Modal Popup-->
+<script src="~/js/SuperAdmin/superAdmin.agentUsers.js" asp-append-version="true"></script>
+
