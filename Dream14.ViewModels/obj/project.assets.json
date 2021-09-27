@@ -4684,11 +4684,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\GitHub\\DotNetProjects\\DotNetCore\\Dream14\\Dream14.ViewModels\\Dream14.ViewModels.csproj",
+      "projectUniqueName": "D:\\GitHub\\Dream14\\Dream14.ViewModels\\Dream14.ViewModels.csproj",
       "projectName": "Dream14.ViewModels",
-      "projectPath": "D:\\GitHub\\DotNetProjects\\DotNetCore\\Dream14\\Dream14.ViewModels\\Dream14.ViewModels.csproj",
+      "projectPath": "D:\\GitHub\\Dream14\\Dream14.ViewModels\\Dream14.ViewModels.csproj",
       "packagesPath": "C:\\Users\\Gaurav Budhiraja\\.nuget\\packages\\",
-      "outputPath": "D:\\GitHub\\DotNetProjects\\DotNetCore\\Dream14\\Dream14.ViewModels\\obj\\",
+      "outputPath": "D:\\GitHub\\Dream14\\Dream14.ViewModels\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",

@@ -12,3 +12,17 @@ D:\GitHub\DotNetProjects\DotNetCore\Dream14\Dream14.Repo\obj\Debug\netcoreapp2.1
 D:\GitHub\DotNetProjects\DotNetCore\Dream14\Dream14.Repo\obj\Debug\netcoreapp2.1\Dream14.Repo.csproj.CopyComplete
 D:\GitHub\DotNetProjects\DotNetCore\Dream14\Dream14.Repo\obj\Debug\netcoreapp2.1\Dream14.Repo.dll
 D:\GitHub\DotNetProjects\DotNetCore\Dream14\Dream14.Repo\obj\Debug\netcoreapp2.1\Dream14.Repo.pdb
+D:\GitHub\Dream14\Dream14.Repo\bin\Debug\netcoreapp2.1\Dream14.Repo.deps.json
+D:\GitHub\Dream14\Dream14.Repo\bin\Debug\netcoreapp2.1\Dream14.Repo.dll
+D:\GitHub\Dream14\Dream14.Repo\bin\Debug\netcoreapp2.1\Dream14.Repo.pdb
+D:\GitHub\Dream14\Dream14.Repo\bin\Debug\netcoreapp2.1\Dream14.Core.dll
+D:\GitHub\Dream14\Dream14.Repo\bin\Debug\netcoreapp2.1\Dream14.ViewModels.dll
+D:\GitHub\Dream14\Dream14.Repo\bin\Debug\netcoreapp2.1\Dream14.Core.pdb
+D:\GitHub\Dream14\Dream14.Repo\bin\Debug\netcoreapp2.1\Dream14.ViewModels.pdb
+D:\GitHub\Dream14\Dream14.Repo\obj\Debug\netcoreapp2.1\Dream14.Repo.csprojAssemblyReference.cache
+D:\GitHub\Dream14\Dream14.Repo\obj\Debug\netcoreapp2.1\Dream14.Repo.csproj.CoreCompileInputs.cache
+D:\GitHub\Dream14\Dream14.Repo\obj\Debug\netcoreapp2.1\Dream14.Repo.AssemblyInfoInputs.cache
+D:\GitHub\Dream14\Dream14.Repo\obj\Debug\netcoreapp2.1\Dream14.Repo.AssemblyInfo.cs
+D:\GitHub\Dream14\Dream14.Repo\obj\Debug\netcoreapp2.1\Dream14.Repo.csproj.CopyComplete
+D:\GitHub\Dream14\Dream14.Repo\obj\Debug\netcoreapp2.1\Dream14.Repo.dll
+D:\GitHub\Dream14\Dream14.Repo\obj\Debug\netcoreapp2.1\Dream14.Repo.pdb
