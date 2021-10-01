@@ -1,4 +1,5 @@
-﻿using Dream14.ViewModels.Global;
+﻿using Dream14.ViewModels.FrontEnd;
+using Dream14.ViewModels.Global;
 using Dream14.ViewModels.SuperAdmin;
 using System.Collections.Generic;
 
@@ -6,6 +7,24 @@ namespace Dream14.Core.DomainServices
 {
     public interface IAdminService
     {
+
+        bool CheckValidOldPassword(string password, int userId);
+
+        BaseResult ChangePasswordForLoginUser(string newPassword, int userId);
+
+        DepsoitWithDrawl GetAmountDetail(int userId);
+
+        BaseResult SaveAmountDetail(DepsoitWithDrawl depsoitWithDrawl);
+
+        BaseResult AddUserDetail(UserDetail userDetail);
+
+        int GetUserCount();
+
+        IEnumerable<UserDetail> GetUserList();
+
+        BaseResult ChangeUserStatus(int id);
+
+
         #region Admin Users
 
         /// <summary>
@@ -175,7 +194,7 @@ namespace Dream14.Core.DomainServices
         /// </summary>
         /// <param name="targetIds">DeleteItem data structure</param>
         /// <returns>Base result</returns>
-        BaseResult DeleteFrontEndUsersByIds(DeleteItem targetIds);
+        BaseResult ChangeFrontEndUserStatus(string status, int userId);
 
         #endregion
 

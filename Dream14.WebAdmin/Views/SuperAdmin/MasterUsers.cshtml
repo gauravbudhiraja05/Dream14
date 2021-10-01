@@ -54,6 +54,9 @@
                                 <button type="button" class="table_title"><i class="icon"></i>UserName</button>
                             </th>
                             <th>
+                                <button type="button" class="table_title"><i class="icon"></i>Limit</button>
+                            </th>
+                            <th>
                                 <button type="button" class="table_title"><i class="icon"></i>Mobile Number</button>
                             </th>
                             <th>
@@ -75,6 +78,7 @@
                                 <button type="button" class="table_title"><i class="icon"></i>BetLock Status</button>
                             </th>
                             <th class="editEndUser" style="width:75px;text-align: center;">Edit</th>
+                            <th class="editEndUser" style="width:75px;text-align: center;">Deposit / WithDrawl</th>
                         </tr>
 					</thead>
 					<tbody>
@@ -89,12 +93,13 @@
                             </td>
                             <td>@master.Name</td>
                             <td>@master.UserName</td>
+                            <td>@master.Limit</td>
                             <td>@master.MobileNumber</td>
                             <td>@master.Balance</td>
                             <td>@master.Deposit</td>
                             <td>@master.WithDrawl</td>
                             <td>@master.ProfitLoss</td>
-                            @if (@master.IsActive)
+                            @if (master.IsActive)
                             {
                                 <td>
                                     <a href="#" onclick="ChangeMasterUserStatus('InActive','@master.UserId')">Active</a>
@@ -106,7 +111,7 @@
                                     <a href="#" onclick="ChangeMasterUserStatus('Active','@master.UserId')">InActive</a>
                                 </td>
                             }
-                            @if (@master.IsBetLock)
+                            @if (master.IsBetLock)
                             {
                                 <td>
                                     <a href="#" onclick="ChangeMasterUserStatus('UnLocked','@master.UserId')">Locked</a>
@@ -120,6 +125,9 @@
                             }
                             <td style="width:75px;text-align: center;">
                                 <button type="button" class="edit_item" onClick="window.location.href='@Url.Action("EditMasterUser","SuperAdmin",new { Id=master.UserId})'">edit</button>
+                            </td>
+                            <td style="width:75px;text-align: center;">
+                                <button type="button" class="deposit_item" onclick="OpenOperationPopUp(@master.UserId)">Deposit/WithDrawl</button>
                             </td>
                         </tr>
 

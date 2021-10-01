@@ -8,10 +8,7 @@
     <div class="center_wrap">
 
         <div class="top_filter_left">
-
             <button type="button" class="add_new_list_item" onClick="window.location.href='@Url.Action("AddFrontEndUser","SuperAdmin")'">Add new</button>
-            <button id="btnDeleteAllCheckedFrontEnd" type="button" class="delete_list_item">delete</button>
-
         </div>
 
         <div class="top_filter_right">
@@ -50,20 +47,39 @@
                                     <label for="checkall">Accept</label>
                                 </div>
                             </th>
-                            <th style="width: 300px;">
-                                <button type="button" class="table_title active"><i class="icon asc"></i>Full Name</button>
+                            <th>
+                                <button type="button" class="table_title active"><i class="icon asc"></i> Name</button>
                             </th>
                             <th>
-                                <button type="button" class="table_title"><i class="icon"></i>Email Address</button>
+                                <button type="button" class="table_title"><i class="icon"></i>UserName</button>
                             </th>
                             <th>
-                                <button type="button" class="table_title"><i class="icon"></i>Creation Date</button>
+                                <button type="button" class="table_title"><i class="icon"></i>Limit</button>
                             </th>
                             <th>
-                                <button type="button" class="table_title"><i class="icon"></i>Is Active</button>
+                                <button type="button" class="table_title"><i class="icon"></i>Mobile Number</button>
+                            </th>
+                            <th>
+                                <button type="button" class="table_title"><i class="icon"></i>Balance</button>
+                            </th>
+                            <th>
+                                <button type="button" class="table_title"><i class="icon"></i>Deposit</button>
+                            </th>
+                            <th>
+                                <button type="button" class="table_title"><i class="icon"></i>Withdrawl</button>
+                            </th>
+                            <th>
+                                <button type="button" class="table_title"><i class="icon"></i>Profit/Loss</button>
+                            </th>
+                            <th>
+                                <button type="button" class="table_title"><i class="icon"></i>Active Status</button>
+                            </th>
+                            <th>
+                                <button type="button" class="table_title"><i class="icon"></i>BetLock Status</button>
                             </th>
                             <th class="editEndUser" style="width:75px;text-align: center;">Edit</th>
-                            <th class="deleteEndUser" style="width:75px;text-align: center;">Delete</th>
+                            <th class="editEndUser" style="width:75px;text-align: center;">Deposit / WithDrawl</th>
+
                         </tr>
                     </thead>
                     <tbody>
@@ -76,18 +92,44 @@
                                     <label for="checkitem1"></label>
                                 </div>
                             </td>
-                            <td>@frontEnd.FullName</td>
-                            <td>@frontEnd.EmailAddress</td>
-                            <td>@frontEnd.CreatedDateDisplay</td>
-                            <td>@frontEnd.IsActive</td>
+                            <td>@frontEnd.Name</td>
+                            <td>@frontEnd.UserName</td>
+                            <td>@frontEnd.Limit</td>
+                            <td>@frontEnd.MobileNumber</td>
+                            <td>@frontEnd.Balance</td>
+                            <td>@frontEnd.Deposit</td>
+                            <td>@frontEnd.WithDrawl</td>
+                            <td>@frontEnd.ProfitLoss</td>
+                            @if (frontEnd.IsActive)
+                            {
+                                <td>
+                                    <a href="#" onclick="ChangeFrontEndUserStatus('InActive','@frontEnd.UserId')">Active</a>
+                                </td>
+                            }
+                            else
+                            {
+                                <td>
+                                    <a href="#" onclick="ChangeFrontEndUserStatus('Active','@frontEnd.UserId')">InActive</a>
+                                </td>
+                            }
+                            @if (frontEnd.IsBetLock)
+                            {
+                                <td>
+                                    <a href="#" onclick="ChangeFrontEndUserStatus('UnLocked','@frontEnd.UserId')">Locked</a>
+                                </td>
+                            }
+                            else
+                            {
+                                <td>
+                                    <a href="#" onclick="ChangeFrontEndUserStatus('Locked','@frontEnd.UserId')">UnLocked</a>
+                                </td>
+                            }
                             <td style="width:75px;text-align: center;">
-                                <button type="button" class="edit_item" onClick="window.location.href='@Url.Action("EditFrontEndUser","SuperAdmin",new { Id=frontEnd.Id})'">edit</button>
+                                <button type="button" class="edit_item" onClick="window.location.href='@Url.Action("EditFrontEndUser","SuperAdmin",new { Id=frontEnd.UserId})'">edit</button>
                             </td>
                             <td style="width:75px;text-align: center;">
-                                <span style="display:none">@frontEnd.Id</span>
-                                <button type="button" class="delete_item frontEndItem">delete</button>
+                                <button type="button" class="deposit_item" onclick="OpenOperationPopUp(@frontEnd.UserId)">Deposit/WithDrawl</button>
                             </td>
-
                         </tr>
 
 						}

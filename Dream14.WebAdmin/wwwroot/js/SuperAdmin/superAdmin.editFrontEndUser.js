@@ -12,7 +12,7 @@
         if (validateUpdateFrontEndMessage() == false) {
             return false;
         }
-        else if (ValidateEmailAddress() == false) {
+        else if (ValidateUserName() == false) {
             return false;
         }
         else {
@@ -23,72 +23,66 @@
 });
 
 
-function ValidateEmailAddress() {
+function ValidateUserName() {
     debugger;
-    if ($('#EmailAddress').val().trim() != "") {
-        var testEmail = /^[A-Z0-9._%+-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i;
-        var emailAddress = $('#EmailAddress').val().trim();
-        if (testEmail.test(emailAddress)) {
-            if ($('#hdnEmailAddress').val() != emailAddress) {
-                $.ajax({
-                    type: "POST",
-                    url: "/SuperAdmin/CheckEmailExists",
-                    data: { emailAddress: emailAddress },
-                    async: false,
-                    success: function (data) {
-                        debugger;
-                        if (data.message == "Email Not Exists") {
-                            //return true;
-                            $.ajax({
-                                type: "POST",
-                                url: "/SuperAdmin/EditFrontEndUser",
-                                async: false,
-                                beforeSend: function (xhr) {
-                                    onBegin(xhr);
-                                },
-                                data: { FullName: $('#FullName').val(), EmailAddress: $('#EmailAddress').val(), Password: $('#Password').val(), userId: $('#Id').val() },
-                                success: function (data) {
-                                    onSuccess(data);
-                                },
-                                error: function (e) {
-                                    onFailed(e);
-                                }
-                            });
+    if ($('#UserName').val().trim() != "") {
+        var emailAddress = $('#UserName').val().trim();
+        if ($('#hdnUserName ').val() != emailAddress) {
+            $.ajax({
+                type: "POST",
+                url: "/SuperAdmin/CheckUserNameExists",
+                data: { emailAddress: emailAddress },
+                async: false,
+                success: function (data) {
+                    debugger;
+                    if (data.message == "UserName Not Exists") {
+                        //return true;
+                        $.ajax({
+                            type: "POST",
+                            url: "/SuperAdmin/EditFrontEndUser",
+                            async: false,
+                            beforeSend: function (xhr) {
+                                onBegin(xhr);
+                            },
+                            data: { Name: $('#Name').val(), UserName: $('#UserName').val(), Password: $('#Password').val(), UserId: $('#UserId').val(), MobileNumber: $('#MobileNumber').val() },
+                            success: function (data) {
+                                onSuccess(data);
+                            },
+                            error: function (e) {
+                                onFailed(e);
+                            }
+                        });
 
-                        }
-                        else {
-                            $("span[id='EmailAddress_Error']").text("Email address already exists. Please try with different one");
-                            return false;
-                        }
-                    },
-                    error: function (e) {
-                        onFailed(e);
+                    }
+                    else {
+                        $("span[id='UserName_Error']").text("UserName address already exists. Please try with different one");
                         return false;
                     }
-                });
-            }
-            else {
-                $.ajax({
-                    type: "POST",
-                    url: "/SuperAdmin/EditFrontEndUser",
-                    async: false,
-                    beforeSend: function (xhr) {
-                        onBegin(xhr);
-                    },
-                    data: { FullName: $('#FullName').val(), EmailAddress: $('#EmailAddress').val(), Password: $('#Password').val(), userId: $('#Id').val() },
-                    success: function (data) {
-                        onSuccess(data);
-                    },
-                    error: function (e) {
-                        onFailed(e);
-                    }
-                });
-            }
+                },
+                error: function (e) {
+                    onFailed(e);
+                    return false;
+                }
+            });
         }
         else {
-            $("span[id='EmailAddress_Error']").text("Please enter the valid email address.");
-            return false;
+            $.ajax({
+                type: "POST",
+                url: "/SuperAdmin/EditFrontEndUser",
+                async: false,
+                beforeSend: function (xhr) {
+                    onBegin(xhr);
+                },
+                data: { Name: $('#Name').val(), UserName: $('#UserName').val(), Password: $('#Password').val(), UserId: $('#UserId').val(), MobileNumber: $('#MobileNumber').val() },
+                success: function (data) {
+                    onSuccess(data);
+                },
+                error: function (e) {
+                    onFailed(e);
+                }
+            });
         }
+
     }
 }
 
@@ -127,24 +121,23 @@ var validateUpdateFrontEndMessage = function () {
     }
 
 
-    if ($("#FullName").val().trim().length == 0) {
-        $("span[id='FullName_Error']").text("Please enter the name.");
+    if ($("#Name").val().trim().length == 0) {
+        $("span[id='Name_Error']").text("Please enter the name.");
         isValid = false;
 
     }
     else {
-        $("span[id='FullName_Error']").text("");
+        $("span[id='Name_Error']").text("");
     }
 
 
-    if ($("#EmailAddress").val().trim().length == 0) {
-        $("span[id='EmailAddress_Error']").text("Please enter the email address.");
+    if ($("#UserName").val().trim().length == 0) {
+        $("span[id='UserName_Error']").text("Please enter the username.");
         isValid = false;
     }
     else {
-        $("span[id='EmailAddress_Error']").text("");
+        $("span[id='UserName_Error']").text("");
     }
-
 
     if ($("#Password").val().trim().length == 0) {
         $("span[id='Password_Error']").text("Please enter the password.");
@@ -153,6 +146,15 @@ var validateUpdateFrontEndMessage = function () {
     }
     else {
         $("span[id='Password_Error']").text("");
+    }
+
+    if ($("#MobileNumber").val().trim().length == 0) {
+        $("span[id='MobileNumber_Error']").text("Please enter the mobile number.");
+        isValid = false;
+
+    }
+    else {
+        $("span[id='MobileNumber_Error']").text("");
     }
 
     return isValid;

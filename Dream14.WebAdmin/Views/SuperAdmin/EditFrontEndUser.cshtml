@@ -37,27 +37,27 @@
                         <div class="form_fields_box">
                             <fieldset>
                                 <div class="form_field">
-                                    <label for="AdminUser_Id">FrontEnd Id</label>
-                                    <input type="text" value="@Model.Id" disabled>
-                                    <input type="hidden" id="Id" value="@Model.Id" />
+                                    <label for="Id">User Id</label>
+                                    <input type="text" value="@Model.UserId" disabled>
+                                    <input type="hidden" id="UserId" value="@Model.UserId" />
                                 </div>
                                 <div class="form_field">
-                                    <label for="AdminUser_FullName">
+                                    <label for="Name">
                                         Name*
                                         <small class="info_icon" data-toggle="tooltip" data-placement="right" title="(Required) Department Name.">Tooltip</small>
                                     </label>
-                                    <input id="FullName" value="@Model.FullName" type="text">
-                                    <span class="error_label" id="FullName_Error"></span>
+                                    <input id="Name" value="@Model.Name" type="text">
+                                    <span class="error_label" id="Name_Error"></span>
                                 </div>
 
                                 <div class="form_field">
-                                    <label for="AdminUser_EmailAddress">
-                                        Email Address*
+                                    <label for="UserName">
+                                        UserName*
                                         <small class="info_icon" data-toggle="tooltip" data-placement="right" title="(Required) Enter the main phone number for the department.">Tooltip</small>
                                     </label>
-                                    <input id="EmailAddress" value="@Model.EmailAddress" type="text">
-                                    <input type="hidden" id="hdnEmailAddress" value="@Model.EmailAddress" />
-                                    <span class="error_label" id="EmailAddress_Error"></span>
+                                    <input id="UserName" value="@Model.UserName" type="text">
+                                    <input id="hdnUserName" value="@Model.UserName" type="hidden">
+                                    <span class="error_label" id="UserName_Error"></span>
                                 </div>
 
                             </fieldset>
@@ -68,7 +68,7 @@
                         <div class="form_fields_box">
 
                             <div class="form_field">
-                                <label for="AdminUser_Password">
+                                <label for="Password">
                                     Password*
                                     <small class="info_icon" data-toggle="tooltip" data-placement="right" title="(Required) Enter the main phone number for the department.">Tooltip</small>
                                 </label>
@@ -77,12 +77,12 @@
                             </div>
 
                             <div class="form_field">
-                                <label for="User_CreationDate">
-                                    Creation Date*
-                                    <small class="info_icon" data-toggle="tooltip" data-placement="right" title="(Required) Creation Date.">Tooltip</small>
+                                <label for="MobileNumber">
+                                    Mobile Number*
+                                    <small class="info_icon" data-toggle="tooltip" data-placement="right" title="(Required) Enter the main phone number for the department.">Tooltip</small>
                                 </label>
-                                <input id="CreationDate" value="@Model.CreatedDateDisplay" placeholder="MM/DD/YYYY" disabled="disabled" type="text">
-                                <span class="error_label" id="CreationDate_Error"></span>
+                                <input id="MobileNumber" value="@Model.MobileNumber" type="text">
+                                <span class="error_label" id="MobileNumber_Error"></span>
                             </div>
 
                         </div>

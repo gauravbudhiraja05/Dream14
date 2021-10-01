@@ -51,22 +51,7 @@
     </script>
 
     @RenderSection("Styles", required: false)
-    <script type="text/javascript">
-            //$(document).ready(function () {
-            //    $("#btnChangePassword").click(function () {
-            //        $("body").addClass("act_overlay");
-            //    });
-            //    $(".overlay_account_box .close").click(function () {
-            //        $("body").removeClass("act_overlay");
-            //    })
 
-            //    $('#btnResetPassword').click(function () {
-            //        var oldPassword=$('#')
-            //    });
-            //});
-
-
-    </script>
 </head>
 <body>
 
@@ -79,35 +64,62 @@
                     <a href="@Url.Action("Dashboard","Home")" class="logo"><img src="@Url.Content("~/images/pickfords_logo_w.png")" alt="pickfords" /></a>
                     <div class="extra_links">
                         <a href="#" style="padding-top: 10px;text-decoration: none !important;cursor: default !important;"><span>Dream14 Admin</span></a>
-                        <a href="#" style="text-decoration: none !important;cursor: default !important;">Logged in as <span>@HttpContextAccessor.HttpContext.User.Claims?.FirstOrDefault(c => c.Type == "FullName")?.Value</span></a>
-                        <a title="Log-out" href="@Url.Action("Logout", "Account")"><span style="margin-top: 10px;">Logout</span></a>
-                        @*<a id="btnChangePassword" href="#" style="padding-top: 10px;"><span>Change Password</span></a>*@
-                    </div>
-                    <ul>
-                        <li id="menuItemDashboard" class="nav-li"><a href="@Url.Action("Dashboard", "Home")">Dashboard</a></li>
+
+
                         @if (roles.Any(r => r == "SuperAdmin"))
                         {
-                            <li id="menuItemAdmin" class="nav-li"><a href="@Url.Action("AdminUsers","SuperAdmin")">Admin</a></li>
-                            <li id="menuItemAdmin" class="nav-li"><a href="@Url.Action("MasterUsers","SuperAdmin")">Master</a></li>
-                            <li id="menuItemAdmin" class="nav-li"><a href="@Url.Action("AgentUsers","SuperAdmin")">Agent</a></li>
-                            <li id="menuItemAdmin" class="nav-li"><a href="@Url.Action("FrontEndUsers","SuperAdmin")">User</a></li>
+                            <a class="notification" style="padding-top: 10px;text-decoration: none !important;cursor: pointer !important;" id="btnUserDetails" href="@Url.Action("UserList","Home")">
+                                <span>User Details</span>
+                                <span class="badge">0</span>
+                            </a>
+
+                            <a style="padding-top: 10px;text-decoration: none !important;cursor: pointer !important;" href="@Url.Action("AdminUsers","SuperAdmin")">Admin</a>
+                            <a style="padding-top: 10px;text-decoration: none !important;cursor: pointer !important;" href="@Url.Action("MasterUsers","SuperAdmin")">Master</a>
+                            <a style="padding-top: 10px;text-decoration: none !important;cursor: pointer !important;" href="@Url.Action("AgentUsers","SuperAdmin")">Agent</a>
+                            <a style="padding-top: 10px;text-decoration: none !important;cursor: pointer !important;" href="@Url.Action("FrontEndUsers","SuperAdmin")">User</a>
                         }
                         else if (roles.Any(r => r == "Admin"))
                         {
-                            <li id="menuItemAdmin" class="nav-li"><a href="@Url.Action("MasterUsers","SuperAdmin")">Master</a></li>
-                            <li id="menuItemAdmin" class="nav-li"><a href="@Url.Action("AgentUsers","SuperAdmin")">Agent</a></li>
-                            <li id="menuItemAdmin" class="nav-li"><a href="@Url.Action("FrontEndUsers","SuperAdmin")">User</a></li>
+                            <a style="padding-top: 10px;text-decoration: none !important;cursor: pointer !important;" href="@Url.Action("MasterUsers","SuperAdmin")">Master</a>
+                            <a style="padding-top: 10px;text-decoration: none !important;cursor: pointer !important;" href="@Url.Action("AgentUsers","SuperAdmin")">Agent</a>
+                            <a style="padding-top: 10px;text-decoration: none !important;cursor: pointer !important;" href="@Url.Action("FrontEndUsers","SuperAdmin")">User</a>
                         }
                         else if (roles.Any(r => r == "Master"))
                         {
-                            <li id="menuItemAdmin" class="nav-li"><a href="@Url.Action("AgentUsers","SuperAdmin")">Agent</a></li>
-                            <li id="menuItemAdmin" class="nav-li"><a href="@Url.Action("FrontEndUsers","SuperAdmin")">User</a></li>
+                            <a style="padding-top: 10px;text-decoration: none !important;cursor: pointer !important;" href="@Url.Action("AgentUsers","SuperAdmin")">Agent</a>
+                            <a style="padding-top: 10px;text-decoration: none !important;cursor: pointer !important;" href="@Url.Action("FrontEndUsers","SuperAdmin")">User</a>
                         }
                         else if (roles.Any(r => r == "Agent"))
                         {
-                           <li id="menuItemAdmin" class="nav-li"><a href="@Url.Action("FrontEndUsers","SuperAdmin")">User</a></li>
+                            <a style="padding-top: 10px;text-decoration: none !important;cursor: pointer !important;" href="@Url.Action("FrontEndUsers","SuperAdmin")">User</a>
                         }
+                    </div>
+                    <ul>
+                        <li class="nav-li"><a href="@Url.Action("Dashboard", "Home")">Dashboard</a></li>
 
+                        <li>
+                            <a href="#" style="text-decoration: none !important;cursor: default !important;">Balance : @HttpContextAccessor.HttpContext.User.Claims?.FirstOrDefault(c => c.Type == "Balance")?.Value</a>
+                        </li>
+                        <li>
+                            <a href="#" style="text-decoration: none !important;cursor: default !important;">Exposure : @HttpContextAccessor.HttpContext.User.Claims?.FirstOrDefault(c => c.Type == "Balance")?.Value</a>
+                        </li>
+                        <li>
+                            <a href="#" style="text-decoration: none !important;cursor: default !important;">@*Logged in as*@ <span>@HttpContextAccessor.HttpContext.User.Claims?.FirstOrDefault(c => c.Type == "FullName")?.Value</span></a>
+                            <ul class="submenu">
+                                <li class="nav-li">
+                                    <a id="btnChangePassword" href="#" style="padding-top: 10px;"><span>Change Password</span></a>
+                                </li>
+                                <li>
+                                    @if (roles.Any(r => r == "SuperAdmin"))
+                                    {
+                                        <a id="btnEvents" title="Events" href="@Url.Action("Event", "Home")" style="padding-top: 10px;"><span>Get Events</span></a>
+                                    }
+                                </li>
+                                <li class="nav-li">
+                                    <a title="Log-out" href="@Url.Action("Logout", "Account")"><span style="margin-top: 10px;">Logout</span></a>
+                                </li>
+                            </ul>
+                        </li>
                     </ul>
                 </div>
 
@@ -144,9 +156,35 @@
     <!--End main_wrapper-->
 
     <div id="partialResetPassword" style="display:none;" class="content_wrap"></div>
+    <div id="partialDepositWithdrawl" style="display:none;" class="content_wrap"></div>
+    <div id="popup_overlay" class="popup_window_overlay"></div>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            window.setInterval(function () {
+                GetUuserDetailsCount();
+            }, 100);
+        });
 
 
-    <div class="popup_window_overlay"></div>
+        function GetUuserDetailsCount() {
+            $.ajax({
+                type: "Get",
+                url: "/Home/GetUserCount",
+                async: false,
+                success: function (count) {
+                    $('.badge').html(count)
+                },
+                error: function (e) {
+                    alert(e);
+                }
+            });
+
+
+        }
+
+    </script>
 
 </body>
 </html>

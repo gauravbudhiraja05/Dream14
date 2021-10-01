@@ -1,5 +1,6 @@
 ﻿using Dream14.Core.DomainServices;
 using Dream14.Core.Repositories;
+using Dream14.ViewModels.FrontEnd;
 using Dream14.ViewModels.Global;
 using Dream14.ViewModels.SuperAdmin;
 using System;
@@ -31,6 +32,112 @@ namespace Dream14.Services
         }
 
         #endregion
+
+        public bool CheckValidOldPassword(string password, int userId)
+        {
+            try
+            {
+                bool result = _unitOfWork.AdminRepo.CheckValidOldPassword("usp_CheckValidOldPassword", new { password, userId });
+                return result;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        public BaseResult ChangePasswordForLoginUser(string newPassword, int userId)
+        {
+            try
+            {
+                BaseResult result = _unitOfWork.AdminRepo.ChangePasswordForLoginUser("usp_ChangePasswordForLoginUser", new { newPassword, userId });
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public DepsoitWithDrawl GetAmountDetail(int userId)
+        {
+            try
+            {
+                DepsoitWithDrawl result = _unitOfWork.AdminRepo.GetAmountDetail("usp_GetAmountDetail", new { userId });
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public BaseResult SaveAmountDetail(DepsoitWithDrawl depsoitWithDrawl)
+        {
+            try
+            {
+                BaseResult result = _unitOfWork.AdminRepo.SaveAmountDetail("usp_SaveAmountDetail", new { depsoitWithDrawl.UserId, depsoitWithDrawl.Balance, depsoitWithDrawl.Deposit, depsoitWithDrawl.WithDrawl });
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public BaseResult AddUserDetail(UserDetail userDetail)
+        {
+            try
+            {
+                BaseResult result = _unitOfWork.AdminRepo.AddUserDetail("usp_AddUserDetail", new { userDetail.Name, userDetail.MobileNumber1, userDetail.MobileNumber2, userDetail.City, userDetail.State, userDetail.Country });
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public int GetUserCount()
+        {
+            try
+            {
+                int result = _unitOfWork.AdminRepo.GetUserCount("usp_GetUserCount");
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public IEnumerable<UserDetail> GetUserList()
+        {
+            try
+            {
+                var result = _unitOfWork.AdminRepo.GetUserList("usp_GetUserList");
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public BaseResult ChangeUserStatus(int id)
+        {
+            try
+            {
+                var result = _unitOfWork.AdminRepo.ChangeUserStatus("usp_ChangeUserStatus", new { id });
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
 
         #region Admin Users
 
@@ -165,7 +272,7 @@ namespace Dream14.Services
                     masterUser.Password,
                     masterUser.MobileNumber,
                     masterUser.ModifiedBy,
-                }); 
+                });
             }
             catch (Exception)
             {
@@ -281,12 +388,12 @@ namespace Dream14.Services
             {
                 return _unitOfWork.AdminRepo.SaveFrontEndUser("usp_AddFrontEndUser", new
                 {
-                    frontEndUser.FullName,
-                    frontEndUser.EmailAddress,
+                    frontEndUser.Name,
+                    frontEndUser.UserName,
                     frontEndUser.Password,
                     frontEndUser.RoleName,
-                    frontEndUser.IsActive,
-                    frontEndUser.CreatedBy,
+                    frontEndUser.MobileNumber,
+                    frontEndUser.CreatedBy
                 });
             }
             catch (Exception)
@@ -313,10 +420,11 @@ namespace Dream14.Services
             {
                 return _unitOfWork.AdminRepo.UpdateFrontEndUser("usp_UpdateFrontEndUser", new
                 {
-                    frontEndUser.Id,
-                    frontEndUser.FullName,
-                    frontEndUser.EmailAddress,
+                    frontEndUser.UserId,
+                    frontEndUser.Name,
+                    frontEndUser.UserName,
                     frontEndUser.Password,
+                    frontEndUser.MobileNumber,
                     frontEndUser.ModifiedBy,
                 });
             }
@@ -326,15 +434,14 @@ namespace Dream14.Services
             }
         }
 
-        public BaseResult DeleteFrontEndUsersByIds(DeleteItem targetIds)
+        public BaseResult ChangeFrontEndUserStatus(string status, int userId)
         {
             try
             {
-                var frontEndIds = string.Join('|', targetIds.ItemIds);
-                return _unitOfWork.AdminRepo.DeleteFrontEndUsersByIds("usp_DeleteFrontEndByIds", new
+                return _unitOfWork.AdminRepo.ChangeFrontEndUserStatus("usp_ChangeFrontEndUserStatus", new
                 {
-                    frontEndIds,
-                    targetIds.DeletedBy,
+                    status,
+                    userId,
                 });
             }
             catch (Exception)

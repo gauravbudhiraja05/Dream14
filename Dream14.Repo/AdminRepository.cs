@@ -1,6 +1,7 @@
 ﻿using Dapper;
 using Dream14.Core.Helper;
 using Dream14.Core.Repositories;
+using Dream14.ViewModels.FrontEnd;
 using Dream14.ViewModels.Global;
 using Dream14.ViewModels.SuperAdmin;
 using System;
@@ -37,6 +38,110 @@ namespace Dream14.Repo
         }
 
         #endregion
+
+        public bool CheckValidOldPassword(string query, object param)
+        {
+            try
+            {
+                var result = Connection.Query<bool>(query, param, commandType: CommandType.StoredProcedure).FirstOrDefault();
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public BaseResult ChangePasswordForLoginUser(string query, object param)
+        {
+            try
+            {
+                BaseResult result = Connection.Query<BaseResult>(query, param, commandType: CommandType.StoredProcedure).FirstOrDefault();
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public DepsoitWithDrawl GetAmountDetail(string query, object param)
+        {
+            try
+            {
+                DepsoitWithDrawl result = Connection.Query<DepsoitWithDrawl>(query, param, commandType: CommandType.StoredProcedure).FirstOrDefault();
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public BaseResult SaveAmountDetail(string query, object param)
+        {
+            try
+            {
+                BaseResult result = Connection.Query<BaseResult>(query, param, commandType: CommandType.StoredProcedure).FirstOrDefault();
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public BaseResult AddUserDetail(string query, object param)
+        {
+            try
+            {
+                BaseResult result = Connection.Query<BaseResult>(query, param, commandType: CommandType.StoredProcedure).FirstOrDefault();
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public int GetUserCount(string query)
+        {
+            try
+            {
+                int result = Connection.Query<int>(query, null, commandType: CommandType.StoredProcedure).FirstOrDefault();
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public IEnumerable<UserDetail> GetUserList(string query)
+        {
+            try
+            {
+                var result = Connection.Query<UserDetail>(query, null, commandType: CommandType.StoredProcedure).ToList();
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public BaseResult ChangeUserStatus(string query, object param)
+        {
+            try
+            {
+                var result = Connection.Query<BaseResult>(query, param, commandType: CommandType.StoredProcedure).FirstOrDefault();
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
         #region Admin Users
 
@@ -273,19 +378,6 @@ namespace Dream14.Repo
             }
         }
 
-        //public BaseResult CheckEmailExist(string query, object param)
-        //{
-        //    try
-        //    {
-        //        var result = ExecuteQuery<BaseResult>(query, SqlCommandType.StoredProcedure, param).FirstOrDefault();
-        //        return result;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw ex;
-        //    }
-        //}
-
         public BaseResult SaveFrontEndUser(string query, object param)
         {
             try
@@ -325,7 +417,7 @@ namespace Dream14.Repo
             }
         }
 
-        public BaseResult DeleteFrontEndUsersByIds(string query, object param)
+        public BaseResult ChangeFrontEndUserStatus(string query, object param)
         {
             try
             {

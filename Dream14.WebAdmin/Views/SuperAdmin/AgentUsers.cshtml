@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<Dream14.ViewModels.SuperAdmin.AgentUser>
 @{
-	ViewData["Title"] = "Agent Users";
-	Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Agent Users";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="top_filter_bar">
@@ -54,6 +54,9 @@
                                 <button type="button" class="table_title"><i class="icon"></i>UserName</button>
                             </th>
                             <th>
+                                <button type="button" class="table_title"><i class="icon"></i>Limit</button>
+                            </th>
+                            <th>
                                 <button type="button" class="table_title"><i class="icon"></i>Mobile Number</button>
                             </th>
                             <th>
@@ -75,55 +78,60 @@
                                 <button type="button" class="table_title"><i class="icon"></i>BetLock Status</button>
                             </th>
                             <th class="editEndUser" style="width:75px;text-align: center;">Edit</th>
+                            <th class="editEndUser" style="width:75px;text-align: center;">Deposit / WithDrawl</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach (var agent in Model)
-						{
-                        <tr>
-                            <td style="width: 70px;">
-                                <div class="table_checkbox">
-                                    <input type="checkbox" id="checkitem1" class="check_item">
-                                    <label for="checkitem1"></label>
-                                </div>
-                            </td>
-                            <td>@agent.Name</td>
-                            <td>@agent.UserName</td>
-                            <td>@agent.MobileNumber</td>
-                            <td>@agent.Balance</td>
-                            <td>@agent.Deposit</td>
-                            <td>@agent.WithDrawl</td>
-                            <td>@agent.ProfitLoss</td>
-                            @if (@agent.IsActive)
-                            {
-                                <td>
-                                    <a href="#" onclick="ChangeAgentUserStatus('InActive','@agent.UserId')">Active</a>
+                        {
+                            <tr>
+                                <td style="width: 70px;">
+                                    <div class="table_checkbox">
+                                        <input type="checkbox" id="checkitem1" class="check_item">
+                                        <label for="checkitem1"></label>
+                                    </div>
                                 </td>
-                            }
-                            else
-                            {
-                                <td>
-                                    <a href="#" onclick="ChangeAgentUserStatus('Active','@agent.UserId')">InActive</a>
+                                <td>@agent.Name</td>
+                                <td>@agent.UserName</td>
+                                <td>@agent.Limit</td>
+                                <td>@agent.MobileNumber</td>
+                                <td>@agent.Balance</td>
+                                <td>@agent.Deposit</td>
+                                <td>@agent.WithDrawl</td>
+                                <td>@agent.ProfitLoss</td>
+                                @if (agent.IsActive)
+                                {
+                                    <td>
+                                        <a href="#" onclick="ChangeAgentUserStatus('InActive','@agent.UserId')">Active</a>
+                                    </td>
+                                }
+                                else
+                                {
+                                    <td>
+                                        <a href="#" onclick="ChangeAgentUserStatus('Active','@agent.UserId')">InActive</a>
+                                    </td>
+                                }
+                                @if (agent.IsBetLock)
+                                {
+                                    <td>
+                                        <a href="#" onclick="ChangeAgentUserStatus('UnLocked','@agent.UserId')">Locked</a>
+                                    </td>
+                                }
+                                else
+                                {
+                                    <td>
+                                        <a href="#" onclick="ChangeAgentUserStatus('Locked','@agent.UserId')">UnLocked</a>
+                                    </td>
+                                }
+                                <td style="width:75px;text-align: center;">
+                                    <button type="button" class="edit_item" onClick="window.location.href='@Url.Action("EditAgentUser","SuperAdmin",new { Id=agent.UserId})'">edit</button>
                                 </td>
-                            }
-                            @if (agent.IsBetLock)
-                            {
-                                <td>
-                                    <a href="#" onclick="ChangeAgentUserStatus('UnLocked','@agent.UserId')">Locked</a>
+                                <td style="width:75px;text-align: center;">
+                                    <button type="button" class="deposit_item" onclick="OpenOperationPopUp(@agent.UserId)">Deposit/WithDrawl</button>
                                 </td>
-                            }
-                            else
-                            {
-                                <td>
-                                    <a href="#" onclick="ChangeAgentUserStatus('Locked','@agent.UserId')">UnLocked</a>
-                                </td>
-                            }
-                            <td style="width:75px;text-align: center;">
-                                <button type="button" class="edit_item" onClick="window.location.href='@Url.Action("EditAgentUser","SuperAdmin",new { Id=agent.UserId})'">edit</button>
-                            </td>
-                        </tr>
+                            </tr>
 
-						}
+                        }
                     </tbody>
                 </table>
             </div>

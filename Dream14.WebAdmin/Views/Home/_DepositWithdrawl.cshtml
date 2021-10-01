@@ -1,0 +1,49 @@
+﻿@model Dream14.ViewModels.SuperAdmin.DepsoitWithDrawl
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+<form id="formDepositWithdrawl">
+    <div class="popup_window" id="partialDepositWithdrawl_popup">
+
+        <button type="button" class="popup_close_btn"></button>
+
+        <div class="popup_title">Deposit/WithDrawl Amount</div>
+
+        <div class="popup_form_fields">
+
+            <fieldset>
+
+                <div class="form_field" style="display:none;">
+                    <label>UserId</label>
+                    <input type="text" asp-for="UserId">
+                </div>
+                <div class="form_field">
+                    <label>Balance</label>
+                    <input type="text" disabled asp-for="Balance">
+                    <span id="Balance_Error" class="error_label" asp-validation-for="Balance"></span>
+                </div>
+                <div class="form_field">
+                    <label>Deposit</label>
+                    <input type="text" asp-for="Deposit">
+                    <span id="Deposit_Error" class="error_label" asp-validation-for="Deposit"></span>
+                </div>
+                <div class="form_field">
+                    <label>WithDrawl</label>
+                    <input type="text" asp-for="WithDrawl">
+                    <span id="WithDrawl_Error" class="error_label" asp-validation-for="WithDrawl"></span>
+                </div>
+                <div class="form_field" style="text-align: center">
+                    <button type="button" id="btnSave" class="btn_field">Save</button>
+                </div>
+            </fieldset>
+
+        </div>
+
+
+    </div>
+</form>
+<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/lib/jquery.unobtrusive-ajax.js"></script>
+<script src="~/js/DepositWithDrawl.js" asp-append-version="true"></script>

@@ -1,0 +1,322 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <meta name="author" content="Codeconvey" />
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+    <!-- Font Awesome -->
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+    <!-- Stylish Login Page CSS -->
+    <link href="~/css/FrontEnd/login-page.css" rel="stylesheet" />
+
+    <!--Only for demo purpose - no need to add.-->
+    <link href="~/css/FrontEnd/demo.css" rel="stylesheet" />
+
+    <style type="text/css">
+
+        /* The Modal (background) */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            padding-top: 100px; /* Location of the box */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+
+        /* Modal Content */
+        .modal-content {
+            position: relative;
+            background-color: #fefefe;
+            margin: auto;
+            padding: 0;
+            border: 1px solid #888;
+            width: 50%;
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+            -webkit-animation-name: animatetop;
+            -webkit-animation-duration: 0.4s;
+            animation-name: animatetop;
+            animation-duration: 0.4s
+        }
+
+        /* Add Animation */
+        @@-webkit-keyframes animatetop {
+            from {
+                top: -300px;
+                opacity: 0
+            }
+
+            to {
+                top: 0;
+                opacity: 1
+            }
+        }
+
+        @@keyframes animatetop {
+            from {
+                top: -300px;
+                opacity: 0
+            }
+
+            to {
+                top: 0;
+                opacity: 1
+            }
+        }
+
+        /* The Close Button */
+        .close {
+            color: white;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+            .close:hover,
+            .close:focus {
+                color: #000;
+                text-decoration: none;
+                cursor: pointer;
+            }
+
+        .modal-header {
+            text-align: center;
+            padding: 2px 16px;
+            /*background-color: #5cb85c;*/
+            color: white;
+        }
+
+        .modal-body {
+            padding: 2px 16px;
+        }
+
+        .modal-footer {
+            margin-left: 35%;
+            padding: 2px 16px;
+            /*background-color: #5cb85c;*/
+            color: white;
+        }
+    </style>
+
+</head>
+<body>
+
+
+    <section>
+        <div class="rt-container">
+            <div class="col-rt-12">
+                <div class="Scriptcontent">
+
+                    <!-- Stylish Login Page Start -->
+                    <form class="codehim-form">
+                        <div class="form-title">
+                            <div class="user-icon gr-bg">
+                                <i class="fa fa-user"></i>
+                            </div>
+                            @*<h2> CSS Login Form</h2>*@
+                            <img class="imgclass" src="~/images/stock-market.png" />
+                        </div>
+                        <label for="email"><i class="fa fa-envelope"></i> Email:</label>
+                        <input type="email" id="email" class="cm-input" placeholder="Enter your email adress">
+
+                        <label for="pass"><i class="fa fa-lock"></i> Password:</label>
+                        <input id="pass" type="password" class="cm-input" placeholder="Enter your password">
+                        <button type="submit" class="btn-login  gr-bg">Login</button>
+
+                        <label style="float: right; margin-top: 40px;"> Want a Agent ? <a href="javascript:void(0)" id="btnPopUp">Sign Up Here</a></label>
+                    </form>
+                    <!-- Stylish Login Page End -->
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close">&times;</span>
+                <h2>Register</h2>
+            </div>
+            <div class="modal-body">
+                <label for="name"> Name <span style="color:red">*</span></label>
+                <input type="text" id="Name" class="cm-input" placeholder="Enter your name">
+                <span class="error" style="display:none; color:red" id="span_Name">Name is required</span><br />
+
+                <label for="name"> Mobile Number 1 <span style="color:red">*</span></label>
+                <input type="text" id="MobNumber1" class="cm-input" placeholder="Enter your rrimary mobile number">
+                <span class="error" style="display:none; color:red" id="span_MobNumber1">Primary mobile number is required</span><br />
+
+                <label for="name"> Mobile Number 2 <span style="color:red">*</span></label>
+                <input type="text" id="MobNumber2" class="cm-input" placeholder="Enter your secondary mobile number">
+                <span class="error" style="display:none; color:red" id="span_MobNumber2">Secondary mobile number is required</span><br />
+
+                <label for="name"> District/City <span style="color:red">*</span></label>
+                <input type="text" id="City" class="cm-input" placeholder="Enter your district">
+                <span class="error" style="display:none; color:red" id="span_City">City is required</span><br />
+
+                <label for="name"> State <span style="color:red">*</span></label>
+                <input type="text" id="State" class="cm-input" placeholder="Enter your state">
+                <span class="error" style="display:none; color:red" id="span_State">State is required</span><br />
+
+                <label for="name"> Country <span style="color:red">*</span></label>
+                <input type="text" id="Country" class="cm-input" placeholder="Enter your country">
+                <span class="error" style="display:none; color:red" id="span_Country">Country is required</span><br />
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="btnRegister" style="width:50%" class="btn-login  gr-bg">Register</button>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+
+        $(document).ready(function () {
+
+            $("#btnRegister").click(function () {
+
+                if (ValidateRegisterForm() == false) {
+                    return false;
+                }
+                else {
+                    $.ajax({
+                        type: "POST",
+                        url: "/Home/AddUserDetails",
+                        async: false,
+                        data: { Name: $('#Name').val(), MobNumber1: $('#MobNumber1').val(), MobNumber2: $('#MobNumber2').val(), City: $('#City').val(), State: $('#State').val(), Country: $('#Country').val() },
+                        success: function () {
+                            alert("Yours Details Submitted Successfully. We will contact you soon");
+                            window.location.reload();
+                        },
+                        error: function (e) {
+                            alert(e);
+                        }
+                    });
+                }
+            });
+        });
+
+        // Get the modal
+        var modal = document.getElementById("myModal");
+
+        // Get the button that opens the modal
+        var btn = document.getElementById("btnPopUp");
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+
+        // When the user clicks the button, open the modal
+        btn.onclick = function () {
+            modal.style.display = "block";
+        }
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        //window.onclick = function (event) {
+        //    if (event.target == modal) {
+        //        modal.style.display = "none";
+        //    }
+        //}
+
+        function ValidateRegisterForm() {
+
+            var isValid = true;
+
+
+            if ($("#Name").val().trim().length == 0) {
+                $("span[id='span_Name']").show();
+                isValid = false;
+
+            }
+            else {
+                $("span[id='span_Name']").hide();
+            }
+
+
+            if ($("#MobNumber1").val().trim().length == 0) {
+                $("span[id='span_MobNumber1']").show();
+                isValid = false;
+            }
+            else {
+                $("span[id='span_MobNumber1']").hide();
+            }
+
+
+            if ($("#MobNumber2").val().trim().length == 0) {
+                $("span[id='span_MobNumber2']").show();
+                isValid = false;
+
+            }
+            else {
+                $("span[id='span_MobNumber2']").hide();
+            }
+
+
+            if ($("#City").val().trim().length == 0) {
+                $("span[id='span_City']").show();
+                isValid = false;
+
+            }
+            else {
+                $("span[id='span_City']").hide();
+            }
+
+
+            if ($("#MobNumber2").val().trim().length == 0) {
+                $("span[id='span_MobNumber2']").show();
+                isValid = false;
+
+            }
+            else {
+                $("span[id='span_MobNumber2']").hide();
+            }
+
+
+            if ($("#State").val().trim().length == 0) {
+                $("span[id='span_State']").show();
+                isValid = false;
+
+            }
+            else {
+                $("span[id='span_State']").hide();
+            }
+
+            if ($("#Country").val().trim().length == 0) {
+                $("span[id='span_Country']").show();
+                isValid = false;
+
+            }
+            else {
+                $("span[id='span_Country']").hide();
+            }
+
+            return isValid;
+        }
+    </script>
+</body>
+</html>

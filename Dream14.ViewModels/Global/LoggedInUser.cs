@@ -1,4 +1,6 @@
-﻿namespace Dream14.ViewModels.Global
+﻿using System;
+
+namespace Dream14.ViewModels.Global
 {
     /// <summary>
     /// Logged-In User Information Data Structure
@@ -9,5 +11,6 @@
         public string UserName { get; set; }
         public string FullName { get; set; }
         public string RoleName { get; set; }
+        public string Balance { get; set; }
     }
 }

@@ -61,6 +61,17 @@ function ChangeAdminUserStatus(status, userId) {
     });
 }
 
+function OpenOperationPopUp(userId) {
+
+    $.get('/Home/DepositWithdrawl/' + userId, function (data) {
+
+        $('#partialDepositWithdrawl').html(data);
+        $('#partialDepositWithdrawl').show();
+        $("#partialDepositWithdrawl_popup, .popup_window_overlay").fadeToggle(200);
+    });
+
+}
+
 var onBegin = function () {
     $(".loaderModal").show();
 };

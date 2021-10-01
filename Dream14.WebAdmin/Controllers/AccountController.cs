@@ -50,6 +50,12 @@ namespace Dream14.WebAdmin.Controllers
             return View();
         }
 
+        public IActionResult Event()
+        {
+
+            return View();
+        }
+
         /// <summary>
         /// Post login action that authenticate users
         /// </summary>
@@ -75,7 +81,8 @@ namespace Dream14.WebAdmin.Controllers
                         {
                             new Claim("UserID", Convert.ToString(result.UserId)),
                             new Claim("UserName", user.UserName),
-                            new Claim("FullName", result.FullName)
+                            new Claim("FullName", result.FullName),
+                            new Claim("Balance", result.Balance)
                         };
 
                         // Add Roles

@@ -36,6 +36,8 @@
 
         public float WithDrawl { get; set; }
 
+        public float Limit { get; set; }
+
         public float ProfitLoss { get; set; }
 
     }

@@ -1,0 +1,117 @@
+﻿@model IEnumerable<Dream14.ViewModels.FrontEnd.UserDetail>
+
+@{
+    ViewData["Title"] = "UserList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="top_filter_bar">
+    <div class="center_wrap">
+
+        <div class="top_filter_right">
+
+
+            <div class="form_group">
+                <fieldset>
+                    <input type="text" id="txtSearchUserList" class="form-control" placeholder="Search">
+                    <input type="button" class="search_btn" value="go" />
+                </fieldset>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!--End top_filter_bar-->
+
+
+<div class="full_width">
+    <div class="center_wrap">
+
+        <div class="content_wrap">
+
+            <div class="page_heading">
+                <h1>User List </h1>
+            </div>
+            <!--End page_heading-->
+
+            <div class="table_wrap">
+                <table id="tblUsers" class="table">
+                    <thead>
+                        <tr>
+                            <th style="width: 70px;">
+                                <div class="table_checkbox">
+                                    <input type="checkbox" id="checkall" class="check_all">
+                                    <label for="checkall">Accept</label>
+                                </div>
+                            </th>
+                            <th>
+                                <button type="button" class="table_title active"><i class="icon asc"></i> Name</button>
+                            </th>
+                            <th>
+                                <button type="button" class="table_title"><i class="icon"></i>Mobile Number 1</button>
+                            </th>
+                            <th>
+                                <button type="button" class="table_title"><i class="icon"></i>Mobile Number 2</button>
+                            </th>
+                            <th>
+                                <button type="button" class="table_title"><i class="icon"></i>City</button>
+                            </th>
+                            <th>
+                                <button type="button" class="table_title"><i class="icon"></i>State</button>
+                            </th>
+                            <th>
+                                <button type="button" class="table_title"><i class="icon"></i>Country</button>
+                            </th>
+                            <th>
+                                <button type="button" class="table_title"><i class="icon"></i>Seen Status</button>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var user in Model)
+                        {
+                            <tr>
+                                <td style="width: 70px;">
+                                    <div class="table_checkbox">
+                                        <input type="checkbox" id="checkitem1" class="check_item">
+                                        <label for="checkitem1"></label>
+                                    </div>
+                                </td>
+                                <td>@user.Name</td>
+                                <td>@user.MobileNumber1</td>
+                                <td>@user.MobileNumber2</td>
+                                <td>@user.City</td>
+                                <td>@user.State</td>
+                                <td>@user.Country</td>
+                                @if (!user.IsRead)
+                                {
+                                    <td>
+                                        <a href="#" onclick="ChangeUserStatus(@user.Id)">Un-Seen</a>
+                                    </td>
+                                }
+                                else
+                                {
+                                    <td>Seen</td>
+                                }
+                            </tr>
+
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+
+
+
+        </div>
+        <!--End content_wrap-->
+
+
+
+    </div>
+    <!--End center_wrap-->
+
+</div>
+<!--End full_width-->
+<!--Modal Popup-->
+<script src="~/js/SuperAdmin/superAdmin.UserList.js" asp-append-version="true"></script>

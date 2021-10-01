@@ -10,7 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="Views\Home\Privacy.cshtml" />
+    <None Include="Views\Account\Privacy.cshtml" />
     <None Include="Views\Shared\Error.cshtml" />
     <None Include="Views\Shared\_CookieConsentPartial.cshtml" />
     <None Include="Views\Shared\_Layout.cshtml" />
@@ -50,6 +50,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Update="Views\Home\_DepositWithdrawl.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\SuperAdmin\AddFrontEndUser.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>

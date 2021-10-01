@@ -42,11 +42,31 @@ namespace Dream14.WebAdmin.Controllers
         {
             _adminService = adminService;
             _logger = logger;
-            //var claims = (HttpContext.User.Identity as ClaimsIdentity).Claims;
-            //string userId = claims.Where(x => x.Type == "UserID").FirstOrDefault().Value;
         }
 
         #endregion
+
+
+        [HttpPost]
+        public IActionResult ChangeUserStatus(int id)
+        {
+            BaseResult result = new BaseResult();
+
+            try
+            {
+                result = _adminService.ChangeUserStatus(id);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError((int)EventLevel.Error, ex, ex.Message);
+                result = new BaseResult
+                {
+                    Message = StaticResource.InternalServerMessage
+                };
+                return Ok(result);
+            }
+        }
 
 
         #region Admin Users
@@ -440,7 +460,7 @@ namespace Dream14.WebAdmin.Controllers
         }
 
         [HttpPost]
-        public JsonResult AddFrontEndUser(string FullName, string EmailAddress, string Password)
+        public JsonResult AddFrontEndUser(string Name, string UserName, string Password, string MobileNumber)
         {
             BaseResult result = null;
 
@@ -449,11 +469,11 @@ namespace Dream14.WebAdmin.Controllers
                 var claims = (HttpContext.User.Identity as ClaimsIdentity).Claims;
                 FrontEndUser frontEndUser = new FrontEndUser
                 {
-                    FullName = FullName,
-                    EmailAddress = EmailAddress,
+                    Name = Name,
+                    UserName = UserName,
                     Password = Password,
                     CreatedBy = Convert.ToInt32(claims.Where(x => x.Type == "UserID").FirstOrDefault().Value),
-                    IsActive = true,
+                    MobileNumber = MobileNumber,
                     RoleName = "FrontEnd"
                 };
                 result = _adminService.SaveFrontEndUser(frontEndUser);
@@ -487,7 +507,7 @@ namespace Dream14.WebAdmin.Controllers
         }
 
         [HttpPost]
-        public IActionResult EditFrontEndUser(string FullName, string EmailAddress, string Password, int userId)
+        public IActionResult EditFrontEndUser(string Name, string UserName, string Password, int UserId, string MobileNumber)
         {
             BaseResult result = null;
 
@@ -496,10 +516,11 @@ namespace Dream14.WebAdmin.Controllers
                 var claims = (HttpContext.User.Identity as ClaimsIdentity).Claims;
                 FrontEndUser frontEndUser = new FrontEndUser
                 {
-                    FullName = FullName,
-                    EmailAddress = EmailAddress,
+                    Name = Name,
+                    UserName = UserName,
                     Password = Password,
-                    Id = userId,
+                    UserId = UserId,
+                    MobileNumber = MobileNumber,
                     ModifiedBy = Convert.ToInt32(claims.Where(x => x.Type == "UserID").FirstOrDefault().Value)
                 };
                 result = _adminService.UpdateFrontEndUser(frontEndUser);
@@ -519,15 +540,13 @@ namespace Dream14.WebAdmin.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        public IActionResult DeleteFrontEndUsers(DeleteItem targetIds)
+        public IActionResult ChangeFrontEndUserStatus(string status, int userId)
         {
             BaseResult result = new BaseResult();
 
             try
             {
-                var claims = (HttpContext.User.Identity as ClaimsIdentity).Claims;
-                targetIds.DeletedBy = Convert.ToInt32(claims.Where(x => x.Type == "UserID").FirstOrDefault().Value);
-                result = _adminService.DeleteFrontEndUsersByIds(targetIds);
+                result = _adminService.ChangeFrontEndUserStatus(status, userId);
                 return Ok(result);
             }
             catch (Exception ex)

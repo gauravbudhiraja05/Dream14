@@ -1,4 +1,5 @@
-﻿using Dream14.ViewModels.Global;
+﻿using Dream14.ViewModels.FrontEnd;
+using Dream14.ViewModels.Global;
 using Dream14.ViewModels.SuperAdmin;
 using System.Collections.Generic;
 
@@ -6,6 +7,23 @@ namespace Dream14.Core.Repositories
 {
     public interface IAdminRepository
     {
+        bool CheckValidOldPassword(string query, object param);
+
+        BaseResult ChangePasswordForLoginUser(string query, object param);
+
+        DepsoitWithDrawl GetAmountDetail(string query, object param);
+
+        BaseResult SaveAmountDetail(string query, object param);
+
+        BaseResult AddUserDetail(string query, object param);
+
+        int GetUserCount(string query);
+
+        IEnumerable<UserDetail> GetUserList(string query);
+
+        BaseResult ChangeUserStatus(string query, object param);
+
+
         #region Admin User
 
         /// <summary>
@@ -206,7 +224,7 @@ namespace Dream14.Core.Repositories
         /// <param name="query">procedure name</param>
         /// <param name="param">paramters object</param>
         /// <returns>true/false</returns>
-        BaseResult DeleteFrontEndUsersByIds(string query, object param);
+        BaseResult ChangeFrontEndUserStatus(string query, object param);
 
         #endregion
     }
