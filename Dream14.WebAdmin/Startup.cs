@@ -99,12 +99,18 @@ namespace Dream14.WebAdmin
                          options.LoginPath = "/Account/Login/";
                      });
 
+            services.AddAuthentication("FECookies")
+                    .AddCookie("FECookies", options =>
+                    {
+                        options.LoginPath = "/FrontEnd/Login/";
+                    });
+
             services.AddScoped(typeof(IRepository), typeof(Repository));
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<IAdminService, AdminService>();
-
+            services.AddScoped<IFrontEndService, FrontEndService>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
@@ -136,8 +142,8 @@ namespace Dream14.WebAdmin
                 config.MapRoute(
                    name: "Default",
                    template: "{controller}/{action}/{id?}",
-                   defaults: new { controller = "Account", action = "Login" }
-                   //defaults: new { controller = "FrontEnd", action = "Login" }
+                   //defaults: new { controller = "Account", action = "Login" }
+                   defaults: new { controller = "FrontEnd", action = "Login" }
                    );
 
             });

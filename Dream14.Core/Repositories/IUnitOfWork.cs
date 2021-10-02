@@ -6,6 +6,7 @@ namespace Dream14.Core.Repositories
     {
         IRepository Repo { get; }
         IAdminRepository AdminRepo { get; }
+        IFrontEndRepository FrontEndRepo { get; }
 
         void BeginTransaction();
         void CommitTransaction();

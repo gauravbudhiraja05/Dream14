@@ -50,6 +50,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Update="Views\FrontEnd\_ChangePassword.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\Home\_DepositWithdrawl.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>

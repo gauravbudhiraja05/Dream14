@@ -105,3 +105,5 @@ D:\GitHub\Dream14\Dream14.WebAdmin\obj\Debug\netcoreapp2.1\Razor\Views\Home\_Dep
 D:\GitHub\Dream14\Dream14.WebAdmin\obj\Debug\netcoreapp2.1\Razor\Views\Account\Privacy.g.cshtml.cs
 D:\GitHub\Dream14\Dream14.WebAdmin\obj\Debug\netcoreapp2.1\Razor\Views\FrontEnd\Login.g.cshtml.cs
 D:\GitHub\Dream14\Dream14.WebAdmin\obj\Debug\netcoreapp2.1\Razor\Views\Home\UserList.g.cshtml.cs
+D:\GitHub\Dream14\Dream14.WebAdmin\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_InnerLayout.g.cshtml.cs
+D:\GitHub\Dream14\Dream14.WebAdmin\obj\Debug\netcoreapp2.1\Razor\Views\FrontEnd\Index.g.cshtml.cs

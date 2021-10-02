@@ -13,6 +13,7 @@ namespace Dream14.Repo
 
         public IRepository Repo { get; private set; }
         public IAdminRepository AdminRepo { get; private set; }
+        public IFrontEndRepository FrontEndRepo { get; private set; }
 
         public UnitOfWork(IConfigurationRoot config)
         {
@@ -20,6 +21,7 @@ namespace Dream14.Repo
             _connection = new SqlConnection(connString);
             Repo = new Repository(_connection);
             AdminRepo = new AdminRepository(_connection);
+            FrontEndRepo = new FrontEndRepository(_connection);
         }
 
         public void BeginTransaction()
