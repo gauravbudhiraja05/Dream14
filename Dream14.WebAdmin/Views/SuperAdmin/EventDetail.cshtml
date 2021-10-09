@@ -1,0 +1,180 @@
+﻿@model Dream14.ViewModels.Global.EventDetail
+
+@{
+    ViewData["Title"] = "EventDetail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .table-css {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+        border: 1px solid;
+        margin-bottom: 20px;
+        text-align:center;
+    }
+
+        .table-css td, #table-css th {
+            border: 1px solid #fff;
+            padding: 8px;
+        }
+
+        .table-css tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .table-css tr:hover {
+            background-color: #ddd;
+        }
+
+        .table-css th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #1e2c69;
+            color: white;
+        }
+</style>
+
+<style type="text/css">
+
+    /* The Modal (background) */
+    .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        padding-top: 100px; /* Location of the box */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
+
+    /* Modal Content */
+    .modal-content {
+        position: relative;
+        background-color: #fefefe;
+        margin: auto;
+        padding: 0;
+        border: 1px solid #888;
+        width: 50%;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+        -webkit-animation-name: animatetop;
+        -webkit-animation-duration: 0.4s;
+        animation-name: animatetop;
+        animation-duration: 0.4s
+    }
+
+    /* Add Animation */
+    @@-webkit-keyframes animatetop {
+        from {
+            top: -300px;
+            opacity: 0
+        }
+
+        to {
+            top: 0;
+            opacity: 1
+        }
+    }
+
+    @@keyframes animatetop {
+        from {
+            top: -300px;
+            opacity: 0
+        }
+
+        to {
+            top: 0;
+            opacity: 1
+        }
+    }
+
+    /* The Close Button */
+    .close {
+        color: white;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+    .modal-header {
+        text-align: center;
+        padding: 2px 16px;
+        /*background-color: #5cb85c;*/
+        color: white;
+    }
+
+    .modal-body {
+        padding: 2px 16px;
+    }
+
+    .modal-footer {
+        margin-left: 35%;
+        padding: 2px 16px;
+        /*background-color: #5cb85c;*/
+        color: white;
+    }
+</style>
+
+<div class="tab_menu">
+    <div class="center_wrap">
+        <button type="button" class="back_btn" onClick="window.location.href='@Url.Action("EventList","SuperAdmin")'">Back</button>
+
+        <ul class="tab_list">
+            <li class="current"><a href="#tab_1">Event Detail</a></li>
+        </ul>
+    </div>
+</div>
+<!--End tab_menu-->
+
+<div class="full_width">
+    <div class="center_wrap">
+
+        <div class="content_wrap">
+
+            <div class="page_heading">
+                <h1>Event Detail</h1>
+            </div>
+            <!--End page_heading-->
+
+            <div class="form_wrap">
+
+                <div class="tab_content" id="tab_1">
+
+                    <table class="table-css" id="Table_t1"></table>
+                    <table class="table-css" id="Table_t2"></table>
+                    <div style="height:400px; overflow:auto; margin-bottom: 20px; border: 1px solid;">
+                        <table class="table-css" id="Table_t3"></table>
+                    </div>
+                    <div style="height:400px; overflow:auto; margin-bottom: 20px; border: 1px solid;">
+                        <table class="table-css" id="Table_t4"></table>
+                    </div>
+                </div>
+
+            </div>
+
+            <!--End forom_wrap-->
+
+        </div>
+        <!--End content_wrap-->
+
+
+    </div>
+    <!--End center_wrap-->
+</div>
+
+
+
+<script src="~/js/SuperAdmin/superAdmin.eventDetail.js" asp-append-version="true"></script>

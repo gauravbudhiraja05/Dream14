@@ -93,7 +93,7 @@ namespace Dream14.WebAdmin.Controllers
                         ClaimsIdentity userIdentity = new ClaimsIdentity(claims, "adminlogin");
                         ClaimsPrincipal principal = new ClaimsPrincipal(userIdentity);
 
-                        HttpContext.SignInAsync("AdminCookies", principal, new AuthenticationProperties
+                        HttpContext.SignInAsync("Dream14Cookies", principal, new AuthenticationProperties
                         {
                             ExpiresUtc = DateTime.UtcNow.AddHours(12),
                             IsPersistent = false,

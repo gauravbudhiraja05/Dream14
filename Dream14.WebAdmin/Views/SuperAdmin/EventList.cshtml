@@ -1,0 +1,77 @@
+﻿
+@{
+    ViewData["Title"] = "EventList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="top_filter_bar">
+    <div class="center_wrap">
+
+
+        @*<div class="top_filter_left">
+                <button type="button" class="add_new_list_item" onClick="window.location.href='@Url.Action("AddAdminUser","SuperAdmin")'">Add new</button>
+            </div>*@
+
+        <div class="top_filter_right">
+
+
+            <div class="form_group">
+                <fieldset>
+                    @*<input type="text" id="txtSearchAdminList" class="form-control" placeholder="Search">
+                        <input type="button" class="search_btn" value="go" />*@
+                </fieldset>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!--End top_filter_bar-->
+
+
+<div class="full_width">
+    <div class="center_wrap">
+
+        <div class="content_wrap">
+
+            <div class="page_heading">
+                <h1>Event List </h1>
+            </div>
+            <!--End page_heading-->
+
+            <div class="table_wrap">
+                <table id="tblEvents" class="table">
+                    <thead>
+                        <tr>
+                            <th>
+                                <button type="button" class="table_title"><i class="icon"></i> Event Name</button>
+                            </th>
+                            <th>
+                                <button type="button" class="table_title"><i class="icon"></i>InPlay</button>
+                            </th>
+                            <th>
+                                <button type="button" class="table_title"><i class="icon"></i>Tv</button>
+                            </th>
+                            <th class="editEndUser" style="width:75px;text-align: center;">View</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+
+
+
+
+        </div>
+        <!--End content_wrap-->
+
+
+
+    </div>
+    <!--End center_wrap-->
+
+</div>
+<!--End full_width-->
+<!--Modal Popup-->
+<script src="~/js/SuperAdmin/superAdmin.eventList.js" asp-append-version="true"></script>
+

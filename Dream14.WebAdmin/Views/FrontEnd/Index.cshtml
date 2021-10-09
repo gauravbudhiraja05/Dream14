@@ -4,31 +4,118 @@
     Layout = "~/Views/Shared/_InnerLayout.cshtml";
 }
 
-<article class="one_third first">
-    <h5 class="heading font-x2">Cricket</h5>
-</article>
-<div class="two_third">
-    <ul class="nospace group">
-        <li class="first btmspace-30">
-            <!--<a href="#"><i class="icon btmspace-30 fas fa-dove"></i></a>-->
-            <h6 class="heading">Sem aenean laoreet ipsum</h6>
-            <p>Consectetuer lacus fusce nec augue ut dui dui viverra ac vulputate scelerisque viverra molestie tortor vivamus ut.</p>
-        </li>
-        <li class="btmspace-30">
-            <!--<a href="#"><i class="icon btmspace-30 fas fa-car-crash"></i></a>-->
-            <h6 class="heading">Lacus sit amet arcu porta</h6>
-            <p>Tempus aenean purus enim euismod nec scelerisque a fringilla et mauris morbi at sapien non enim blandit interdum.</p>
-        </li>
-        <li class="first">
-            <!--<a href="#"><i class="icon btmspace-30 fas fa-charging-station"></i></a>-->
-            <h6 class="heading">Morbi posuere phasellus ante</h6>
-            <p>Phasellus a risus cras vel odio donec ornare morbi odio in non magna vel diam rutrum elementum aliquam eget nunc.</p>
-        </li>
-        <li class="last">
-            <!--<a href="#"><i class="icon btmspace-30 fas fa-eye-dropper"></i></a>-->
-            <h6 class="heading">Vestibulum vehicula neque et</h6>
-            <p>Ornare congue lacus nisi pharetra nisl a pharetra urna metus vel nunc nulla nunc metus tempor vitae consectetuer.</p>
-        </li>
-    </ul>
+<style>
+    .table-css {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+        border: 1px solid;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+        .table-css tr td.left-text {
+            text-align: left;
+        }
+
+        .table-css td, #table-css th {
+            border: 1px solid #fff;
+            padding: 8px;
+        }
+
+        .table-css tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .table-css tr:hover {
+            background-color: #ddd;
+        }
+
+        .table-css th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #fff;
+            color: black;
+        }
+
+    /* The Close Button */
+    .close {
+        color: #000;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+    .red-color {
+        color: red
+    }
+
+    .gray-color {
+        background-color: #CCCCCC;
+        /* color: gray; */
+        text-align: center;
+    }
+
+    .modal label {
+        border: 1px solid black;
+        margin: 12px;
+        padding: 5px;
+        font: caption;
+    }
+
+    .modal-body {
+        height: 400px;
+        overflow: auto;
+    }
+
+    .sub-header {
+        color: white;
+        background-color: #ff5000;
+        padding: 11px;
+        font-weight: 900;
+        text-align: left;
+    }
+
+    .modal h3 {
+        background-color: #001240;
+        color: white;
+        padding: 10px;
+        margin-top: 20px;
+        text-align: left;
+    }
+
+    .modal-content {
+        width: 85%;
+    }
+
+    /*.close {
+        color: white;
+        margin: 19px;
+        margin-top: 28px;
+        margin-right: 10px;
+    }*/
+
+    .table-css  a:hover {
+        text-decoration: underline;
+        text-decoration-color: black;
+    }
+
+</style>
+
+<div>
+    <button class="btn"> Cricket</button>
+    <table class="table-css" id="table_FE">
+    </table>
 </div>
+
+
+<script src="~/js/FrontEnd/frontend.index.js" asp-append-version="true"></script>
 

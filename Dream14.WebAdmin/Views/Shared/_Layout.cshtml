@@ -110,10 +110,7 @@
                                     <a id="btnChangePassword" href="#" style="padding-top: 10px;"><span>Change Password</span></a>
                                 </li>
                                 <li>
-                                    @if (roles.Any(r => r == "SuperAdmin"))
-                                    {
-                                        <a id="btnEvents" title="Events" href="@Url.Action("Event", "Home")" style="padding-top: 10px;"><span>Get Events</span></a>
-                                    }
+                                    <a id="btnEvents" title="Events" href="@Url.Action("EventList", "SuperAdmin")" style="padding-top: 10px;"><span>Events</span></a>
                                 </li>
                                 <li class="nav-li">
                                     <a title="Log-out" href="@Url.Action("Logout", "Account")"><span style="margin-top: 10px;">Logout</span></a>

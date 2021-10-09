@@ -51,10 +51,14 @@ namespace Dream14.WebAdmin.Controllers
             return View();
         }
 
+        public IActionResult FrontEndEventDetail()
+        {
+            return View();
+        }
+
         [HttpPost]
         public IActionResult Login([Bind] AuthUser user)
         {
-
             try
             {
                 if (ModelState.IsValid)
@@ -70,16 +74,16 @@ namespace Dream14.WebAdmin.Controllers
                         string role = result.RoleName.Trim();
                         var claims = new List<Claim>
                         {
-                            new Claim("UserID", Convert.ToString(result.UserId)),
-                            new Claim("UserName", user.UserName),
-                            new Claim("FullName", result.FullName),
-                            new Claim("Balance", result.Balance)
+                            new Claim("FEUserID", Convert.ToString(result.UserId)),
+                            new Claim("FEUserName", user.UserName),
+                            new Claim("FEFullName", result.FullName),
+                            new Claim("FEBalance", result.Balance)
                         };
 
                         ClaimsIdentity userIdentity = new ClaimsIdentity(claims, "Felogin");
                         ClaimsPrincipal principal = new ClaimsPrincipal(userIdentity);
 
-                        HttpContext.SignInAsync("FECookies", principal, new AuthenticationProperties
+                        HttpContext.SignInAsync("Dream14Cookies", principal, new AuthenticationProperties
                         {
                             ExpiresUtc = DateTime.UtcNow.AddHours(12),
                             IsPersistent = false,

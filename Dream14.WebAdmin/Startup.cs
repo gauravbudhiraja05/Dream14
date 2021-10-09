@@ -93,17 +93,17 @@ namespace Dream14.WebAdmin
             //             options.LoginPath = "/FrontEndHome/Login/";
             //         });
 
-            services.AddAuthentication("AdminCookies")
-                     .AddCookie("AdminCookies", options =>
+            services.AddAuthentication("Dream14Cookies")
+                     .AddCookie("Dream14Cookies", options =>
                      {
                          options.LoginPath = "/Account/Login/";
                      });
 
-            services.AddAuthentication("FECookies")
-                    .AddCookie("FECookies", options =>
-                    {
-                        options.LoginPath = "/FrontEnd/Login/";
-                    });
+            //services.AddAuthentication("FECookies")
+            //        .AddCookie("FECookies", options =>
+            //        {
+            //            options.LoginPath = "/FrontEnd/Login/";
+            //        });
 
             services.AddScoped(typeof(IRepository), typeof(Repository));
 
@@ -111,6 +111,7 @@ namespace Dream14.WebAdmin
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<IAdminService, AdminService>();
             services.AddScoped<IFrontEndService, FrontEndService>();
+            services.AddScoped<IApiService, ApiService>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }

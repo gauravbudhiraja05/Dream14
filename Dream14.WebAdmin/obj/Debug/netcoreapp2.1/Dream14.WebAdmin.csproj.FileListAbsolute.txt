@@ -107,3 +107,6 @@ D:\GitHub\Dream14\Dream14.WebAdmin\obj\Debug\netcoreapp2.1\Razor\Views\FrontEnd\
 D:\GitHub\Dream14\Dream14.WebAdmin\obj\Debug\netcoreapp2.1\Razor\Views\Home\UserList.g.cshtml.cs
 D:\GitHub\Dream14\Dream14.WebAdmin\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_InnerLayout.g.cshtml.cs
 D:\GitHub\Dream14\Dream14.WebAdmin\obj\Debug\netcoreapp2.1\Razor\Views\FrontEnd\Index.g.cshtml.cs
+D:\GitHub\Dream14\Dream14.WebAdmin\obj\Debug\netcoreapp2.1\Razor\Views\SuperAdmin\EventList.g.cshtml.cs
+D:\GitHub\Dream14\Dream14.WebAdmin\obj\Debug\netcoreapp2.1\Razor\Views\SuperAdmin\EventDetail.g.cshtml.cs
+D:\GitHub\Dream14\Dream14.WebAdmin\obj\Debug\netcoreapp2.1\Razor\Views\FrontEnd\FrontEndEventDetail.g.cshtml.cs

@@ -498,6 +498,26 @@ Home Content
                 background-color: #20aee3;
             }
 
+        .table_wrap .table .view_item {
+            border: none;
+            background: none;
+            text-indent: -9999px;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background: url(../images/view.png) center center no-repeat;
+            display: inline-block;
+        }
+
+            .table_wrap .table .view_item[disabled] {
+                background-color: #d8d8d8 !important;
+                cursor: no-drop;
+            }
+
+            .table_wrap .table .view_item:hover {
+                background-color: #20aee3;
+            }
+
         .table_wrap .table .deposit_item {
             border: none;
             background: none;
@@ -908,6 +928,30 @@ ul.tab_list li {
     .form_fields_box.left_box {
         float: left;
     }
+
+.form_fields_box1 {
+    width: 100%;
+    float: right;
+    border: 1px solid #efefef;
+    padding: 15px 15px 0;
+    background: #fff;
+    margin-bottom: 15px;
+}
+
+    .form_fields_box1:first-child {
+        float: left;
+    }
+
+    .form_fields_box1.left_box {
+        float: left;
+    }
+
+.form_field1 {
+    width: 20%;
+    float: left;
+    margin-bottom: 20px;
+    position: relative;
+}
 
 .form_field {
     width: 100%;

@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.Tracing;
 using System.Linq;
 using System.Security.Claims;
+using System.Threading.Tasks;
 
 namespace Dream14.WebAdmin.Controllers
 {
@@ -21,6 +23,11 @@ namespace Dream14.WebAdmin.Controllers
         /// IAuthService data member
         /// </summary>
         private readonly IAdminService _adminService;
+
+        /// <summary>
+        /// IAuthService data member
+        /// </summary>
+        private readonly IApiService _apiService;
 
 
         /// <summary>
@@ -38,14 +45,21 @@ namespace Dream14.WebAdmin.Controllers
         /// </summary>
         /// <param name="adminService">admin service object</param>
         /// <param name="logger">loggwr object</param>
-        public SuperAdminController(IAdminService adminService, ILogger<SuperAdminController> logger)
+        public SuperAdminController(IAdminService adminService, IApiService apiService, ILogger<SuperAdminController> logger)
         {
             _adminService = adminService;
+            _apiService = apiService;
             _logger = logger;
+            GetApiList();
         }
 
         #endregion
 
+
+        public IActionResult EventList()
+        {
+            return View();
+        }
 
         [HttpPost]
         public IActionResult ChangeUserStatus(int id)
@@ -66,6 +80,23 @@ namespace Dream14.WebAdmin.Controllers
                 };
                 return Ok(result);
             }
+        }
+
+        public JsonResult GetApiList()
+        {
+            Task<List<Cricket>> result= _apiService.GetApiListAsync();
+            return Json(result.Result);
+        }
+
+        public JsonResult GetEventDetail(string gameId)
+        {
+            Task<EventDetail> result = _apiService.GetEventDetailAsync(gameId);
+            return Json(result.Result);
+        }
+
+        public IActionResult EventDetail()
+        {
+            return View();
         }
 
 
