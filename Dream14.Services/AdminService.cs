@@ -320,6 +320,7 @@ namespace Dream14.Services
                     agentUser.Password,
                     agentUser.RoleName,
                     agentUser.MobileNumber,
+                    agentUser.UserType,
                     agentUser.CreatedBy
                 });
             }
@@ -352,6 +353,7 @@ namespace Dream14.Services
                     agentUser.UserName,
                     agentUser.Password,
                     agentUser.MobileNumber,
+                    agentUser.UserType,
                     agentUser.ModifiedBy,
                 });
             }

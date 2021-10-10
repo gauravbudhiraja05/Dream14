@@ -43,7 +43,7 @@ function ValidatUserName() {
                         beforeSend: function (xhr) {
                             onBegin(xhr);
                         },
-                        data: { Name: $('#Name').val(), UserName: $('#UserName').val(), Password: $('#Password').val(), MobileNumber: $('#MobileNumber').val() },
+                        data: { Name: $('#Name').val(), UserName: $('#UserName').val(), Password: $('#Password').val(), MobileNumber: $('#MobileNumber').val(), UserType: $('#UserType').val() },
                         success: function (data) {
                             onSuccess(data);
                         },

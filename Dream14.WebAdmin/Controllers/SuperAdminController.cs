@@ -376,7 +376,7 @@ namespace Dream14.WebAdmin.Controllers
         }
 
         [HttpPost]
-        public JsonResult AddAgentUser(string Name, string UserName, string Password, string MobileNumber)
+        public JsonResult AddAgentUser(string Name, string UserName, string Password, string MobileNumber, string UserType)
         {
             BaseResult result = null;
 
@@ -390,6 +390,7 @@ namespace Dream14.WebAdmin.Controllers
                     Password = Password,
                     CreatedBy = Convert.ToInt32(claims.Where(x => x.Type == "UserID").FirstOrDefault().Value),
                     MobileNumber = MobileNumber,
+                    UserType = UserType,
                     RoleName = "Agent"
                 };
                 result = _adminService.SaveAgentUser(agentUser);
@@ -423,7 +424,7 @@ namespace Dream14.WebAdmin.Controllers
         }
 
         [HttpPost]
-        public IActionResult EditAgentUser(string Name, string UserName, string Password, int UserId, string MobileNumber)
+        public IActionResult EditAgentUser(string Name, string UserName, string Password, int UserId, string MobileNumber, string UserType)
         {
             BaseResult result = null;
 
@@ -437,6 +438,7 @@ namespace Dream14.WebAdmin.Controllers
                     Password = Password,
                     UserId = UserId,
                     MobileNumber = MobileNumber,
+                    UserType = UserType,
                     ModifiedBy = Convert.ToInt32(claims.Where(x => x.Type == "UserID").FirstOrDefault().Value)
                 };
                 result = _adminService.UpdateAgentUser(agentUser);

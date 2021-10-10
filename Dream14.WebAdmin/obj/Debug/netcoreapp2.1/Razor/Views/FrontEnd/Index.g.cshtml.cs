@@ -168,7 +168,7 @@ using Dream14.WebAdmin.Models;
             WriteLiteral(": underline;\r\n        text-decoration-color: black;\r\n    }\r\n\r\n</style>\r\n\r\n<div>\r\n    <button class=\"btn\"> Cricket</button>\r\n    <table class=\"table-css\" id=\"table_FE\">\r\n    </table>\r\n</div>\r\n\r\n\r\n");
             EndContext();
             BeginContext(2338, 81, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2930dbe179a84935a414f020f7a65999", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "97dda3cfeafd40b2a5d72396fbdb4222", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
