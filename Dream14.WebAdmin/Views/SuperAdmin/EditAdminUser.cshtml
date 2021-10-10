@@ -8,7 +8,7 @@
     <div class="tab_menu">
         <div class="center_wrap">
 
-            <button type="button" class="back_btn" onClick="window.location.href='@Url.Action("AdminUsers","SuperAdmin")'">Back</button>
+            <button type="button" class="back_btn" onClick="window.location.href='@Url.Action("AdminUsers", "SuperAdmin")'">Back</button>
 
             <ul class="tab_list">
                 <li class="current"><a href="#tab_1">Admin User Details</a></li>
@@ -83,6 +83,31 @@
                                 </label>
                                 <input id="MobileNumber" value="@Model.MobileNumber" type="text">
                                 <span class="error_label" id="MobileNumber_Error"></span>
+                            </div>
+
+                            <div class="form_field">
+                                <label for="DropDown">
+                                    User Type*
+                                    <small class="info_icon" data-toggle="tooltip" data-placement="right" title="(Required) Enter the main phone number for the department.">Tooltip</small>
+                                </label>
+                                <div class="select_div">
+
+                                    @if (Model.UserType == "Vip")
+                                    {
+                                        <select id="UserType">
+                                            <option value="Vip" selected="selected">Vip</option>
+                                            <option value="Normal">Normal</option>
+                                        </select>
+                                    }
+                                    else
+                                    {
+                                        <select id="UserType">
+                                            <option value="Vip">Vip</option>
+                                            <option value="Normal" selected="selected">Normal</option>
+                                        </select>
+                                    }
+
+                                </div>
                             </div>
 
                         </div>

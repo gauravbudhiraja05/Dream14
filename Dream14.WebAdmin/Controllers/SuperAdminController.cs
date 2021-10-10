@@ -136,7 +136,7 @@ namespace Dream14.WebAdmin.Controllers
         }
 
         [HttpPost]
-        public JsonResult AddAdminUser(string Name, string UserName, string Password, string MobileNumber)
+        public JsonResult AddAdminUser(string Name, string UserName, string Password, string MobileNumber, string UserType)
         {
             BaseResult result = null;
 
@@ -149,6 +149,7 @@ namespace Dream14.WebAdmin.Controllers
                     UserName = UserName,
                     Password = Password,
                     MobileNumber = MobileNumber,
+                    UserType= UserType,
                     CreatedBy = Convert.ToInt32(claims.Where(x => x.Type == "UserID").FirstOrDefault().Value),
                     RoleName = "Admin"
                 };
@@ -183,7 +184,7 @@ namespace Dream14.WebAdmin.Controllers
         }
 
         [HttpPost]
-        public IActionResult EditAdminUser(string Name, string UserName, string Password, int userId, string MobileNumber)
+        public IActionResult EditAdminUser(string Name, string UserName, string Password, int userId, string MobileNumber, string UserType)
         {
             BaseResult result = null;
 
@@ -197,6 +198,7 @@ namespace Dream14.WebAdmin.Controllers
                     Password = Password,
                     UserId = userId,
                     MobileNumber = MobileNumber,
+                    UserType = UserType,
                     ModifiedBy = Convert.ToInt32(claims.Where(x => x.Type == "UserID").FirstOrDefault().Value)
                 };
                 result = _adminService.UpdateAdminUser(adminUser);

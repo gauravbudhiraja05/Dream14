@@ -162,6 +162,7 @@ namespace Dream14.Services
                     adminUser.Password,
                     adminUser.RoleName,
                     adminUser.MobileNumber,
+                    adminUser.UserType,
                     adminUser.CreatedBy
                 });
             }
@@ -194,6 +195,7 @@ namespace Dream14.Services
                     adminUser.UserName,
                     adminUser.Password,
                     adminUser.MobileNumber,
+                    adminUser.UserType,
                     adminUser.ModifiedBy,
                 });
             }
