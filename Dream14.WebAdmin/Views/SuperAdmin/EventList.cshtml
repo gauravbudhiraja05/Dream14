@@ -4,26 +4,119 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<style>
+    .table-css {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+        border: 1px solid;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+        .table-css tr td.left-text {
+            text-align: left;
+        }
+
+        .table-css td, #table-css th {
+            border: 1px solid black;
+            padding: 8px;
+        }
+
+        .table-css tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .table-css tr:hover {
+            background-color: #ddd;
+        }
+
+        .table-css th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #1e2c69;
+            color: #fff;
+            padding-left: 10px;
+        }
+
+    /* The Close Button */
+    .close {
+        color: #000;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+    .red-color {
+        color: red
+    }
+
+    .gray-color {
+        background-color: #CCCCCC;
+        /* color: gray; */
+        text-align: center;
+    }
+
+    .modal label {
+        border: 1px solid black;
+        margin: 12px;
+        padding: 5px;
+        font: caption;
+    }
+
+    .modal-body {
+        height: 400px;
+        overflow: auto;
+    }
+
+    .sub-header {
+        color: white;
+        background-color: #ff5000;
+        padding: 11px;
+        font-weight: 900;
+        text-align: left;
+    }
+
+    .modal h3 {
+        background-color: #001240;
+        color: white;
+        padding: 10px;
+        margin-top: 20px;
+        text-align: left;
+    }
+
+    .modal-content {
+        width: 85%;
+    }
+
+    /*.close {
+        color: white;
+        margin: 19px;
+        margin-top: 28px;
+        margin-right: 10px;
+    }*/
+
+    .table-css a:hover {
+        text-decoration: underline;
+        text-decoration-color: black;
+    }
+</style>
+
 
 <div class="top_filter_bar">
     <div class="center_wrap">
-
-
-        @*<div class="top_filter_left">
-                <button type="button" class="add_new_list_item" onClick="window.location.href='@Url.Action("AddAdminUser","SuperAdmin")'">Add new</button>
-            </div>*@
-
         <div class="top_filter_right">
-
-
             <div class="form_group">
-                <fieldset>
-                    @*<input type="text" id="txtSearchAdminList" class="form-control" placeholder="Search">
-                        <input type="button" class="search_btn" value="go" />*@
-                </fieldset>
             </div>
         </div>
-
     </div>
 </div>
 <!--End top_filter_bar-->
@@ -40,22 +133,7 @@
             <!--End page_heading-->
 
             <div class="table_wrap">
-                <table id="tblEvents" class="table">
-                    <thead>
-                        <tr>
-                            <th>
-                                <button type="button" class="table_title"><i class="icon"></i> Event Name</button>
-                            </th>
-                            <th>
-                                <button type="button" class="table_title"><i class="icon"></i>InPlay</button>
-                            </th>
-                            <th>
-                                <button type="button" class="table_title"><i class="icon"></i>Tv</button>
-                            </th>
-                            <th class="editEndUser" style="width:75px;text-align: center;">View</th>
-                        </tr>
-                    </thead>
-                    <tbody></tbody>
+                <table id="tblEvents" class="table-css">
                 </table>
             </div>
 

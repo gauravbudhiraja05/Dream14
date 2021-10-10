@@ -228,7 +228,7 @@ WriteAttributeValue("", 3116, Url.Action("EventList","SuperAdmin"), 3116, 37, fa
             WriteLiteral("le>\r\n                    </div>\r\n                </div>\r\n\r\n            </div>\r\n\r\n            <!--End forom_wrap-->\r\n\r\n        </div>\r\n        <!--End content_wrap-->\r\n\r\n\r\n    </div>\r\n    <!--End center_wrap-->\r\n</div>\r\n\r\n\r\n\r\n");
             EndContext();
             BeginContext(4404, 91, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "97a173fa0c28420cbdf2a02cd3851ecb", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "91f718aafe87455aa1b64c12d7f6e5f2", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();

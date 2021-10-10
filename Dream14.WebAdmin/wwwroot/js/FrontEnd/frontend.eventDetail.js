@@ -2,7 +2,7 @@
 
     BindEventDetails();
 
-    //setInterval(function () { BindEventDetails(); }, 3000);
+    //setInterval(function () { BindEventDetails1(); }, 1000);
 });
 
 
@@ -48,20 +48,121 @@ function BindEventDetails() {
     });
 }
 
+function BindEventDetails1() {
+    var gameId = getUrlParameter('gameId')
+    $.ajax({
+        type: "POST",
+        url: "/SuperAdmin/GetEventDetail?gameId=" + gameId,
+        success: function (eventList) {
+            if (eventList != null) {
+                BindT1Details(eventList.t1);
+                BindT2Details(eventList.t2);
+                BindT3Details(eventList.t3);
+                BindT4Details(eventList.t4);
+
+                GetModalDetails();
+
+                $('.table1_header').click(function () {
+                    $(this).nextUntil('tr.table1_header').slideToggle(100);
+                });
+
+                $('.table2_header').click(function () {
+                    $(this).nextUntil('tr.table2_header').slideToggle(100);
+                });
+
+                $('.table3_header').click(function () {
+                    $(this).nextUntil('tr.table3_header').slideToggle(100);
+                });
+
+                $('.table4_header').click(function () {
+                    $(this).nextUntil('tr.table4_header').slideToggle(100);
+                });
+
+                $('#th1_header').html(eventList.eventName);
+                $('#th2_header').html(eventList.eventDate);
+                $('#th3_header').html(eventList.eventTime);
+            }
+        },
+        error: function (e) {
+            onFailed(e);
+            return false;
+        }
+    });
+}
+
 function BindT1Details(t1) {
+
+    var old_b3 = parseFloat($('#b3').html());
+    var old_b2 = parseFloat($('#b2').html());
+    var old_b1 = parseFloat($('#b1').html());
+    var old_l1 = parseFloat($('#l1').html());
+    var old_l2 = parseFloat($('#l2').html());
+    var old_l3 = parseFloat($('#l3').html());
     $('#Table_t1 tr').remove();
     if (t1 != null && t1.length > 0) {
-        var html1 = "<tr class='table1_header' style='cursor:pointer'><th colspan='3'>MATCH_ODDS <span style='margin-left: 880px;'>Maximum Bet 1</span><i id='matchOdds_Modal' class='fa fa-info-circle' style='font-size:24px;float:right;cursor: pointer'></i></th></tr><tr><td></td><td><table style='width:100%'><tr><td style='width:33%'></td><td style='width:33%'></td><td style='width:33%;background-color:#72BBEF'>BACK</td></tr></table></td><td><table style='width:100%'><tr><td style='width:33%; text-align:center; background-color:#FAA9BA'>LAY</td><td style='width:33%'></td><td style='width:33%'></td></tr></table></td></tr>";
+        var html1 = "<tr class='table1_header' style='cursor:pointer'><th colspan='3'>MATCH_ODDS <span style='margin-left: 610px;'>Maximum Bet 1</span><i id='matchOdds_Modal' class='fa fa-info-circle' style='font-size:24px;float:right;cursor: pointer'></i></th></tr><tr><td></td><td><table style='width:100%'><tr><td style='width:33%'></td><td style='width:33%'></td><td style='width:33%;background-color:#72BBEF'>BACK</td></tr></table></td><td><table style='width:100%'><tr><td style='width:33%; text-align:center; background-color:#FAA9BA'>LAY</td><td style='width:33%'></td><td style='width:33%'></td></tr></table></td></tr>";
         var html2 = "";
         for (var i = 0; i < t1.length; i++) {
             for (var j = 0; j < t1[i].length; j++)
-                html2 = html2.concat("<tr><td class='left-text'><b>" + t1[i][j].nat + "</b></td><td><table style='width:100%;'><tr style='background-color:#72BBEF'><td>" + t1[i][j].b3 + "</td><td>" + t1[i][j].b2 + "</td><td>" + t1[i][j].b1 + "</td></tr></table></td><td><table style='width:100%;'><tr style='background-color:#FAA9BA'><td>" + t1[i][j].l1 + "</td><td>" + t1[i][j].l2 + "</td><td>" + t1[i][j].l3 + "</td></tr></table></td></tr>");
+                html2 = html2.concat("<tr><td class='left-text'><b>" + t1[i][j].nat + "</b></td><td><table style='width:100%;'><tr><td id='b3' style='background-color:#72BBEF'>" + t1[i][j].b3 + "</td><td id='b2' style='background-color:#72BBEF'>" + t1[i][j].b2 + "</td><td id='b1' style='background-color:#72BBEF'>" + t1[i][j].b1 + "</td></tr></table></td><td><table style='width:100%;'><tr><td id='l1' style='background-color:#FAA9BA'>" + t1[i][j].l1 + "</td><td id='l2' style='background-color:#FAA9BA'>" + t1[i][j].l2 + "</td><td id='l3' style='background-color:#FAA9BA'>" + t1[i][j].l3 + "</td></tr></table></td></tr>");
         }
         var result = html1.concat(html2)
         $('#Table_t1').append(result);
+
+        var new_b3 = parseFloat($('#b3').html());
+        var new_b2 = parseFloat($('#b2').html());
+        var new_b1 = parseFloat($('#b1').html());
+        var new_l1 = parseFloat($('#l1').html());
+        var new_l2 = parseFloat($('#l2').html());
+        var new_l3 = parseFloat($('#l3').html());
+ 
+        if (old_b3 != NaN && old_b2 != NaN && old_b1 != NaN && old_l3 != NaN && old_l2 != NaN && old_l1 != NaN) {
+
+            if (old_b3 > new_b3) {
+                BindRedColor("b3", "blue");
+            }
+            else if (old_b3 < new_b3) {
+                BindPurpleColor("b3", "blue");
+            }
+
+            if (old_b2 > new_b2) {
+                BindRedColor("b2", "blue");
+            }
+            else if (old_b2 < new_b2) {
+                BindPurpleColor("b2", "blue");
+            }
+
+            if (old_b1 > new_b1) {
+                BindRedColor("b1", "blue");
+            }
+            else if (old_b1 < new_b1) {
+                BindPurpleColor("b1", "blue");
+            }
+
+            if (old_l1 > new_l1) {
+                BindRedColor("l1", "blue");
+            }
+            else if (old_l1 < new_l1){
+                BindPurpleColor("l1", "blue");
+            }
+
+            if (old_l2 > new_l2) {
+                BindRedColor("l2", "blue");
+            }
+            else if (old_l2 < new_l2){
+                BindPurpleColor("l2", "blue");
+            }
+
+            if (old_l3 > new_l3) {
+                BindRedColor("l3", "blue");
+            }
+            else if (old_l3 < new_l3) {
+                BindPurpleColor("l3", "blue");
+            }
+        }
     }
     else {
-        var html = "<tr class='table1_header' style='cursor:pointer'><th colspan='3'>MATCH_ODDS <span>Maximum Bet 1</span><i id='matchOdds_Modal' class='fa fa-info-circle' style='font-size:24px;float:right;cursor: pointer'></i></th></tr><tr><td colspan='3' style='text-align: center'>No Records Found</td></tr>";
+        var html = "<tr class='table1_header' style='cursor:pointer'><th colspan='3'>MATCH_ODDS <span style='margin-left: 610px;'>Maximum Bet 1</span><i id='matchOdds_Modal' class='fa fa-info-circle' style='font-size:24px;float:right;cursor: pointer'></i></th></tr><tr><td colspan='3' style='text-align: center'>No Records Found</td></tr>";
         $('#Table_t1').append(html);
     }
 }
@@ -127,8 +228,6 @@ function BindT4Details(t4) {
         $('#Table_t4').append(html);
     }
 }
-
-
 
 
 function intToString(value) {
@@ -218,12 +317,11 @@ var onBegin = function () {
     $(".loaderModal").show();
 };
 
-
 var onComplete = function () {
     //alert("onComplete");
 };
 
-var onSuccess = function (context) {
+var onSuccess = function () {
     $(".loaderModal").hide();
     swal(
         'The admin user status was successfully updated.',
@@ -234,9 +332,34 @@ var onSuccess = function (context) {
     });
 };
 
-var onFailed = function (context) {
+var onFailed = function () {
     //alert("Failed");
 };
 
 
+function BindRedColor(itemId, type) {
+    $('#' + itemId).css("background-color", "red");
+    RestoreOriginalColor(itemId, type);
+}
 
+function BindPurpleColor(itemId, type) {
+    $('#' + itemId).css("background-color", "purple");
+    RestoreOriginalColor(itemId, type);
+}
+
+function RestoreOriginalColor(itemId, type) {
+    if (type == "blue")
+        setTimeout(function () { SetBlueColor(itemId) }, 600);
+    else if (type == "pink")
+        setTimeout(function () { SetPinkColor(itemId) }, 600);
+}
+
+
+function SetBlueColor(itemId) {
+    $('#' + itemId).css("background-color", "#72BBEF");
+}
+
+
+function SetPinkColor(itemId) {
+    $('#' + itemId).css("background-color", "#FAA9BA");
+}

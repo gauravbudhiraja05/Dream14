@@ -1,12 +1,26 @@
 ﻿$(document).ready(function () {
     GetEventList();
 
-    //setInterval(function () { GetEventList(); }, 60000);
+    //setInterval(function () { GetEventList1(); }, 3000);
 
 });
 
 
 function GetEventList() {
+    $.ajax({
+        type: "POST",
+        url: "/SuperAdmin/GetApiList",
+        success: function (cricketList) {
+            BindData(cricketList);
+        },
+        error: function (e) {
+            onFailed(e);
+            return false;
+        }
+    });
+}
+
+function GetEventList1() {
     $.ajax({
         type: "POST",
         url: "/SuperAdmin/GetApiList",
@@ -44,6 +58,5 @@ function GetValue(value) {
     if (value != undefined && value == "0.00") {
         value = "-";
     }
-
     return value;
 }

@@ -4,7 +4,43 @@
     Layout = "~/Views/Shared/_InnerLayout.cshtml";
 }
 
+
 <style>
+    .table-css1 {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+        border: 1px solid;
+        margin-bottom: 20px;
+        text-align: center;
+        font-weight:800;
+    }
+
+        .table-css1 tr td.left-text {
+            text-align: left;
+        }
+
+        .table-css1 td, #table-css th {
+            border: 1px solid #fff;
+            padding: 8px;
+        }
+
+        .table-css1 tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .table-css1 tr:hover {
+            background-color: #ddd;
+        }
+
+        .table-css1 th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #ff5000;
+            color: white;
+        }
+
     .table-css {
         font-family: Arial, Helvetica, sans-serif;
         border-collapse: collapse;
@@ -12,7 +48,13 @@
         border: 1px solid;
         margin-bottom: 20px;
         text-align: center;
+        font-weight: 800;
+        font-size: larger;
     }
+
+        .table-css td{
+            line-height:60px;
+        }
 
         .table-css tr td.left-text {
             text-align: left;
@@ -102,11 +144,11 @@
         margin-top: 28px;
         margin-right: 10px;
     }
+
 </style>
 
 
-@*<h2 style="text-align: center;margin-bottom: 20px;">Event Detail</h2>*@
-<table class="table-css">
+<table class="table-css1">
     <tr>
         <th id="th1_header"></th>
         <th id="th2_header"></th>
@@ -116,15 +158,11 @@
 <div>
     <table class="table-css" id="Table_t1"></table>
     <table class="table-css" id="Table_t2"></table>
-    @*<div style="height:400px; overflow:auto; margin-bottom: 20px; border: 1px solid;">*@
-        <table class="table-css" id="Table_t3"></table>
-    @*</div>*@
-    @*<div style="height:400px; overflow:auto; margin-bottom: 20px; border: 1px solid;">*@
-        <table class="table-css" id="Table_t4"></table>
-    @*</div>*@
+    <table class="table-css" id="Table_t3"></table>
+    <table class="table-css" id="Table_t4"></table>
 </div>
 
-<!-- The Modal -->
+<!-- The tchOddsModal -->
 <div id="matchOddsModal" class="modal">
 
     <!-- Modal content -->
@@ -144,7 +182,7 @@
     </div>
 </div>
 
-<!-- The Modal -->
+<!-- The BookMakerModal -->
 <div id="bookMakerModal" class="modal">
 
     <!-- Modal content -->
@@ -195,7 +233,7 @@
     </div>
 </div>
 
-<!-- The Modal -->
+<!-- The SessionMarketModal -->
 <div id="sessionMarketModal" class="modal">
 
     <!-- Modal content -->
@@ -732,7 +770,7 @@
     </div>
 </div>
 
-<!-- The Modal -->
+<!-- The fancy1MarketModal -->
 <div id="fancy1MarketModal" class="modal">
 
     <!-- Modal content -->
@@ -993,8 +1031,3 @@
 </div>
 
 <script src="~/js/FrontEnd/frontend.eventDetail.js"></script>
-
-<script>
-
-
-</script>
