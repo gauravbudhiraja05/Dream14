@@ -5,8 +5,6 @@
 
 });
 
-
-
 function GetEventList() {
     $.ajax({
         type: "POST",
