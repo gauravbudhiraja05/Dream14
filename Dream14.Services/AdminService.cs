@@ -241,6 +241,7 @@ namespace Dream14.Services
                     masterUser.Password,
                     masterUser.RoleName,
                     masterUser.MobileNumber,
+                    masterUser.UserType,
                     masterUser.CreatedBy
                 });
             }
@@ -273,6 +274,7 @@ namespace Dream14.Services
                     masterUser.UserName,
                     masterUser.Password,
                     masterUser.MobileNumber,
+                    masterUser.UserType,
                     masterUser.ModifiedBy,
                 });
             }

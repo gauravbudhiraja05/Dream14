@@ -40,5 +40,7 @@
 
         public float ProfitLoss { get; set; }
 
+        public string UserType { get; set; }
+
     }
 }

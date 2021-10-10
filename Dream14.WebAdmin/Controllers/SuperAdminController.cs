@@ -84,7 +84,7 @@ namespace Dream14.WebAdmin.Controllers
 
         public JsonResult GetApiList()
         {
-            Task<List<Cricket>> result= _apiService.GetApiListAsync();
+            Task<List<Cricket>> result = _apiService.GetApiListAsync();
             return Json(result.Result);
         }
 
@@ -149,7 +149,7 @@ namespace Dream14.WebAdmin.Controllers
                     UserName = UserName,
                     Password = Password,
                     MobileNumber = MobileNumber,
-                    UserType= UserType,
+                    UserType = UserType,
                     CreatedBy = Convert.ToInt32(claims.Where(x => x.Type == "UserID").FirstOrDefault().Value),
                     RoleName = "Admin"
                 };
@@ -256,7 +256,7 @@ namespace Dream14.WebAdmin.Controllers
         }
 
         [HttpPost]
-        public JsonResult AddMasterUser(string Name, string UserName, string Password, string MobileNumber)
+        public JsonResult AddMasterUser(string Name, string UserName, string Password, string MobileNumber, string UserType)
         {
             BaseResult result = null;
 
@@ -270,6 +270,7 @@ namespace Dream14.WebAdmin.Controllers
                     Password = Password,
                     CreatedBy = Convert.ToInt32(claims.Where(x => x.Type == "UserID").FirstOrDefault().Value),
                     MobileNumber = MobileNumber,
+                    UserType = UserType,
                     RoleName = "Master"
                 };
                 result = _adminService.SaveMasterUser(adminUser);
@@ -303,7 +304,7 @@ namespace Dream14.WebAdmin.Controllers
         }
 
         [HttpPost]
-        public IActionResult EditMasterUser(string Name, string UserName, string Password, int UserId, string MobileNumber)
+        public IActionResult EditMasterUser(string Name, string UserName, string Password, int UserId, string MobileNumber, string UserType)
         {
             BaseResult result = null;
 
@@ -317,6 +318,7 @@ namespace Dream14.WebAdmin.Controllers
                     Password = Password,
                     UserId = UserId,
                     MobileNumber = MobileNumber,
+                    UserType = UserType,
                     ModifiedBy = Convert.ToInt32(claims.Where(x => x.Type == "UserID").FirstOrDefault().Value)
                 };
                 result = _adminService.UpdateMasterUser(adminUser);

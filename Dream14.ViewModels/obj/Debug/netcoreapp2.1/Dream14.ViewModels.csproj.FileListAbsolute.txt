@@ -14,4 +14,3 @@ D:\GitHub\Dream14\Dream14.ViewModels\obj\Debug\netcoreapp2.1\Dream14.ViewModels.
 D:\GitHub\Dream14\Dream14.ViewModels\obj\Debug\netcoreapp2.1\Dream14.ViewModels.AssemblyInfo.cs
 D:\GitHub\Dream14\Dream14.ViewModels\obj\Debug\netcoreapp2.1\Dream14.ViewModels.dll
 D:\GitHub\Dream14\Dream14.ViewModels\obj\Debug\netcoreapp2.1\Dream14.ViewModels.pdb
-D:\GitHub\Dream14\Dream14.ViewModels\obj\Debug\netcoreapp2.1\Dream14.ViewModels.csprojAssemblyReference.cache
