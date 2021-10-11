@@ -1,4 +1,6 @@
-﻿namespace Dream14.ViewModels.Global
+﻿using System.Collections.Generic;
+
+namespace Dream14.ViewModels.Global
 {
     public class Cricket
     {
@@ -20,5 +22,12 @@
 
         public EventDetail EventDetail;
         
+    }
+
+    public class CricketList
+    {
+        public List<Cricket> Crickets { get; set; }
+
+        public List<string> GameIds { get; set; }
     }
 }

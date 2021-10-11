@@ -1,0 +1,157 @@
+﻿@using System.Security.Claims;
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+@{
+    string roleName = HttpContextAccessor.HttpContext.User.Claims?.Where(c => c.Type == ClaimTypes.Role).Select(r => r.Value).FirstOrDefault();
+
+}
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<style>
+    .table-css {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+        border: 1px solid;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+        .table-css tr td.left-text {
+            text-align: left;
+        }
+
+        .table-css td, #table-css th {
+            border: 1px solid black;
+            padding: 8px;
+        }
+
+        .table-css tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .table-css tr:hover {
+            background-color: #ddd;
+        }
+
+        .table-css th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #1e2c69;
+            color: #fff;
+            padding-left: 10px;
+        }
+
+    /* The Close Button */
+    .close {
+        color: #000;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+    .red-color {
+        color: red
+    }
+
+    .gray-color {
+        background-color: #CCCCCC;
+        /* color: gray; */
+        text-align: center;
+    }
+
+    .modal label {
+        border: 1px solid black;
+        margin: 12px;
+        padding: 5px;
+        font: caption;
+    }
+
+    .modal-body {
+        height: 400px;
+        overflow: auto;
+    }
+
+    .sub-header {
+        color: white;
+        background-color: #ff5000;
+        padding: 11px;
+        font-weight: 900;
+        text-align: left;
+    }
+
+    .modal h3 {
+        background-color: #001240;
+        color: white;
+        padding: 10px;
+        margin-top: 20px;
+        text-align: left;
+    }
+
+    .modal-content {
+        width: 85%;
+    }
+
+    /*.close {
+        color: white;
+        margin: 19px;
+        margin-top: 28px;
+        margin-right: 10px;
+    }*/
+
+    .table-css a:hover {
+        text-decoration: underline;
+        text-decoration-color: black;
+    }
+</style>
+
+
+<div class="top_filter_bar">
+    <div class="center_wrap">
+        <div class="top_filter_right">
+            <div class="form_group">
+            </div>
+        </div>
+    </div>
+</div>
+<!--End top_filter_bar-->
+
+<input type="hidden" id="hdnRoleName" value="@roleName" />
+<div class="full_width">
+    <div class="center_wrap">
+
+        <div class="content_wrap">
+
+            <div class="page_heading">
+                <h1>Event List </h1>
+            </div>
+            <!--End page_heading-->
+
+            <div class="table_wrap">
+                <table id="tblEvents" class="table-css"></table>
+            </div>
+
+        </div>
+        <!--End content_wrap-->
+
+
+
+    </div>
+    <!--End center_wrap-->
+
+</div>
+<!--End full_width-->
+
+<script src="~/js/Event/event.index.js" asp-append-version="true"></script>

@@ -50,7 +50,6 @@ namespace Dream14.WebAdmin.Controllers
             _adminService = adminService;
             _apiService = apiService;
             _logger = logger;
-            GetApiList();
         }
 
         #endregion
@@ -497,7 +496,7 @@ namespace Dream14.WebAdmin.Controllers
         }
 
         [HttpPost]
-        public JsonResult AddFrontEndUser(string Name, string UserName, string Password, string MobileNumber)
+        public JsonResult AddFrontEndUser(string Name, string UserName, string Password, string MobileNumber, string UserType)
         {
             BaseResult result = null;
 
@@ -511,6 +510,7 @@ namespace Dream14.WebAdmin.Controllers
                     Password = Password,
                     CreatedBy = Convert.ToInt32(claims.Where(x => x.Type == "UserID").FirstOrDefault().Value),
                     MobileNumber = MobileNumber,
+                    UserType= UserType,
                     RoleName = "FrontEnd"
                 };
                 result = _adminService.SaveFrontEndUser(frontEndUser);
@@ -544,7 +544,7 @@ namespace Dream14.WebAdmin.Controllers
         }
 
         [HttpPost]
-        public IActionResult EditFrontEndUser(string Name, string UserName, string Password, int UserId, string MobileNumber)
+        public IActionResult EditFrontEndUser(string Name, string UserName, string Password, int UserId, string MobileNumber, string UserType)
         {
             BaseResult result = null;
 
@@ -558,6 +558,7 @@ namespace Dream14.WebAdmin.Controllers
                     Password = Password,
                     UserId = UserId,
                     MobileNumber = MobileNumber,
+                    UserType = UserType,
                     ModifiedBy = Convert.ToInt32(claims.Where(x => x.Type == "UserID").FirstOrDefault().Value)
                 };
                 result = _adminService.UpdateFrontEndUser(frontEndUser);

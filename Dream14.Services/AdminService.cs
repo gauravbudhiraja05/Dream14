@@ -399,6 +399,7 @@ namespace Dream14.Services
                     frontEndUser.Password,
                     frontEndUser.RoleName,
                     frontEndUser.MobileNumber,
+                    frontEndUser.UserType,
                     frontEndUser.CreatedBy
                 });
             }
@@ -431,6 +432,7 @@ namespace Dream14.Services
                     frontEndUser.UserName,
                     frontEndUser.Password,
                     frontEndUser.MobileNumber,
+                    frontEndUser.UserType,
                     frontEndUser.ModifiedBy,
                 });
             }

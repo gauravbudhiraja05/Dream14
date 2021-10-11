@@ -82,7 +82,8 @@ namespace Dream14.WebAdmin.Controllers
                             new Claim("UserID", Convert.ToString(result.UserId)),
                             new Claim("UserName", user.UserName),
                             new Claim("FullName", result.FullName),
-                            new Claim("Balance", result.Balance)
+                            new Claim("Balance", result.Balance),
+                            new Claim("UserType", result.UserType)
                         };
 
                         // Add Roles

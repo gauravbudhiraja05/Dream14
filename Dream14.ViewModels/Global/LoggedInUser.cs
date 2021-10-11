@@ -12,5 +12,6 @@ namespace Dream14.ViewModels.Global
         public string FullName { get; set; }
         public string RoleName { get; set; }
         public string Balance { get; set; }
+        public string UserType { get; set; }
     }
 }

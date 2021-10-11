@@ -112,6 +112,7 @@ namespace Dream14.WebAdmin
             services.AddScoped<IAdminService, AdminService>();
             services.AddScoped<IFrontEndService, FrontEndService>();
             services.AddScoped<IApiService, ApiService>();
+            services.AddScoped<IEventService, EventService>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }

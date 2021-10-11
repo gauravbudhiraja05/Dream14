@@ -98,22 +98,22 @@
                         <li class="nav-li"><a href="@Url.Action("Dashboard", "Home")">Dashboard</a></li>
 
                         <li>
-                            <a href="#" style="text-decoration: none !important;cursor: default !important;">Balance : @HttpContextAccessor.HttpContext.User.Claims?.FirstOrDefault(c => c.Type == "Balance")?.Value</a>
+                            <a href="#" style="text-decoration: none !important;cursor: pointer !important;">Balance : @HttpContextAccessor.HttpContext.User.Claims?.FirstOrDefault(c => c.Type == "Balance")?.Value</a>
                         </li>
                         <li>
-                            <a href="#" style="text-decoration: none !important;cursor: default !important;">Exposure : @HttpContextAccessor.HttpContext.User.Claims?.FirstOrDefault(c => c.Type == "Balance")?.Value</a>
+                            <a href="#" style="text-decoration: none !important;cursor: pointer !important;">Exposure : @HttpContextAccessor.HttpContext.User.Claims?.FirstOrDefault(c => c.Type == "Balance")?.Value</a>
                         </li>
                         <li>
-                            <a href="#" style="text-decoration: none !important;cursor: default !important;">@*Logged in as*@ <span>@HttpContextAccessor.HttpContext.User.Claims?.FirstOrDefault(c => c.Type == "FullName")?.Value</span></a>
+                            <a href="#" style="text-decoration: none !important;cursor: pointer !important;">@*Logged in as*@ <span>@HttpContextAccessor.HttpContext.User.Claims?.FirstOrDefault(c => c.Type == "FullName")?.Value</span></a>
                             <ul class="submenu">
                                 <li class="nav-li">
                                     <a id="btnChangePassword" href="#" style="padding-top: 10px;"><span>Change Password</span></a>
                                 </li>
                                 <li>
-                                    <a id="btnEvents" title="Events" href="@Url.Action("EventList", "SuperAdmin")" style="padding-top: 10px;"><span>Events</span></a>
+                                    <a title="Events" href="@Url.Action("Index", "Event")" style="padding-top: 10px; cursor: pointer"><span>Events</span></a>
                                 </li>
                                 <li class="nav-li">
-                                    <a title="Log-out" href="@Url.Action("Logout", "Account")"><span style="margin-top: 10px;">Logout</span></a>
+                                    <a title="Log-out" href="@Url.Action("Logout", "Account")"><span style="margin-top: 10px; cursor: pointer">Logout</span></a>
                                 </li>
                             </ul>
                         </li>

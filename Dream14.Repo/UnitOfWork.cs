@@ -14,6 +14,7 @@ namespace Dream14.Repo
         public IRepository Repo { get; private set; }
         public IAdminRepository AdminRepo { get; private set; }
         public IFrontEndRepository FrontEndRepo { get; private set; }
+        public IEventRepository EventRepo { get; private set; }
 
         public UnitOfWork(IConfigurationRoot config)
         {
@@ -22,6 +23,7 @@ namespace Dream14.Repo
             Repo = new Repository(_connection);
             AdminRepo = new AdminRepository(_connection);
             FrontEndRepo = new FrontEndRepository(_connection);
+            EventRepo = new EventRepository(_connection);
         }
 
         public void BeginTransaction()
@@ -47,7 +49,6 @@ namespace Dream14.Repo
                 if (_transaction != null)
                 {
                     _transaction.Commit();
-
                 }
             }
             catch (Exception)
