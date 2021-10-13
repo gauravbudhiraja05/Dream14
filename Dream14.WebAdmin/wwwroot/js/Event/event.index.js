@@ -79,6 +79,7 @@ function GetValue(value) {
 }
 
 function CheckEventList(gameIds) {
+    debugger;
     if (gameIds != null && gameIds.length > 0) {
         for (var i = 0; i < gameIds.length; i++) {
             $('#checkitem_' + gameIds[i]).prop('checked', true);

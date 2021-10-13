@@ -30,6 +30,19 @@ namespace Dream14.Services
             _unitOfWork = unitOfWork;
         }
 
+        public void AddOrUpdateEvents()
+        {
+            List<Cricket> crickets = GetCricketList();
+            bool result = _unitOfWork.EventRepo.UpdateAllEvents("usp_UpdateAllEvents");
+            if (result)
+            {
+                crickets.ForEach(cricket =>
+                {
+                    _unitOfWork.EventRepo.AddOrUpdateEvent("usp_AddOrUpdateEvent", new { gameId = cricket.GameId });
+                });
+            }
+        }
+
 
         public CricketList GetEventList(string roleName, string userType)
         {
@@ -47,8 +60,7 @@ namespace Dream14.Services
                     GameIds = gameIdList,
                 };
             }
-
-            if (roleName == "Admin" || roleName == "Master" || roleName == "Agent")
+            else if (roleName == "Admin" || roleName == "Master" || roleName == "Agent")
             {
                 if (userType == "Vip")
                 {
@@ -67,7 +79,6 @@ namespace Dream14.Services
                         GameIds = gameIdList,
                     };
                 }
-
                 else
                 {
                     cricketList = new CricketList
@@ -81,18 +92,62 @@ namespace Dream14.Services
             return cricketList;
         }
 
+        public void AddOrUpdateEventDetail(string gameId)
+        {
+            List<DetailStatus> detailStatusList = new List<DetailStatus>
+            {
+                new DetailStatus { EventDetailName="T1",IsActive=true},
+                new DetailStatus { EventDetailName = "T2", IsActive = true },
+                new DetailStatus { EventDetailName = "T3", IsActive = true },
+                new DetailStatus { EventDetailName = "T4", IsActive = true },
+            };
 
-        public EventDetail GetEventDetail(string roleName, string gameId)
+
+            detailStatusList.ForEach(detailStatus =>
+            {
+                _unitOfWork.EventRepo.AddOrUpdateEventDetail("usp_AddOrUpdateEventDetail", new { gameId, detailStatus.EventDetailName, detailStatus.IsActive });
+            });
+
+            EventDetail eventDetail = GetCricketDetail(gameId);
+            if (eventDetail.T3 != null && eventDetail.T3.Count > 0)
+            {
+                eventDetail.T3.ForEach(t3 =>
+                {
+                    _unitOfWork.EventRepo.AddOrUpdateT3SubEventDetail("usp_AddOrUpdateT3SubEventDetail", new { gameId, SubEventId = t3.Sid, isActive = true });
+                });
+            }
+            if (eventDetail.T4 != null && eventDetail.T4.Count > 0)
+            {
+                eventDetail.T4.ForEach(t4 =>
+                {
+                    _unitOfWork.EventRepo.AddOrUpdateT4SubEventDetail("usp_AddOrUpdateT4SubEventDetail", new { gameId, SubEventId = t4.Sid, isActive = true });
+                });
+            }
+        }
+
+
+        public EventDetail GetEventDetail(string roleName, string userType, string gameId)
         {
             EventDetail eventDetail = GetCricketDetail(gameId);
             AddEventDetail(eventDetail, gameId);
             EventDetail filteredEventDetail = new EventDetail();
-
+            eventDetail.EventDetailStatus = GetEventDetailStatusList(gameId);
             if (roleName == "SuperAdmin")
             {
                 filteredEventDetail = eventDetail;
             }
-
+            else if (roleName == "Admin" || roleName == "Master" || roleName == "Agent")
+            {
+                if (userType == "Vip")
+                {
+                    eventDetail.EventDetailStatus = GetEventDetailStatusList(gameId);
+                    filteredEventDetail = eventDetail;
+                }
+                else
+                {
+                    filteredEventDetail = eventDetail;
+                }
+            }
             return filteredEventDetail;
         }
 
@@ -107,6 +162,44 @@ namespace Dream14.Services
 
             return baseResult;
         }
+
+        public BaseResult ChangeEventDetailStatus(string eventDetailName, string gameId, string isSelected)
+        {
+            return _unitOfWork.EventRepo.ChangeEventDetailStatus("usp_ChangeEventDetailStatus", new { eventDetailName, gameId, isSelected = isSelected.ToLower() == "false" ? false : true });
+        }
+
+        public List<T3> GetT3CheckBoxDetails(string gameId)
+        {
+            return _unitOfWork.EventRepo.GetT3CheckBoxDetails("usp_GetT3CheckBoxDetails", new { gameId });
+        }
+
+        public List<T4> GetT4CheckBoxDetails(string gameId)
+        {
+            return _unitOfWork.EventRepo.GetT4CheckBoxDetails("usp_GetT4CheckBoxDetails", new { gameId });
+        }
+
+        public BaseResult UpdateT3Status(List<T3> t3List)
+        {
+            BaseResult baseResult = null;
+            t3List.ForEach(t3 =>
+            {
+                baseResult = _unitOfWork.EventRepo.UpdateT3Status("usp_UpdateT3Status", new { gameId = t3.Mid, sid = t3.Sid, isSelected = t3.Nat.ToLower() == "false" ? false : true });
+            });
+
+            return baseResult;
+        }
+
+        public BaseResult UpdateT4Status(List<T4> t4List)
+        {
+            BaseResult baseResult = null;
+            t4List.ForEach(t4 =>
+            {
+                baseResult = _unitOfWork.EventRepo.UpdateT4Status("usp_UpdateT4Status", new { gameId = t4.Mid, sid = t4.Sid, isSelected = t4.Nat.ToLower() == "false" ? false : true });
+            });
+
+            return baseResult;
+        }
+
 
         private List<Cricket> GetCricketList()
         {
@@ -185,6 +278,11 @@ namespace Dream14.Services
         private List<string> GetSelectedGameIds()
         {
             return _unitOfWork.EventRepo.GetSelectedGameIds("usp_GetSelectedGameIds");
+        }
+
+        private EventDetailStatus GetEventDetailStatusList(string gameId)
+        {
+            return _unitOfWork.EventRepo.GetEventDetailStatusList("usp_GetEventDetailStatusList", new { gameId });
         }
     }
 }

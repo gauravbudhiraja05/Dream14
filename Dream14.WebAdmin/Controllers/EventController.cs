@@ -43,6 +43,7 @@ namespace Dream14.WebAdmin.Controllers
 
         public IActionResult Index()
         {
+            _eventService.AddOrUpdateEvents();
             return View();
         }
 
@@ -54,24 +55,56 @@ namespace Dream14.WebAdmin.Controllers
             return Json(result);
         }
 
-        public IActionResult EventDetail()
+        public IActionResult EventDetail(string gameId)
         {
+            _eventService.AddOrUpdateEventDetail(gameId);
             return View();
         }
 
         public JsonResult GetEventDetail(string gameId)
         {
             string roleName = GetUserRole();
-            EventDetail eventDetail = _eventService.GetEventDetail(roleName, gameId);
+            string userType = GetUserType();
+            EventDetail eventDetail = _eventService.GetEventDetail(roleName, userType, gameId);
             return Json(eventDetail);
         }
 
         public JsonResult ChangeEventsStatus(List<Cricket> cricketList)
         {
             BaseResult result = _eventService.ChangeEventsStatus(cricketList);
-            return null;
+            return Json(result);
         }
 
+        public JsonResult ChangeEventDetailStatus(string eventDetailName, string gameId, string isSelected)
+        {
+            BaseResult result = _eventService.ChangeEventDetailStatus(eventDetailName, gameId, isSelected);
+            return Json(result);
+        }
+
+        public JsonResult UpdateT3Status(List<T3> t3List)
+        {
+            BaseResult result = _eventService.UpdateT3Status(t3List);
+            return Json(result);
+        }
+
+        public JsonResult UpdateT4Status(List<T4> t4List)
+        {
+            BaseResult result = _eventService.UpdateT4Status(t4List);
+            return Json(result);
+        }
+
+
+        public JsonResult GetT3CheckBoxDetails(string gameId)
+        {
+            List<T3> t3List = _eventService.GetT3CheckBoxDetails(gameId);
+            return Json(t3List);
+        }
+
+        public JsonResult GetT4CheckBoxDetails(string gameId)
+        {
+            List<T4> t4List = _eventService.GetT4CheckBoxDetails(gameId);
+            return Json(t4List);
+        }
 
         private string GetUserRole()
         {

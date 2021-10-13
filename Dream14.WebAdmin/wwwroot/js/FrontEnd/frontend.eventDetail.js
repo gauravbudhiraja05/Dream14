@@ -1,8 +1,8 @@
 ﻿$(document).ready(function () {
-
+    debugger;
     BindEventDetails();
 
-    //setInterval(function () { BindEventDetails1(); }, 1000);
+    setInterval(function () { BindEventDetails1(); }, 1000);
 });
 
 
@@ -108,7 +108,7 @@ function BindT1Details(t1) {
         }
         var result = html1.concat(html2)
         $('#Table_t1').append(result);
-
+        debugger;
         var new_b3 = parseFloat($('#b3').html());
         var new_b2 = parseFloat($('#b2').html());
         var new_b1 = parseFloat($('#b1').html());

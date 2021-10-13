@@ -13,6 +13,9 @@ namespace Dream14.ViewModels.Global
         public string EventName { get; set; }
         public string EventDate { get; set; }
         public string EventTime { get; set; }
+
+        public EventDetailStatus EventDetailStatus { get; set; }
+
     }
 
     public class T2

@@ -1,7 +1,7 @@
 ﻿$(document).ready(function () {
     GetEventList();
 
-    //setInterval(function () { GetEventList1(); }, 3000);
+   // setInterval(function () { GetEventList1(); }, 3000);
 
 });
 
