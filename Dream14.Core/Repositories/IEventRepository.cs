@@ -30,5 +30,13 @@ namespace Dream14.Core.Repositories
         BaseResult UpdateT3Status(string query, object param);
 
         BaseResult UpdateT4Status(string query, object param);
+
+        bool GetT1Status(string query, object param);
+
+        bool GetT2Status(string query, object param);
+
+        bool GetT3Status(string query, object param);
+
+        bool GetT4Status(string query, object param);
     }
 }

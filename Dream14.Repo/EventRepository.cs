@@ -198,5 +198,53 @@ namespace Dream14.Repo
                 throw ex;
             }
         }
+
+        public bool GetT1Status(string query, object param)
+        {
+            try
+            {
+                return Connection.Query<bool>(query, param, commandType: CommandType.StoredProcedure).FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public bool GetT2Status(string query, object param)
+        {
+            try
+            {
+                return Connection.Query<bool>(query, param, commandType: CommandType.StoredProcedure).FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public bool GetT3Status(string query, object param)
+        {
+            try
+            {
+                return Connection.Query<bool>(query, param, commandType: CommandType.StoredProcedure).FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public bool GetT4Status(string query, object param)
+        {
+            try
+            {
+                return Connection.Query<bool>(query, param, commandType: CommandType.StoredProcedure).FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

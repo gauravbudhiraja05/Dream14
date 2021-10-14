@@ -129,9 +129,11 @@ namespace Dream14.Services
         public EventDetail GetEventDetail(string roleName, string userType, string gameId)
         {
             EventDetail eventDetail = GetCricketDetail(gameId);
-            AddEventDetail(eventDetail, gameId);
-            EventDetail filteredEventDetail = new EventDetail();
             eventDetail.EventDetailStatus = GetEventDetailStatusList(gameId);
+            AddEventDetail(eventDetail, gameId);
+
+
+            EventDetail filteredEventDetail = new EventDetail();
             if (roleName == "SuperAdmin")
             {
                 filteredEventDetail = eventDetail;
@@ -140,8 +142,7 @@ namespace Dream14.Services
             {
                 if (userType == "Vip")
                 {
-                    eventDetail.EventDetailStatus = GetEventDetailStatusList(gameId);
-                    filteredEventDetail = eventDetail;
+                    filteredEventDetail = FilterEventDetail(eventDetail, gameId);
                 }
                 else
                 {
@@ -150,6 +151,8 @@ namespace Dream14.Services
             }
             return filteredEventDetail;
         }
+
+
 
         public BaseResult ChangeEventsStatus(List<Cricket> cricketList)
         {
@@ -283,6 +286,26 @@ namespace Dream14.Services
         private EventDetailStatus GetEventDetailStatusList(string gameId)
         {
             return _unitOfWork.EventRepo.GetEventDetailStatusList("usp_GetEventDetailStatusList", new { gameId });
+        }
+
+        private EventDetail FilterEventDetail(EventDetail eventDetail, string gameId)
+        {
+            EventDetail filteredEventDetail = new EventDetail();
+
+            bool t1Status = _unitOfWork.EventRepo.GetT1Status("usp_GetT1Status", new { gameId });
+            if (t1Status)
+                filteredEventDetail.T1 = eventDetail.T1;
+
+            bool t2Status = _unitOfWork.EventRepo.GetT2Status("usp_GetT2Status", new { gameId });
+            if (t2Status)
+                filteredEventDetail.T2 = eventDetail.T2;
+
+            bool t3Status = _unitOfWork.EventRepo.GetT3Status("usp_GetT3Status", new { gameId });
+            if (t2Status)
+                filteredEventDetail.T3 = eventDetail.T3;
+
+
+            return filteredEventDetail;
         }
     }
 }
