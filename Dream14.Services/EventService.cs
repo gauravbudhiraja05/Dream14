@@ -301,9 +301,54 @@ namespace Dream14.Services
                 filteredEventDetail.T2 = eventDetail.T2;
 
             bool t3Status = _unitOfWork.EventRepo.GetT3Status("usp_GetT3Status", new { gameId });
-            if (t2Status)
+            if (t3Status)
                 filteredEventDetail.T3 = eventDetail.T3;
 
+            bool t4Status = _unitOfWork.EventRepo.GetT3Status("usp_GetT4Status", new { gameId });
+            if (t3Status)
+                filteredEventDetail.T3 = eventDetail.T3;
+
+            List<T3> t3List = GetT3CheckBoxDetails(gameId);
+
+            List<T4> t4List = GetT4CheckBoxDetails(gameId);
+
+           
+            if (t3List.Count > 0)
+            {
+                filteredEventDetail.T3 = new List<T3>();
+                eventDetail.T3.ForEach(t3 =>
+                {
+                    T3 t3ListItem = t3List.Where(x => x.Sid == t3.Sid).FirstOrDefault();
+                    if (t3ListItem != null && t3ListItem.Mid.ToLower() == "true")
+                    {
+                        filteredEventDetail.T3.Add(t3);
+                    }
+                });
+            }
+            else
+            {
+                filteredEventDetail.T3 = eventDetail.T3;
+            }
+
+            if (t4List.Count > 0)
+            {
+                filteredEventDetail.T4 = new List<T4>();
+                eventDetail.T4.ForEach(t4 =>
+                {
+                    T4 t4ListItem = t4List.Where(x => x.Sid == t4.Sid).FirstOrDefault();
+                    if (t4ListItem != null && t4ListItem.Mid.ToLower() == "true")
+                    {
+                        filteredEventDetail.T4.Add(t4);
+                    }
+                });
+            }
+            else
+            {
+                filteredEventDetail.T4 = eventDetail.T4;
+            }
+
+            AddEventDetail(filteredEventDetail, gameId);
+            filteredEventDetail.EventDetailStatus = eventDetail.EventDetailStatus;
 
             return filteredEventDetail;
         }
