@@ -150,6 +150,18 @@ namespace Dream14.Repo
             }
         }
 
+        public List<MinMax> GetMinMaxValue(string query, object param)
+        {
+            try
+            {
+                return Connection.Query<MinMax>(query, param, commandType: CommandType.StoredProcedure).ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
 
         public List<T3> GetT3CheckBoxDetails(string query, object param)
         {
@@ -188,6 +200,54 @@ namespace Dream14.Repo
         }
 
         public BaseResult UpdateT4Status(string query, object param)
+        {
+            try
+            {
+                return Connection.Query<BaseResult>(query, param, commandType: CommandType.StoredProcedure).FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public BaseResult UpdateMatchOddsMinMax(string query, object param)
+        {
+            try
+            {
+                return Connection.Query<BaseResult>(query, param, commandType: CommandType.StoredProcedure).FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public BaseResult UpdateBookmakerMarketMinMax(string query, object param)
+        {
+            try
+            {
+                return Connection.Query<BaseResult>(query, param, commandType: CommandType.StoredProcedure).FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public BaseResult UpdateSessionMarketMinMax(string query, object param)
+        {
+            try
+            {
+                return Connection.Query<BaseResult>(query, param, commandType: CommandType.StoredProcedure).FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public BaseResult UpdateFancy1MarketMinMax(string query, object param)
         {
             try
             {
@@ -240,6 +300,42 @@ namespace Dream14.Repo
             try
             {
                 return Connection.Query<bool>(query, param, commandType: CommandType.StoredProcedure).FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+        public BaseResult RemoveBookmakerMarketMinMax(string query, object param)
+        {
+            try
+            {
+                return Connection.Query<BaseResult>(query, param, commandType: CommandType.StoredProcedure).FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public BaseResult RemoveSessionMarketMinMax(string query, object param)
+        {
+            try
+            {
+                return Connection.Query<BaseResult>(query, param, commandType: CommandType.StoredProcedure).FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public BaseResult RemoveFancy1MarketMinMax(string query, object param)
+        {
+            try
+            {
+                return Connection.Query<BaseResult>(query, param, commandType: CommandType.StoredProcedure).FirstOrDefault();
             }
             catch (Exception ex)
             {

@@ -129,26 +129,19 @@ namespace Dream14.Services
         public EventDetail GetEventDetail(string roleName, string userType, string gameId)
         {
             EventDetail eventDetail = GetCricketDetail(gameId);
-            eventDetail.EventDetailStatus = GetEventDetailStatusList(gameId);
-            AddEventDetail(eventDetail, gameId);
-
-
             EventDetail filteredEventDetail = new EventDetail();
-            if (roleName == "SuperAdmin")
+            if ((roleName == "Admin" || roleName == "Master" || roleName == "Agent") && userType == "Vip")
+            {
+                filteredEventDetail = FilterEventDetail(eventDetail, gameId);
+            }
+            else
             {
                 filteredEventDetail = eventDetail;
             }
-            else if (roleName == "Admin" || roleName == "Master" || roleName == "Agent")
-            {
-                if (userType == "Vip")
-                {
-                    filteredEventDetail = FilterEventDetail(eventDetail, gameId);
-                }
-                else
-                {
-                    filteredEventDetail = eventDetail;
-                }
-            }
+
+            filteredEventDetail.EventDetailStatus = GetEventDetailStatusList(gameId);
+            AddEventDetail(filteredEventDetail, gameId);
+            filteredEventDetail.MinMaxList = GetMinMaxValue(gameId);
             return filteredEventDetail;
         }
 
@@ -203,6 +196,39 @@ namespace Dream14.Services
             return baseResult;
         }
 
+        public BaseResult UpdateMatchOddsMinMax(string maxValue, string minValue, string gameId)
+        {
+            return _unitOfWork.EventRepo.UpdateMatchOddsMinMax("usp_AddOrUpdateMinMaxValue", new { maxValue, minValue, gameId, eventDetailName = "T1", sid = "T1" });
+        }
+
+        public BaseResult UpdateBookmakerMarketMinMax(string maxValue, string minValue, string gameId)
+        {
+            return _unitOfWork.EventRepo.UpdateBookmakerMarketMinMax("usp_AddOrUpdateMinMaxValue", new { maxValue, minValue, gameId, eventDetailName = "T2", sid = "T2" });
+        }
+
+        public BaseResult UpdateSessionMarketMinMax(string maxValue, string minValue, string gameId, string sid)
+        {
+            return _unitOfWork.EventRepo.UpdateSessionMarketMinMax("usp_AddOrUpdateMinMaxValue", new { maxValue, minValue, gameId, eventDetailName = "T3", sid });
+        }
+
+        public BaseResult UpdateFancy1MarketMinMax(string maxValue, string minValue, string gameId, string sid)
+        {
+            return _unitOfWork.EventRepo.UpdateFancy1MarketMinMax("usp_AddOrUpdateMinMaxValue", new { maxValue, minValue, gameId, eventDetailName = "T4", sid });
+        }
+
+        public BaseResult RemoveBookmakerMarketMinMax(string gameId)
+        {
+            return _unitOfWork.EventRepo.RemoveBookmakerMarketMinMax("usp_RemoveMinMaxValue", new { gameId, eventDetailName = "T2", sid = "T2" });
+        }
+
+        public BaseResult RemoveSessionMarketMinMax(string gameId, string sid)
+        {
+            return _unitOfWork.EventRepo.RemoveSessionMarketMinMax("usp_RemoveMinMaxValue", new { gameId, eventDetailName = "T3", sid });
+        }
+        public BaseResult RemoveFancy1MarketMinMax(string gameId, string sid)
+        {
+            return _unitOfWork.EventRepo.RemoveFancy1MarketMinMax("usp_RemoveMinMaxValue", new { gameId, eventDetailName = "T4", sid });
+        }
 
         private List<Cricket> GetCricketList()
         {
@@ -231,7 +257,7 @@ namespace Dream14.Services
 
         private EventDetail GetCricketDetail(string gameId)
         {
-            EventDetail eventDetail = new EventDetail();
+            EventDetail eventDetail;
 
             using (var client = new HttpClient())
             {
@@ -240,12 +266,13 @@ namespace Dream14.Services
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 //GET Method
                 string response = client.GetStringAsync("getcricketdemo11/" + gameId).Result;
-                if (response != null)
+                if (!string.IsNullOrEmpty(response))
                 {
                     eventDetail = JsonConvert.DeserializeObject<EventDetail>(response);
                 }
                 else
                 {
+                    eventDetail = new EventDetail();
                     Console.WriteLine("Internal server Error");
                 }
 
@@ -258,10 +285,11 @@ namespace Dream14.Services
             cricketList.ForEach(cricket =>
             {
                 cricket.EventDetail = GetCricketDetail(cricket.GameId);
+                AddEventDetail(cricket.EventDetail, cricket.GameId);
             });
         }
 
-        private void AddEventDetail(EventDetail eventDetail, string gameId)
+        private void AddEventDetail(EventDetail filteredEventDetail, string gameId)
         {
             List<Cricket> crickets = GetCricketList();
             if (crickets.Count > 0)
@@ -270,10 +298,10 @@ namespace Dream14.Services
                 if (cricket != null)
                 {
                     string eventName = cricket.EventName;
-                    eventDetail.EventName = eventName.Substring(0, eventName.IndexOf("/"));
+                    filteredEventDetail.EventName = eventName.Substring(0, eventName.IndexOf("/"));
                     string[] arr = eventName.Substring(eventName.IndexOf("/") + 1).Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-                    eventDetail.EventDate = arr[1] + " " + arr[0] + " " + arr[2];
-                    eventDetail.EventTime = arr[3];
+                    filteredEventDetail.EventDate = arr[1] + " " + arr[0] + " " + arr[2];
+                    filteredEventDetail.EventTime = arr[3];
                 }
             }
         }
@@ -312,7 +340,7 @@ namespace Dream14.Services
 
             List<T4> t4List = GetT4CheckBoxDetails(gameId);
 
-           
+
             if (t3List.Count > 0)
             {
                 filteredEventDetail.T3 = new List<T3>();
@@ -347,10 +375,12 @@ namespace Dream14.Services
                 filteredEventDetail.T4 = eventDetail.T4;
             }
 
-            AddEventDetail(filteredEventDetail, gameId);
-            filteredEventDetail.EventDetailStatus = eventDetail.EventDetailStatus;
-
             return filteredEventDetail;
+        }
+
+        private List<MinMax> GetMinMaxValue(string gameId)
+        {
+            return _unitOfWork.EventRepo.GetMinMaxValue("usp_GetMinMaxValue", new { gameId });
         }
     }
 }

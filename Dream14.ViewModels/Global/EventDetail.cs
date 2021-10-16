@@ -16,6 +16,21 @@ namespace Dream14.ViewModels.Global
 
         public EventDetailStatus EventDetailStatus { get; set; }
 
+        public List<MinMax> MinMaxList { get; set; }
+
+    }
+
+    public class MinMax
+    {
+        public string Sid { get; set; }
+
+        public string EventDetailName { get; set; }
+
+        public string MinValue { get; set; }
+
+        public string MaxValue { get; set; }
+  
+        public string GameId { get; set; }
     }
 
     public class T2
@@ -23,7 +38,6 @@ namespace Dream14.ViewModels.Global
         public List<Bm1> Bm1 { get; set; }
         public List<object> Bm2 { get; set; }
     }
-
 
     public class T1
     {

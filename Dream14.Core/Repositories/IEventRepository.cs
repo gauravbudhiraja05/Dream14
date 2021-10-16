@@ -23,6 +23,8 @@ namespace Dream14.Core.Repositories
 
         EventDetailStatus GetEventDetailStatusList(string query, object param);
 
+        List<MinMax> GetMinMaxValue(string query, object param);
+
         List<T3> GetT3CheckBoxDetails(string query, object param);
 
         List<T4> GetT4CheckBoxDetails(string query, object param);
@@ -31,6 +33,14 @@ namespace Dream14.Core.Repositories
 
         BaseResult UpdateT4Status(string query, object param);
 
+        BaseResult UpdateMatchOddsMinMax(string query, object param);
+
+        BaseResult UpdateBookmakerMarketMinMax(string query, object param);
+
+        BaseResult UpdateSessionMarketMinMax(string query, object param);
+
+        BaseResult UpdateFancy1MarketMinMax(string query, object param);
+
         bool GetT1Status(string query, object param);
 
         bool GetT2Status(string query, object param);
@@ -38,5 +48,11 @@ namespace Dream14.Core.Repositories
         bool GetT3Status(string query, object param);
 
         bool GetT4Status(string query, object param);
+
+        BaseResult RemoveBookmakerMarketMinMax(string query, object param);
+
+        BaseResult RemoveSessionMarketMinMax(string query, object param);
+
+        BaseResult RemoveFancy1MarketMinMax(string query, object param);
     }
 }

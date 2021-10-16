@@ -14,6 +14,18 @@
 
 
 <style>
+
+    .edit_item {
+        border: none;
+        background: none;
+        text-indent: -9999px;
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        background: #455a64 url(../images/table_edit_w.png) center center no-repeat;
+        display: inline-block;
+    }
+
     .table-css1 {
         font-family: Arial, Helvetica, sans-serif;
         border-collapse: collapse;
@@ -61,7 +73,7 @@
     }
 
         .table-css td {
-            line-height: 55px;
+            line-height: 40px;
         }
 
         .table-css tr td.left-text {
@@ -261,6 +273,19 @@
         /*background-color: #5cb85c;*/
         color: white;
     }
+
+    .lowertext {
+        font-size: small;
+        display: flow-root;
+    }
+
+    .btn-danger {
+        padding: 13px 18px;
+        font-family: 'Roboto', sans-serif;
+        line-height: 16px;
+        min-width: 180px;
+        cursor: pointer;
+    }
 </style>
 
 <input type="hidden" id="hdnRoleName" value="@roleName" />
@@ -317,7 +342,7 @@
     <!--End center_wrap-->
 </div>
 
-<!-- The tchOddsModal -->
+<!-- The MatchOddsModal -->
 <div id="matchOddsModal" class="modal">
     <!-- Modal content -->
     <div class="modal-content">
@@ -1181,5 +1206,93 @@
     </div>
 </div>
 
+
+<!-- The MatchOddsMinMaxModal -->
+<div id="matchOddsMinMaxModal" class="popup_window">
+    <button type="button" class="popup_close_btn"></button>
+    <div class="popup_title">Change Min Max Value</div>
+    <div class="popup_form_fields">
+        <fieldset>
+            <div class='form_field'>
+                <label>Max Value</label>
+                <input type="text" id="txtMatchOddsMax" />
+            </div>
+            <div class='form_field'>
+                <label>Min Value</label>
+                <input type="text" id="txtMatchOddsMin" />
+            </div>
+            <div class='form_field' style="text-align:center;">
+                <button id="btnSaveMatchOddsMinMax" class="btn_field">Update</button>
+            </div>
+        </fieldset>
+    </div>
+</div>
+
+<!-- The BookmakerMarketMinMaxModal -->
+<div id="bookmakerMarketMinMaxModal" class="popup_window">
+    <button type="button" class="popup_close_btn"></button>
+    <div class="popup_title">Change Min Max Value</div>
+    <div class="popup_form_fields">
+        <fieldset>
+            <div class='form_field'>
+                <label>Max Value</label>
+                <input type="text" id="txtBookmakerMarketMax" />
+            </div>
+            <div class='form_field'>
+                <label>Min Value</label>
+                <input type="text" id="txtBookmakerMarketMin" />
+            </div>
+            <div class='form_field' style="text-align:center;">
+                <button id="btnSaveBookmakerMarketMinMax" class="btn_field">Update</button>
+                <button id="btnRemoveBookmakerMarketMinMax" class="btn-danger">Delete</button>
+            </div>
+        </fieldset>
+    </div>
+</div>
+
+<!-- The SessionMarketMinMaxModal -->
+<div id="sessionMarketMinMaxModal" class="popup_window">
+    <button type="button" class="popup_close_btn"></button>
+    <div class="popup_title">Change Min Max Value</div>
+    <div class="popup_form_fields">
+        <fieldset>
+            <div class='form_field'>
+                <label>Max Value</label>
+                <input type="text" id="txtSessionMarketMax" />
+            </div>
+            <div class='form_field'>
+                <label>Min Value</label>
+                <input type="text" id="txtSessionMarketMin" />
+            </div>
+            <div class='form_field' style="text-align:center;">
+                <button id="btnSaveSessionMarketMinMax" class="btn_field">Update</button>
+                <button id="btnRemoveSessionMarketMinMax" class="btn-danger">Delete</button>
+            </div>
+        </fieldset>
+    </div>
+</div>
+
+<!-- The Fancy1MarketMinMaxModal -->
+<div id="fancy1MarketMinMaxModal" class="popup_window">
+    <button type="button" class="popup_close_btn"></button>
+    <div class="popup_title">Change Min Max Value</div>
+    <div class="popup_form_fields">
+        <fieldset>
+            <div class='form_field'>
+                <label>Max Value</label>
+                <input type="text" id="txtFancy1MarketMax" />
+            </div>
+            <div class='form_field'>
+                <label>Min Value</label>
+                <input type="text" id="txtFancy1MarketMin" />
+            </div>
+            <div class='form_field' style="text-align:center;">
+                <button id="btnSaveFancy1MarketMinMax" class="btn_field">Update</button>
+                <button id="btnRemoveFancy1MarketMinMax" class="btn-danger">Delete</button>
+
+            </div>
+        </fieldset>
+    </div>
+</div>
 
 <script src="~/js/Event/event.eventDetail.js" asp-append-version="true"></script>

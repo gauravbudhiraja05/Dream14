@@ -1,4 +1,5 @@
-﻿$(document).ready(function () {
+﻿
+$(document).ready(function () {
 
     BindEventDetails();
 
@@ -21,6 +22,7 @@ function BindEventDetails() {
                 GetModalDetails();
                 //AddToggle();
                 FilterEventDetailStatus(eventList.eventDetailStatus);
+                BindMinMaxValue(eventList.minMaxList);
             }
         },
         error: function (e) {
@@ -41,28 +43,11 @@ function BindEventDetails1() {
                 BindT2Details(eventList.t2);
                 BindT3Details(eventList.t3);
                 BindT4Details(eventList.t4);
-
+                BindHeaderDetails(eventList);
                 GetModalDetails();
-
-                $('.table1_header').click(function () {
-                    $(this).nextUntil('tr.table1_header').slideToggle(100);
-                });
-
-                $('.table2_header').click(function () {
-                    $(this).nextUntil('tr.table2_header').slideToggle(100);
-                });
-
-                $('.table3_header').click(function () {
-                    $(this).nextUntil('tr.table3_header').slideToggle(100);
-                });
-
-                $('.table4_header').click(function () {
-                    $(this).nextUntil('tr.table4_header').slideToggle(100);
-                });
-
-                $('#th1_header').html(eventList.eventName);
-                $('#th2_header').html(eventList.eventDate);
-                $('#th3_header').html(eventList.eventTime);
+                //AddToggle();
+                FilterEventDetailStatus(eventList.eventDetailStatus);
+                BindMinMaxValue(eventList.minMaxList);
             }
         },
         error: function (e) {
@@ -87,11 +72,12 @@ function BindT1Details(t1) {
 
         if (roleName == "SuperAdmin") {
             var name = "T1";
-            var html1 = "<tr class='table1_header' style='cursor:pointer'><th colspan='3'><input type='checkbox' id='checkT1' class='check_all' />&nbsp;&nbsp;MATCH_ODDS <span style='margin-left: 870px;'>Maximum Bet 1</span><i id='matchOdds_Modal' class='fa fa-info-circle' style='font-size:24px;float:right;cursor: pointer'></i></th></tr><tr><td></td><td><table style='width:100%'><tr><td style='width:33%'></td><td style='width:33%'></td><td style='width:33%;background-color:#72BBEF'>BACK</td></tr></table></td><td><table style='width:100%'><tr><td style='width:33%; text-align:center; background-color:#FAA9BA'>LAY</td><td style='width:33%'></td><td style='width:33%'></td></tr></table></td></tr>";
+            //<span style='margin-left: 870px;'>Maximum Bet 1</span>
+            var html1 = "<tr class='table1_header' style='cursor:pointer'><th colspan='3'><input type='checkbox' id='checkT1' class='check_all' />&nbsp;&nbsp;MATCH_ODDS<i id='matchOdds_Modal' class='fa fa-info-circle' style='font-size:24px;float:right;cursor: pointer'></i></th></tr><tr><td><table style='width:100%'><tr><td>Max : <span id='MatchOddsMaxValue'>0</span></td><td>Min : <span id='MatchOddsMinValue'>0</span></td><td><button type='button' class='edit_item' id='btnEditMaxMinMatchOdds'></button></td></tr></table></td><td><table style='width:100%'><tr><td style='width:33%'></td><td style='width:33%'></td><td style='width:33%;background-color:#72BBEF'>BACK</td></tr></table></td><td><table style='width:100%'><tr><td style='width:33%; text-align:center; background-color:#FAA9BA'>LAY</td><td style='width:33%'></td><td style='width:33%'></td></tr></table></td></tr>";
             var html2 = "";
             for (var i = 0; i < t1.length; i++) {
                 for (var j = 0; j < t1[i].length; j++)
-                    html2 = html2.concat("<tr><td class='left-text'><b>" + t1[i][j].nat + "</b></td><td><table style='width:100%;'><tr><td id='b3' style='background-color:#72BBEF'>" + t1[i][j].b3 + "</td><td id='b2' style='background-color:#72BBEF'>" + t1[i][j].b2 + "</td><td id='b1' style='background-color:#72BBEF'>" + t1[i][j].b1 + "</td></tr></table></td><td><table style='width:100%;'><tr><td id='l1' style='background-color:#FAA9BA'>" + t1[i][j].l1 + "</td><td id='l2' style='background-color:#FAA9BA'>" + t1[i][j].l2 + "</td><td id='l3' style='background-color:#FAA9BA'>" + t1[i][j].l3 + "</td></tr></table></td></tr>");
+                    html2 = html2.concat("<tr><td class='left-text'><b>" + t1[i][j].nat + "</b></td><td><table style='width:100%;'><tr><td id='b3' style='background-color:#72BBEF'>" + t1[i][j].b3 + "<br/><span class='lowertext'>" + t1[i][j].bs3 + "</span></td><td id='b2' style='background-color:#72BBEF'>" + t1[i][j].b2 + "<br/><span class='lowertext'>" + t1[i][j].bs2 + "<span></td><td id='b1' style='background-color:#72BBEF'>" + t1[i][j].b1 + "<br/><span class='lowertext'>" + t1[i][j].bs1 + "<span></td></tr></table></td><td><table style='width:100%;'><tr><td id='l1' style='background-color:#FAA9BA'>" + t1[i][j].l1 + "<br/><span class='lowertext'>" + t1[i][j].ls1 + "<span></td><td id='l2' style='background-color:#FAA9BA'>" + t1[i][j].l2 + "<br/><span class='lowertext'>" + t1[i][j].ls2 + "<span></td><td id='l3' style='background-color:#FAA9BA'>" + t1[i][j].l3 + "<br/><span class='lowertext'>" + t1[i][j].ls3 + "<span></td></tr></table></td></tr>");
             }
             var result = html1.concat(html2)
             $('#Table_t1').append(result);
@@ -112,6 +98,8 @@ function BindT1Details(t1) {
             debugger;
             HeaderCheckedClick('T1');
         });
+
+        GetMinMaxMatchOddsModal();
 
         var new_b3 = parseFloat($('#b3').html());
         var new_b2 = parseFloat($('#b2').html());
@@ -178,30 +166,39 @@ function BindT2Details(t2) {
         var roleName = $('#hdnRoleName').val();
 
         if (roleName == "SuperAdmin") {
-            var html1 = "<tr class='table2_header' style='cursor:pointer'><th colspan='3'><input type='checkbox' id = 'checkT2' class='check_all' > &nbsp;&nbsp; Bookmaker market <i id='bookmaker_Modal' class='fa fa-info-circle' style='font-size:24px;float:right;cursor: pointer'></i></th></tr><tr><td></td><td><table style='width:100%'><tr><td style='width:33%'></td><td style='width:33%'></td><td style='width:33%;background-color:#72BBEF'>BACK</td></tr></table></td><td><table style='width:100%'><tr><td style='width:33%; text-align:center; background-color:#FAA9BA'>LAY</td><td style='width:33%'></td><td style='width:33%'></td></tr></table></td></tr>";
+            var html1 = "<tr class='table2_header' style='cursor:pointer'><th colspan='3'><input type='checkbox' id = 'checkT2' class='check_all' > &nbsp;&nbsp; Bookmaker market <i id='bookmaker_Modal' class='fa fa-info-circle' style='font-size:24px;float:right;cursor: pointer'></i></th></tr><tr><td><table style='width:100%'><tr><td>Max : <span id='BookmakerMarketMaxValue'>0</span></td><td>Min : <span id='BookmakerMarketMinValue'>0</span></td><td><button type='button' class='edit_item' id='btnEditMaxMinBookmakerMarket'></button></td></tr></table></td><td><table style='width:100%'><tr><td style='width:33%'></td><td style='width:33%'></td><td style='width:33%;background-color:#72BBEF'>BACK</td></tr></table></td><td><table style='width:100%'><tr><td style='width:33%; text-align:center; background-color:#FAA9BA'>LAY</td><td style='width:33%'></td><td style='width:33%'></td></tr></table></td></tr>";
             var html2 = "";
             var remark = "";
+            var maxValue = "";
+            var minValue = "";
             for (var i = 0; i < t2.length; i++) {
                 for (var j = 0; j < t2[i].bm1.length; j++) {
                     html2 = html2.concat("<tr><td class='left-text'><b>" + t2[i].bm1[j].nat + "</b></td>");
                     remark = t2[i].bm1[j].remark;
-                    if (t2[i].bm1[j].b1 == "0.00" && t2[i].bm1[j].l1) {
+                    if (t2[i].bm1[j].b1 == "0.00" && t2[i].bm1[j].l1 == "0.00") {
                         html2 = html2.concat("<td colspan='2' style='text-align:center;background-color:#36454f;color:white;'><h2 style='color:red'>SUSPENDED</h2></td></tr>");
                     }
                     else {
-                        html2 = html2.concat("<td><table style='width:100%;'><tr style=' background-color:#72BBEF'><td style='width:33%'></td><td style='width:33%'></td><td style='width:33%'>" + t2[i].bm1[j].b1 + "</td></tr></table></td><td><table style='width:100%;'><tr style=' background-color:#FAA9BA'><td style='width:33%'>" + t2[i].bm1[j].l1 + "</td><td style='width:33%'></td><td style='width:33%'></td></tr></table></td></tr>");
+                        html2 = html2.concat("<td><table style='width:100%;'><tr style=' background-color:#72BBEF'><td style='width:33%'></td><td style='width:33%'></td><td style='width:33%'>" + t2[i].bm1[j].b1 + "<br/><span class='lowertext'>" + intToString(t2[i].bm1[j].bs1) + "</span></td></tr></table></td><td><table style='width:100%;'><tr style=' background-color:#FAA9BA'><td style='width:33%'>" + t2[i].bm1[j].l1 + "<br/><span class='lowertext'>" + intToString(t2[i].bm1[j].ls1) + "</span></td><td style='width:33%'></td><td style='width:33%'></td></tr></table></td></tr>");
                     }
+
+                    maxValue = t2[i].bm1[j].max;
+                    minValue = t2[i].bm1[j].min;
                 }
                 html2 = html2.concat("<Tr><td colspan='3' style='text-align:right'>" + remark + "</td></tr>")
             }
-            var result = html1.concat(html2)
+            var result = html1.concat(html2);
             $('#Table_t2').append(result);
 
+            $('#BookmakerMarketMaxValue').html(intToString(maxValue));
+            $('#BookmakerMarketMinValue').html(intToString(minValue));
 
             $('#checkT2').click(function () {
                 debugger;
                 HeaderCheckedClick('T2');
             });
+
+            GetMinMaxBookMakerMarketModal();
         }
         else {
             var html1 = "<tr class='table2_header' style='cursor:pointer'><th colspan='3'>Bookmaker market <i id='bookmaker_Modal' class='fa fa-info-circle' style='font-size:24px;float:right;cursor: pointer'></i></th></tr><tr><td></td><td><table style='width:100%'><tr><td style='width:33%'></td><td style='width:33%'></td><td style='width:33%;background-color:#72BBEF'>BACK</td></tr></table></td><td><table style='width:100%'><tr><td style='width:33%; text-align:center; background-color:#FAA9BA'>LAY</td><td style='width:33%'></td><td style='width:33%'></td></tr></table></td></tr>";
@@ -241,7 +238,7 @@ function BindT3Details(t3) {
             var html1 = "<tr class='table3_header' style='cursor:pointer'><th colspan='5'><input type='checkbox' id='checkT3' class='check_all' >&nbsp;&nbsp; Session Market <i id='sessionMarket_Modal' class='fa fa-info-circle' style='font-size:24px;float:right;cursor: pointer'></i></th></tr><tr><td></td><td style='text-align:center; background-color:#FAA9BA'>NO</td><td style='text-align:center; background-color:#72BBEF'>YES</td><td></td></tr>";
             var html2 = "";
             for (var i = 0; i < t3.length; i++) {
-                html2 = html2.concat("<tr><td class='left-text'><input type='checkbox' id=check_" + t3[i].sid + " class='check_all check_T3' >&nbsp;&nbsp;<b>" + t3[i].nat + "</b></td><td style=' background-color:#FAA9BA'>" + t3[i].l1 + "</td><td style=' background-color:#72BBEF'>" + t3[i].b1 + "</td><td>Min: " + intToString(t3[i].min) + " Max: " + intToString(t3[i].max) + " </td></tr>");
+                html2 = html2.concat("<tr><td class='left-text'><input type='checkbox' id=check_" + t3[i].sid + " class='check_all check_T3' >&nbsp;&nbsp;<b>" + t3[i].nat + "</b></td><td style=' background-color:#FAA9BA'>" + t3[i].l1 + "<span class='lowertext'>" + intToString(t3[i].ls1) + "</span></td><td style=' background-color:#72BBEF'>" + t3[i].b1 + "<span class='lowertext'>" + intToString(t3[i].bs1) + "</span></td><td><table style='width:100%'><tr><td>Max : <span id='SessionMarketMax_" + t3[i].sid + "'>" + intToString(t3[i].max) + "</span></td><td>Min : <span id='SessionMarketMin_" + t3[i].sid + "'>" + intToString(t3[i].min) + "</span></td><td><button type='button' id='Sessionbtn_" + t3[i].sid + "' class='edit_item sessionMinMaxEdit'></button></td></tr></table></td></tr>");
             }
             var result = html1.concat(html2)
             $('#Table_t3').append(result);
@@ -251,6 +248,8 @@ function BindT3Details(t3) {
             });
 
             $('.check_T3').click(function () { UpdateT3Status() });
+
+            GetMinMaxSessionMarketModal();
         }
         else {
             var html1 = "<tr class='table3_header' style='cursor:pointer'><th colspan='4'>Session Market <i id='sessionMarket_Modal' class='fa fa-info-circle' style='font-size:24px;float:right;cursor: pointer'></i></th></tr><tr><td></td><td style='text-align:center; background-color:#FAA9BA'>NO</td><td style='text-align:center; background-color:#72BBEF'>YES</td><td></td></tr>";
@@ -279,7 +278,7 @@ function BindT4Details(t4) {
             var html1 = "<tr class='table4_header' style='cursor:pointer'><th colspan='4'><input type='checkbox' id ='checkT4' class='check_all' > &nbsp;&nbsp; Fancy1 Market <i id='Fancy1Market_Modal' class='fa fa-info-circle' style='font-size:24px;float:right;cursor: pointer'></i></th></tr><tr><td></td><td style='text-align:center; background-color:#72BBEF'>BACK</td><td style='text-align:center; background-color:#FAA9BA'>LAY</td><td></td></tr>";
             var html2 = "";
             for (var i = 0; i < t4.length; i++) {
-                html2 = html2.concat("<tr><td class='left-text'><input type='checkbox' id=check_" + t4[i].sid + " class='check_all check_T4' > &nbsp;&nbsp;<b>" + t4[i].nat + "</b></td><td style=' background-color:#72BBEF'>" + t4[i].b1 + "</td><td style=' background-color:#FAA9BA'>" + t4[i].l1 + "</td><td>Min : " + intToString(t4[i].min) + " Max : " + intToString(t4[i].max) + " </td></tr>");
+                html2 = html2.concat("<tr><td class='left-text'><input type='checkbox' id=check_" + t4[i].sid + " class='check_all check_T4' > &nbsp;&nbsp;<b>" + t4[i].nat + "</b></td><td style=' background-color:#72BBEF'>" + t4[i].b1 + "<span class='lowertext'>" + intToString(t4[i].bs1) + "</span></td><td style=' background-color:#FAA9BA'>" + t4[i].l1 + "<span class='lowertext'>" + intToString(t4[i].ls1) + "</span></td><td><table style='width:100%'><tr><td>Max : <span id='Fancy1MarketMax_" + t4[i].sid + "'>" + intToString(t4[i].max) + "</span></td><td>Min : <span id='Fancy1MarketMin_" + t4[i].sid + "'>" + intToString(t4[i].min) + "</span></td><td><button type='button' id='Fancy1btn_" + t4[i].sid + "' class='edit_item fancy1MinMaxEdit'></button></td></tr></table> </td></tr>");
             }
             var result = html1.concat(html2)
             $('#Table_t4').append(result);
@@ -289,6 +288,8 @@ function BindT4Details(t4) {
             });
 
             $('.check_T4').click(function () { UpdateT4Status() });
+
+            GetMinMaxFancy1MarketModal();
         }
         else {
             var html1 = "<tr class='table4_header' style='cursor:pointer'><th colspan='4'>Fancy1 Market <i id='Fancy1Market_Modal' class='fa fa-info-circle' style='font-size:24px;float:right;cursor: pointer'></i></th></tr><tr><td></td><td style='text-align:center; background-color:#72BBEF'>BACK</td><td style='text-align:center; background-color:#FAA9BA'>LAY</td><td></td></tr>";
@@ -386,14 +387,25 @@ function AddToggle() {
 function intToString(value) {
     var val = parseInt(value);
 
-    if (val == 50000)
-        return "50k";
-    else if (val == 25000)
-        return "25k";
-    else if (val == 10000)
-        return "25k";
-    else return val;
-
+    var num = val.toString().replace(/[^0-9.]/g, '');
+    if (num < 1000) {
+        return num;
+    }
+    let si = [
+        { v: 1E3, s: "K" },
+        { v: 1E6, s: "M" },
+        { v: 1E9, s: "B" },
+        { v: 1E12, s: "T" },
+        { v: 1E15, s: "P" },
+        { v: 1E18, s: "E" }
+    ];
+    let index;
+    for (index = si.length - 1; index > 0; index--) {
+        if (num >= si[index].v) {
+            break;
+        }
+    }
+    return (num / si[index].v).toFixed(2).replace(/\.0+$|(\.[0-9]*[1-9])0+$/, "$1") + si[index].s;
 }
 
 var getUrlParameter = function getUrlParameter(sParam) {
@@ -440,6 +452,28 @@ function FilterEventDetailStatus(eventDetailStatus) {
     }
 }
 
+function BindMinMaxValue(minMaxList) {
+
+    for (var i = 0; i < minMaxList.length; i++) {
+        if (minMaxList[i].eventDetailName == "T1") {
+            $('#MatchOddsMaxValue').html(intToString(minMaxList[i].maxValue));
+            $('#MatchOddsMinValue').html(intToString(minMaxList[i].minValue));
+        }
+        else if (minMaxList[i].eventDetailName == "T2") {
+            $('#BookmakerMarketMaxValue').html(intToString(minMaxList[i].maxValue));
+            $('#BookmakerMarketMinValue').html(intToString(minMaxList[i].minValue));
+        }
+        else if (minMaxList[i].eventDetailName == "T3") {
+            $('#SessionMarketMax_' + minMaxList[i].sid).html(intToString(minMaxList[i].maxValue));
+            $('#SessionMarketMin_' + minMaxList[i].sid).html(intToString(minMaxList[i].minValue));
+        }
+        else if (minMaxList[i].eventDetailName == "T4") {
+            $('#Fancy1MarketMax_' + minMaxList[i].sid).html(intToString(minMaxList[i].maxValue));
+            $('#Fancy1MarketMin_' + minMaxList[i].sid).html(intToString(minMaxList[i].minValue));
+        }
+    }
+}
+
 function BindDetailStatusList(detailStatusList) {
     for (var i = 0; i < detailStatusList.length; i++) {
 
@@ -461,14 +495,12 @@ function BindDetailStatusList(detailStatusList) {
     BindT4CheckBoxes();
 }
 
-
 function BindAllChecboxes() {
     $('#checkT1').prop('checked', true);
     $('#checkT2').prop('checked', true);
     $('#checkT3').prop('checked', true);
     $('#checkT4').prop('checked', true);
 }
-
 
 function HeaderCheckedClick(eventDetailName) {
     var gameId = getUrlParameter('gameId');
@@ -555,9 +587,8 @@ function CheckT4Status(eventDetailName) {
     }
 }
 
-
 function ChangeT3CheckBoxStatus(status) {
-    
+
     $('.check_T3').each(function () {
         $(this).prop('checked', status);
     });
@@ -620,7 +651,6 @@ function UpdateT4Status() {
     SetT4HeaderCheckboxStatus();
 }
 
-
 function SetT3HeaderCheckboxStatus() {
     if ($(".check_T3:unchecked").length == 0) {
         $('#checkT3').prop('checked', true);
@@ -630,7 +660,6 @@ function SetT3HeaderCheckboxStatus() {
     }
 }
 
-
 function SetT4HeaderCheckboxStatus() {
     if ($(".check_T4:unchecked").length == 0) {
         $('#checkT4').prop('checked', true);
@@ -638,4 +667,232 @@ function SetT4HeaderCheckboxStatus() {
     else {
         $('#checkT4').prop('checked', false);
     }
+}
+
+function GetMinMaxMatchOddsModal() {
+
+    // Get the modal
+    var matchOddsMinMaxModal = document.getElementById("matchOddsMinMaxModal");
+    var popupOverLay = document.getElementById("popup_overlay");
+    var btnSaveMatchOddsMinMax = document.getElementById("btnSaveMatchOddsMinMax");
+
+    // Get the button that opens the modal
+    var btnEditMaxMinMatchOdds = document.getElementById("btnEditMaxMinMatchOdds");
+
+    // When the user clicks the button, open the modal
+    btnEditMaxMinMatchOdds.onclick = function () {
+        matchOddsMinMaxModal.style.display = "block";
+        popupOverLay.style.display = 'block';
+
+        $('#txtMatchOddsMax').val($('#MatchOddsMaxValue').html());
+        $('#txtMatchOddsMin').val($('#MatchOddsMinValue').html());
+    }
+
+
+    btnSaveMatchOddsMinMax.onclick = function () {
+
+        var maxValue = $('#txtMatchOddsMax').val();
+        var minValue = $('#txtMatchOddsMin').val();
+        var gameId = getUrlParameter('gameId');
+        $.ajax({
+            type: "POST",
+            url: "/Event/UpdateMatchOddsMinMax",
+            data: { maxValue: maxValue, minValue: minValue, gameId: gameId },
+            success: function () {
+                $(".popup_window, .popup_window_overlay").fadeOut(200);
+                BindEventDetails();
+            },
+            error: function (e) {
+                onFailed(e);
+                return false;
+            }
+        });
+    }
+}
+
+function GetMinMaxBookMakerMarketModal() {
+
+    // Get the modal
+    var bookmakerMarketMinMaxModal = document.getElementById("bookmakerMarketMinMaxModal");
+    var popupOverLay = document.getElementById("popup_overlay");
+    var btnSaveBookmakerMarketMinMax = document.getElementById("btnSaveBookmakerMarketMinMax");
+    var btnRemoveBookmakerMarketMinMax = document.getElementById("btnRemoveBookmakerMarketMinMax");
+
+    // Get the button that opens the modal
+    var btnEditMaxMinBookmakerMarket = document.getElementById("btnEditMaxMinBookmakerMarket");
+
+    // When the user clicks the button, open the modal
+    btnEditMaxMinBookmakerMarket.onclick = function () {
+        bookmakerMarketMinMaxModal.style.display = "block";
+        popupOverLay.style.display = 'block';
+
+        $('#txtBookmakerMarketMax').val(stringToInt($('#BookmakerMarketMaxValue').html()));
+        $('#txtBookmakerMarketMin').val(stringToInt($('#BookmakerMarketMinValue').html()));
+    }
+
+
+    btnSaveBookmakerMarketMinMax.onclick = function () {
+
+        var maxValue = $('#txtBookmakerMarketMax').val();
+        var minValue = $('#txtBookmakerMarketMin').val();
+        var gameId = getUrlParameter('gameId');
+        $.ajax({
+            type: "POST",
+            url: "/Event/UpdateBookmakerMarketMinMax",
+            data: { maxValue: maxValue, minValue: minValue, gameId: gameId },
+            success: function () {
+                $(".popup_window, .popup_window_overlay").fadeOut(200);
+                BindEventDetails();
+            },
+            error: function (e) {
+                onFailed(e);
+                return false;
+            }
+        });
+    }
+
+    btnRemoveBookmakerMarketMinMax.onclick = function () {
+
+        var gameId = getUrlParameter('gameId');
+        $.ajax({
+            type: "POST",
+            url: "/Event/RemoveBookmakerMarketMinMax",
+            data: { gameId: gameId },
+            success: function () {
+                $(".popup_window, .popup_window_overlay").fadeOut(200);
+                BindEventDetails();
+            },
+            error: function (e) {
+                onFailed(e);
+                return false;
+            }
+        });
+    }
+}
+
+function GetMinMaxSessionMarketModal() {
+
+    // Get the modal
+    var sessionMarketMinMaxModal = document.getElementById("sessionMarketMinMaxModal");
+    var popupOverLay = document.getElementById("popup_overlay");
+    var btnSaveSessionMarketMinMax = document.getElementById("btnSaveSessionMarketMinMax");
+    var btnRemoveSessionMarketMinMax = document.getElementById("btnRemoveSessionMarketMinMax");
+
+    var sid = "";
+    $('.sessionMinMaxEdit').click(function () {
+        sid = $(this).attr('Id').substring($(this).attr('Id').indexOf("_") + 1);
+        sessionMarketMinMaxModal.style.display = "block";
+        popupOverLay.style.display = 'block';
+
+        $('#txtSessionMarketMax').val(stringToInt($('#SessionMarketMax_' + sid).html()));
+        $('#txtSessionMarketMin').val(stringToInt($('#SessionMarketMin_' + sid).html()));
+    });
+
+    btnSaveSessionMarketMinMax.onclick = function () {
+
+        var maxValue = $('#txtSessionMarketMax').val();
+        var minValue = $('#txtSessionMarketMin').val();
+        var gameId = getUrlParameter('gameId');
+        $.ajax({
+            type: "POST",
+            url: "/Event/UpdateSessionMarketMinMax",
+            data: { maxValue: maxValue, minValue: minValue, gameId: gameId, sid: sid },
+            success: function () {
+                $(".popup_window, .popup_window_overlay").fadeOut(200);
+                BindEventDetails();
+            },
+            error: function (e) {
+                onFailed(e);
+                return false;
+            }
+        });
+    }
+
+    btnRemoveSessionMarketMinMax.onclick = function () {
+
+
+
+        var gameId = getUrlParameter('gameId');
+        $.ajax({
+            type: "POST",
+            url: "/Event/RemoveSessionMarketMinMax",
+            data: { gameId: gameId, sid: sid },
+            success: function () {
+                $(".popup_window, .popup_window_overlay").fadeOut(200);
+                BindEventDetails();
+            },
+            error: function (e) {
+                onFailed(e);
+                return false;
+            }
+        });
+    }
+}
+
+function GetMinMaxFancy1MarketModal() {
+
+    // Get the modal
+    var fancy1MarketMinMaxModal = document.getElementById("fancy1MarketMinMaxModal");
+    var popupOverLay = document.getElementById("popup_overlay");
+    var btnSaveFancy1MarketMinMax = document.getElementById("btnSaveFancy1MarketMinMax");
+    var btnRemoveFancy1MarketMinMax = document.getElementById("btnRemoveFancy1MarketMinMax");
+
+    var sid = "";
+    $('.fancy1MinMaxEdit').click(function () {
+        sid = $(this).attr('Id').substring($(this).attr('Id').indexOf("_") + 1);
+        fancy1MarketMinMaxModal.style.display = "block";
+        popupOverLay.style.display = 'block';
+
+        $('#txtFancy1MarketMax').val(stringToInt($('#Fancy1MarketMax_' + sid).html()));
+        $('#txtFancy1MarketMin').val(stringToInt($('#Fancy1MarketMin_' + sid).html()));
+    });
+
+    btnSaveFancy1MarketMinMax.onclick = function () {
+
+        var maxValue = $('#txtFancy1MarketMax').val();
+        var minValue = $('#txtFancy1MarketMin').val();
+
+        var gameId = getUrlParameter('gameId');
+        $.ajax({
+            type: "POST",
+            url: "/Event/UpdateFancy1MarketMinMax",
+            data: { maxValue: maxValue, minValue: minValue, gameId: gameId, sid: sid },
+            success: function () {
+                $(".popup_window, .popup_window_overlay").fadeOut(200);
+                BindEventDetails();
+            },
+            error: function (e) {
+                onFailed(e);
+                return false;
+            }
+        });
+    }
+
+    btnRemoveFancy1MarketMinMax.onclick = function () {
+
+        var gameId = getUrlParameter('gameId');
+        $.ajax({
+            type: "POST",
+            url: "/Event/RemoveFancy1MarketMinMax",
+            data: { gameId: gameId, sid: sid },
+            success: function () {
+                $(".popup_window, .popup_window_overlay").fadeOut(200);
+                BindEventDetails();
+            },
+            error: function (e) {
+                onFailed(e);
+                return false;
+            }
+        });
+    }
+}
+
+function stringToInt(value) {
+    multiplier = value.substr(-1).toLowerCase();
+    if (multiplier == "k")
+        return parseFloat(value) * 1000;
+    else if (multiplier == "m")
+        return parseFloat(value) * 1000000;
+    else
+        return value;
 }

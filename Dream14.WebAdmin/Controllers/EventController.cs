@@ -106,6 +106,46 @@ namespace Dream14.WebAdmin.Controllers
             return Json(t4List);
         }
 
+        public JsonResult UpdateMatchOddsMinMax(string maxValue, string minValue, string gameId)
+        {
+            BaseResult baseResult = _eventService.UpdateMatchOddsMinMax(maxValue, minValue, gameId);
+            return Json(baseResult);
+        }
+
+        public JsonResult UpdateBookmakerMarketMinMax(string maxValue, string minValue, string gameId)
+        {
+            BaseResult baseResult = _eventService.UpdateBookmakerMarketMinMax(maxValue, minValue, gameId);
+            return Json(baseResult);
+        }
+        public JsonResult UpdateSessionMarketMinMax(string maxValue, string minValue, string gameId, string sid)
+        {
+            BaseResult baseResult = _eventService.UpdateSessionMarketMinMax(maxValue, minValue, gameId, sid);
+            return Json(baseResult);
+        }
+
+        public JsonResult UpdateFancy1MarketMinMax(string maxValue, string minValue, string gameId, string sid)
+        {
+            BaseResult baseResult = _eventService.UpdateFancy1MarketMinMax(maxValue, minValue, gameId, sid);
+            return Json(baseResult);
+        }
+
+        public JsonResult RemoveBookmakerMarketMinMax(string gameId)
+        {
+            BaseResult baseResult = _eventService.RemoveBookmakerMarketMinMax(gameId);
+            return Json(baseResult);
+        }
+
+        public JsonResult RemoveSessionMarketMinMax(string gameId, string sid)
+        {
+            BaseResult baseResult = _eventService.RemoveSessionMarketMinMax(gameId, sid);
+            return Json(baseResult);
+        }
+        public JsonResult RemoveFancy1MarketMinMax(string gameId, string sid)
+        {
+            BaseResult baseResult = _eventService.RemoveFancy1MarketMinMax(gameId, sid);
+            return Json(baseResult);
+        }
+
         private string GetUserRole()
         {
             var claims = (HttpContext.User.Identity as ClaimsIdentity).Claims;

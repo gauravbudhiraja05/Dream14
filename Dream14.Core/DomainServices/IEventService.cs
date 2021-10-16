@@ -24,5 +24,19 @@ namespace Dream14.Core.DomainServices
         BaseResult UpdateT3Status(List<T3> t3List);
 
         BaseResult UpdateT4Status(List<T4> t4List);
+
+        BaseResult UpdateMatchOddsMinMax(string maxValue, string minValue, string gameId);
+
+        BaseResult UpdateBookmakerMarketMinMax(string maxValue, string minValue, string gameId);
+
+        BaseResult UpdateSessionMarketMinMax(string maxValue, string minValue, string gameId, string sid);
+
+        BaseResult UpdateFancy1MarketMinMax(string maxValue, string minValue, string gameId, string sid);
+
+        BaseResult RemoveBookmakerMarketMinMax(string gameId);
+
+        BaseResult RemoveSessionMarketMinMax(string gameId, string sid);
+
+        BaseResult RemoveFancy1MarketMinMax(string gameId, string sid);
     }
 }
