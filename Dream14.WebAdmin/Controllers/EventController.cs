@@ -140,9 +140,22 @@ namespace Dream14.WebAdmin.Controllers
             BaseResult baseResult = _eventService.RemoveSessionMarketMinMax(gameId, sid);
             return Json(baseResult);
         }
+
         public JsonResult RemoveFancy1MarketMinMax(string gameId, string sid)
         {
             BaseResult baseResult = _eventService.RemoveFancy1MarketMinMax(gameId, sid);
+            return Json(baseResult);
+        }
+
+        public JsonResult UpdateT1Percentage(T1PercentageDetail t1PercentageDetail)
+        {
+            BaseResult baseResult = _eventService.UpdateT1Percentage(t1PercentageDetail);
+            return Json(baseResult);
+        }
+
+        public JsonResult RemoveT1Percentage(string gameId)
+        {
+            BaseResult baseResult = _eventService.RemoveT1Percentage(gameId);
             return Json(baseResult);
         }
 

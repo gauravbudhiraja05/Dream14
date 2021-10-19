@@ -14,7 +14,7 @@ function BindEventDetails() {
         url: "/Event/GetEventDetail?gameId=" + gameId,
         success: function (eventList) {
             if (eventList != null) {
-                BindT1Details(eventList.t1);
+                BindT1Details(eventList.t1, eventList.t1PercentageDetail);
                 BindT2Details(eventList.t2);
                 BindT3Details(eventList.t3);
                 BindT4Details(eventList.t4);
@@ -39,7 +39,7 @@ function BindEventDetails1() {
         url: "/Event/GetEventDetail?gameId=" + gameId,
         success: function (eventList) {
             if (eventList != null) {
-                BindT1Details(eventList.t1);
+                BindT1Details(eventList.t1, eventList.t1PercentageDetail);
                 BindT2Details(eventList.t2);
                 BindT3Details(eventList.t3);
                 BindT4Details(eventList.t4);
@@ -57,7 +57,7 @@ function BindEventDetails1() {
     });
 }
 
-function BindT1Details(t1) {
+function BindT1Details(t1, t1PercentageDetail) {
 
     var old_b3 = parseFloat($('#b3').html());
     var old_b2 = parseFloat($('#b2').html());
@@ -71,20 +71,21 @@ function BindT1Details(t1) {
         var roleName = $('#hdnRoleName').val();
 
         if (roleName == "SuperAdmin") {
-            var name = "T1";
             //<span style='margin-left: 870px;'>Maximum Bet 1</span>
             var html1 = "<tr class='table1_header' style='cursor:pointer'><th colspan='3'><input type='checkbox' id='checkT1' class='check_all' />&nbsp;&nbsp;MATCH_ODDS<i id='matchOdds_Modal' class='fa fa-info-circle' style='font-size:24px;float:right;cursor: pointer'></i></th></tr><tr><td><table style='width:100%'><tr><td>Max : <span id='MatchOddsMaxValue'>0</span></td><td>Min : <span id='MatchOddsMinValue'>0</span></td><td><button type='button' class='edit_item' id='btnEditMaxMinMatchOdds'></button></td></tr></table></td><td><table style='width:100%'><tr><td style='width:33%'></td><td style='width:33%'></td><td style='width:33%;background-color:#72BBEF'>BACK</td></tr></table></td><td><table style='width:100%'><tr><td style='width:33%; text-align:center; background-color:#FAA9BA'>LAY</td><td style='width:33%'></td><td style='width:33%'></td></tr></table></td></tr>";
             var html2 = "";
             for (var i = 0; i < t1.length; i++) {
                 for (var j = 0; j < t1[i].length; j++)
-                    html2 = html2.concat("<tr><td class='left-text'><b>" + t1[i][j].nat + "</b></td><td><table style='width:100%;'><tr><td id='b3' style='background-color:#72BBEF'>" + t1[i][j].b3 + "<br/><span class='lowertext'>" + t1[i][j].bs3 + "</span></td><td id='b2' style='background-color:#72BBEF'>" + t1[i][j].b2 + "<br/><span class='lowertext'>" + t1[i][j].bs2 + "<span></td><td id='b1' style='background-color:#72BBEF'>" + t1[i][j].b1 + "<br/><span class='lowertext'>" + t1[i][j].bs1 + "<span></td></tr></table></td><td><table style='width:100%;'><tr><td id='l1' style='background-color:#FAA9BA'>" + t1[i][j].l1 + "<br/><span class='lowertext'>" + t1[i][j].ls1 + "<span></td><td id='l2' style='background-color:#FAA9BA'>" + t1[i][j].l2 + "<br/><span class='lowertext'>" + t1[i][j].ls2 + "<span></td><td id='l3' style='background-color:#FAA9BA'>" + t1[i][j].l3 + "<br/><span class='lowertext'>" + t1[i][j].ls3 + "<span></td></tr></table></td></tr>");
+                    html2 = html2.concat("<tr><td class='left-text' rowspan='2'><table style='width:100%'><tr><td style='width:80%' colspan='2'><b class='nat-text'>" + t1[i][j].nat + "</b></td><td></td></tr></table></td><td><table style='width:100%;'><tr><td id='b3' style='background-color:#72BBEF'>" + t1[i][j].b3 + "<br/><span class='lowertext'>" + t1[i][j].bs3 + "</span></td><td id='b2' style='background-color:#72BBEF'>" + t1[i][j].b2 + "<br/><span class='lowertext'>" + t1[i][j].bs2 + "<span></td><td id='b1' style='background-color:#72BBEF'>" + t1[i][j].b1 + "<br/><span class='lowertext'>" + t1[i][j].bs1 + "<span></td></tr></table></td><td><table style='width:100%;'><tr><td id='l1' style='background-color:#FAA9BA'>" + t1[i][j].l1 + "<br/><span class='lowertext'>" + t1[i][j].ls1 + "<span></td><td id='l2' style='background-color:#FAA9BA'>" + t1[i][j].l2 + "<br/><span class='lowertext'>" + t1[i][j].ls2 + "<span></td><td id='l3' style='background-color:#FAA9BA'>" + t1[i][j].l3 + "<br/><span class='lowertext'>" + t1[i][j].ls3 + "<span></td></tr></table></td></tr>");
             }
             var result = html1.concat(html2)
             $('#Table_t1').append(result);
+
+            SetT1Left(t1PercentageDetail);
         }
         else {
-
-            var html1 = "<tr class='table1_header' style='cursor:pointer'><th colspan='3'>MATCH_ODDS <span style='margin-left: 610px;'>Maximum Bet 1</span><i id='matchOdds_Modal' class='fa fa-info-circle' style='font-size:24px;float:right;cursor: pointer'></i></th></tr><tr><td></td><td><table style='width:100%'><tr><td style='width:33%'></td><td style='width:33%'></td><td style='width:33%;background-color:#72BBEF'>BACK</td></tr></table></td><td><table style='width:100%'><tr><td style='width:33%; text-align:center; background-color:#FAA9BA'>LAY</td><td style='width:33%'></td><td style='width:33%'></td></tr></table></td></tr>";
+            //<span style='margin-left: 610px;'>Maximum Bet 1</span>
+            var html1 = "<tr class='table1_header' style='cursor:pointer'><th colspan='3'>MATCH_ODDS <i id='matchOdds_Modal' class='fa fa-info-circle' style='font-size:24px;float:right;cursor: pointer'></i></th></tr><tr><td></td><td><table style='width:100%'><tr><td style='width:33%'></td><td style='width:33%'></td><td style='width:33%;background-color:#72BBEF'>BACK</td></tr></table></td><td><table style='width:100%'><tr><td style='width:33%; text-align:center; background-color:#FAA9BA'>LAY</td><td style='width:33%'></td><td style='width:33%'></td></tr></table></td></tr>";
             var html2 = "";
             for (var i = 0; i < t1.length; i++) {
                 for (var j = 0; j < t1[i].length; j++)
@@ -95,7 +96,6 @@ function BindT1Details(t1) {
         }
 
         $('#checkT1').click(function () {
-            debugger;
             HeaderCheckedClick('T1');
         });
 
@@ -154,8 +154,92 @@ function BindT1Details(t1) {
         }
     }
     else {
-        var html = "<tr class='table1_header' style='cursor:pointer'><th colspan='3'>MATCH_ODDS <span style='margin-left: 610px;'>Maximum Bet 1</span><i id='matchOdds_Modal' class='fa fa-info-circle' style='font-size:24px;float:right;cursor: pointer'></i></th></tr><tr><td colspan='3' style='text-align: center'>No Records Found</td></tr>";
+        var html = "<tr class='table1_header' style='cursor:pointer'><th colspan='3'>MATCH_ODDS<i id='matchOdds_Modal' class='fa fa-info-circle' style='font-size:24px;float:right;cursor: pointer'></i></th></tr><tr><td colspan='3' style='text-align: center'>No Records Found</td></tr>";
         $('#Table_t1').append(html);
+    }
+}
+
+function SetT1Left(t1PercentageDetail) {
+    var team1 = $($('#Table_t1 .left-text .nat-text')[0]).html();
+    var team2 = $($('#Table_t1 .left-text .nat-text')[1]).html();
+    $($('#Table_t1 .left-text')[0]).empty();
+    $($('#Table_t1 .left-text')[1]).empty();
+    $($($($('#Table_t1 .left-text')[1]).parent()).find('td')[0]).remove();
+    var percentage = "";
+    if (t1PercentageDetail == null) {
+        percentage = "0";
+    }
+    else {
+        percentage = t1PercentageDetail.percentage;
+    }
+    var html = "<table class='rowspan_t1'><tr><td style='width:80%'><b>" + team1 + "</b></td><td style='vertical-align:bottom' rowspan='2'><span class= 'right-text percentageT1'>" + percentage + " % &nbsp;&nbsp;<button type='button' class='edit_item1 percentageT1Edit'></button></span></td></tr><tr><td><b>" + team2 + "</b></td></tr><table>";
+    $($('.left-text')[0]).append(html);
+
+    GetT1PercentageModal(t1PercentageDetail);
+}
+
+function GetT1PercentageModal(t1PercentageDetail) {
+
+
+    var t1PercentageModal = document.getElementById("t1PercentageModal");
+    var popupOverLay = document.getElementById("popup_overlay");
+    var btnSaveT1Percentage = document.getElementById("btnSaveT1Percentage");
+    var btnRemoveT1Percentage = document.getElementById("btnRemoveT1Percentage");
+
+    if (t1PercentageDetail != null) {
+        $('#txtT1Percentage').val(t1PercentageDetail.percentage);
+        $('#txtTeamA_L1').val(t1PercentageDetail.teamAL1Value);
+        $('#txtTeamB_L1').val(t1PercentageDetail.teamBL1Value);
+        $('#txtTeamA_B1').val(t1PercentageDetail.teamAB1Value);
+        $('#txtTeamB_B1').val(t1PercentageDetail.teamBB1Value);
+    }
+    else {
+        $('#txtT1Percentage').val("0");
+        $('#txtTeamA_L1').val("0");
+        $('#txtTeamB_L1').val("0");
+        $('#txtTeamA_B1').val("0");
+        $('#txtTeamB_B1').val("0");
+    }
+
+    $('.percentageT1Edit').click(function () {
+        t1PercentageModal.style.display = "block";
+        popupOverLay.style.display = 'block';
+    });
+
+    btnSaveT1Percentage.onclick = function () {
+
+        var t1PercentageDetail = { Sid: 'T1', GameId: getUrlParameter('gameId'), EventDetailName: 'T1', Percentage: $('#txtT1Percentage').val(), TeamAL1Value: $('#txtTeamA_L1').val(), TeamBL1Value: $('#txtTeamB_L1').val(), TeamAB1Value: $('#txtTeamA_B1').val(), TeamBB1Value: $('#txtTeamB_B1').val() };
+        $.ajax({
+            type: "POST",
+            url: "/Event/UpdateT1Percentage",
+            data: { t1PercentageDetail: t1PercentageDetail},
+            success: function () {
+                $(".popup_window, .popup_window_overlay").fadeOut(200);
+                BindEventDetails();
+            },
+            error: function (e) {
+                onFailed(e);
+                return false;
+            }
+        });
+    }
+
+    btnRemoveT1Percentage.onclick = function () {
+
+        var gameId = getUrlParameter('gameId');
+        $.ajax({
+            type: "POST",
+            url: "/Event/RemoveT1Percentage",
+            data: { gameId: gameId },
+            success: function () {
+                $(".popup_window, .popup_window_overlay").fadeOut(200);
+                BindEventDetails();
+            },
+            error: function (e) {
+                onFailed(e);
+                return false;
+            }
+        });
     }
 }
 

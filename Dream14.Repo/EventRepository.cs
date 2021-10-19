@@ -342,5 +342,41 @@ namespace Dream14.Repo
                 throw ex;
             }
         }
+
+        public T1PercentageDetail GetT1PercentageDetail(string query, object param)
+        {
+            try
+            {
+                return Connection.Query<T1PercentageDetail>(query, param, commandType: CommandType.StoredProcedure).FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public BaseResult UpdateT1Percentage(string query, object param)
+        {
+            try
+            {
+                return Connection.Query<BaseResult>(query, param, commandType: CommandType.StoredProcedure).FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public BaseResult RemoveT1Percentage(string query, object param)
+        {
+            try
+            {
+                return Connection.Query<BaseResult>(query, param, commandType: CommandType.StoredProcedure).FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

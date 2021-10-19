@@ -18,6 +18,20 @@ namespace Dream14.ViewModels.Global
 
         public List<MinMax> MinMaxList { get; set; }
 
+        public T1PercentageDetail T1PercentageDetail { get; set; }
+
+    }
+
+    public class T1PercentageDetail
+    {
+        public string Sid { get; set; }
+        public string GameId { get; set; }
+        public string EventDetailName { get; set; }
+        public string Percentage { get; set; }
+        public string TeamAL1Value { get; set; }
+        public string TeamBL1Value { get; set; }
+        public string TeamAB1Value { get; set; }
+        public string TeamBB1Value { get; set; }
     }
 
     public class MinMax

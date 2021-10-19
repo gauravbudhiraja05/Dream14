@@ -38,5 +38,9 @@ namespace Dream14.Core.DomainServices
         BaseResult RemoveSessionMarketMinMax(string gameId, string sid);
 
         BaseResult RemoveFancy1MarketMinMax(string gameId, string sid);
+
+        BaseResult UpdateT1Percentage(T1PercentageDetail t1PercentageDetail);
+
+        BaseResult RemoveT1Percentage(string gameId);
     }
 }

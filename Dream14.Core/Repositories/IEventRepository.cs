@@ -54,5 +54,11 @@ namespace Dream14.Core.Repositories
         BaseResult RemoveSessionMarketMinMax(string query, object param);
 
         BaseResult RemoveFancy1MarketMinMax(string query, object param);
+
+        T1PercentageDetail GetT1PercentageDetail(string query, object param);
+
+        BaseResult UpdateT1Percentage(string query, object param);
+
+        BaseResult RemoveT1Percentage(string query, object param);
     }
 }

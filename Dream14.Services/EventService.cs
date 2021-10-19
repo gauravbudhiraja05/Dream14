@@ -230,6 +230,26 @@ namespace Dream14.Services
             return _unitOfWork.EventRepo.RemoveFancy1MarketMinMax("usp_RemoveMinMaxValue", new { gameId, eventDetailName = "T4", sid });
         }
 
+        public BaseResult UpdateT1Percentage(T1PercentageDetail t1PercentageDetail)
+        {
+            return _unitOfWork.EventRepo.UpdateT1Percentage("usp_AddOrUpdateT1Percentage", new
+            {
+                t1PercentageDetail.GameId,
+                t1PercentageDetail.EventDetailName,
+                t1PercentageDetail.Sid,
+                t1PercentageDetail.Percentage,
+                t1PercentageDetail.TeamAL1Value,
+                t1PercentageDetail.TeamBL1Value,
+                t1PercentageDetail.TeamAB1Value,
+                t1PercentageDetail.TeamBB1Value,
+            });
+        }
+
+        public BaseResult RemoveT1Percentage(string gameId)
+        {
+            return _unitOfWork.EventRepo.RemoveT1Percentage("usp_RemoveT1Percentage", new { gameId, eventDetailName = "T1", sid = "T1" });
+        }
+
         private List<Cricket> GetCricketList()
         {
             List<Cricket> cricketList = new List<Cricket>();
@@ -269,6 +289,7 @@ namespace Dream14.Services
                 if (!string.IsNullOrEmpty(response))
                 {
                     eventDetail = JsonConvert.DeserializeObject<EventDetail>(response);
+                    AddPercentageDetail(eventDetail, gameId);
                 }
                 else
                 {
@@ -381,6 +402,16 @@ namespace Dream14.Services
         private List<MinMax> GetMinMaxValue(string gameId)
         {
             return _unitOfWork.EventRepo.GetMinMaxValue("usp_GetMinMaxValue", new { gameId });
+        }
+
+        private void AddPercentageDetail(EventDetail eventDetail, string gameId)
+        {
+            eventDetail.T1PercentageDetail = GetT1PercentageDetail(gameId);
+        }
+
+        private T1PercentageDetail GetT1PercentageDetail(string gameId)
+        {
+            return _unitOfWork.EventRepo.GetT1PercentageDetail("usp_GetT1PercentageDetail", new { gameId, eventDetailName = "T1", sid = "T1" });
         }
     }
 }

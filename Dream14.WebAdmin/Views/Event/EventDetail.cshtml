@@ -15,6 +15,27 @@
 
 <style>
 
+    .rowspan_t1 {
+        height: 250px;
+        width: 100%;
+    }
+
+    .right-text {
+        float: right;
+        font-size: small;
+    }
+
+    .edit_item1 {
+        border: none;
+        background: none;
+        text-indent: -9999px;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: #455a64 url(../images/table_edit_w.png) center center no-repeat;
+        display: inline-block;
+    }
+
     .edit_item {
         border: none;
         background: none;
@@ -1289,6 +1310,41 @@
             <div class='form_field' style="text-align:center;">
                 <button id="btnSaveFancy1MarketMinMax" class="btn_field">Update</button>
                 <button id="btnRemoveFancy1MarketMinMax" class="btn-danger">Delete</button>
+
+            </div>
+        </fieldset>
+    </div>
+</div>
+
+<!-- The T1PercentageModal -->
+<div id="t1PercentageModal" class="popup_window">
+    <button type="button" class="popup_close_btn"></button>
+    <div class="popup_title">Change T1 Percentage Value</div>
+    <div class="popup_form_fields">
+        <fieldset>
+            <div class='form_field'>
+                <label>Percentage</label>
+                <input type="number" min="0" max="100" id="txtT1Percentage" />
+            </div>
+            <div class='form_field'>
+                <label>Team A L1</label>
+                <input type="number" id="txtTeamA_L1" />
+            </div>
+            <div class='form_field'>
+                <label>Team B L1</label>
+                <input type="number" id="txtTeamB_L1" />
+            </div>
+            <div class='form_field'>
+                <label>Team A B1</label>
+                <input type="number" id="txtTeamA_B1" />
+            </div>
+            <div class='form_field'>
+                <label>Team B B1</label>
+                <input type="number" id="txtTeamB_B1" />
+            </div>
+            <div class='form_field' style="text-align:center;">
+                <button id="btnSaveT1Percentage" class="btn_field">Save</button>
+                <button id="btnRemoveT1Percentage" class="btn-danger">Delete</button>
 
             </div>
         </fieldset>
