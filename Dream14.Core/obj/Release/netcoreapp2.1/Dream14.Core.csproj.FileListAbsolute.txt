@@ -1,0 +1,12 @@
+D:\GitHub\Dream14\Dream14.Core\bin\Release\netcoreapp2.1\Dream14.Core.deps.json
+D:\GitHub\Dream14\Dream14.Core\bin\Release\netcoreapp2.1\Dream14.Core.dll
+D:\GitHub\Dream14\Dream14.Core\bin\Release\netcoreapp2.1\Dream14.Core.pdb
+D:\GitHub\Dream14\Dream14.Core\bin\Release\netcoreapp2.1\Dream14.ViewModels.dll
+D:\GitHub\Dream14\Dream14.Core\bin\Release\netcoreapp2.1\Dream14.ViewModels.pdb
+D:\GitHub\Dream14\Dream14.Core\obj\Release\netcoreapp2.1\Dream14.Core.csprojAssemblyReference.cache
+D:\GitHub\Dream14\Dream14.Core\obj\Release\netcoreapp2.1\Dream14.Core.csproj.CoreCompileInputs.cache
+D:\GitHub\Dream14\Dream14.Core\obj\Release\netcoreapp2.1\Dream14.Core.AssemblyInfoInputs.cache
+D:\GitHub\Dream14\Dream14.Core\obj\Release\netcoreapp2.1\Dream14.Core.AssemblyInfo.cs
+D:\GitHub\Dream14\Dream14.Core\obj\Release\netcoreapp2.1\Dream14.Core.csproj.CopyComplete
+D:\GitHub\Dream14\Dream14.Core\obj\Release\netcoreapp2.1\Dream14.Core.dll
+D:\GitHub\Dream14\Dream14.Core\obj\Release\netcoreapp2.1\Dream14.Core.pdb
