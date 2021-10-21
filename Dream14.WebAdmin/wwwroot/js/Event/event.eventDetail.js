@@ -65,6 +65,7 @@ function BindT1Details(t1, t1PercentageDetail) {
     var old_l1 = parseFloat($('#l1').html());
     var old_l2 = parseFloat($('#l2').html());
     var old_l3 = parseFloat($('#l3').html());
+
     $('#Table_t1 tr').remove();
     if (t1 != null && t1.length > 0) {
 
@@ -85,11 +86,11 @@ function BindT1Details(t1, t1PercentageDetail) {
         }
         else {
             //<span style='margin-left: 610px;'>Maximum Bet 1</span>
-            var html1 = "<tr class='table1_header' style='cursor:pointer'><th colspan='3'>MATCH_ODDS <i id='matchOdds_Modal' class='fa fa-info-circle' style='font-size:24px;float:right;cursor: pointer'></i></th></tr><tr><td></td><td><table style='width:100%'><tr><td style='width:33%'></td><td style='width:33%'></td><td style='width:33%;background-color:#72BBEF'>BACK</td></tr></table></td><td><table style='width:100%'><tr><td style='width:33%; text-align:center; background-color:#FAA9BA'>LAY</td><td style='width:33%'></td><td style='width:33%'></td></tr></table></td></tr>";
+            var html1 = "<tr class='table1_header' style='cursor:pointer'><th colspan='3'>MATCH_ODDS <i id='matchOdds_Modal' class='fa fa-info-circle' style='font-size:24px;float:right;cursor: pointer'></i></th></tr><tr><td><table style='width:100%'><tr><td>Max : <span id='MatchOddsMaxValue'>0</span></td><td>Min : <span id='MatchOddsMinValue'>0</span></td><td><button style='display:none;' type='button' class='edit_item' id='btnEditMaxMinMatchOdds'></button></td></tr></table></td><td><table style='width:100%'><tr><td style='width:33%'></td><td style='width:33%'></td><td style='width:33%;background-color:#72BBEF'>BACK</td></tr></table></td><td><table style='width:100%'><tr><td style='width:33%; text-align:center; background-color:#FAA9BA'>LAY</td><td style='width:33%'></td><td style='width:33%'></td></tr></table></td></tr>";
             var html2 = "";
             for (var i = 0; i < t1.length; i++) {
                 for (var j = 0; j < t1[i].length; j++)
-                    html2 = html2.concat("<tr><td class='left-text'><b>" + t1[i][j].nat + "</b></td><td><table style='width:100%;'><tr><td id='b3' style='background-color:#72BBEF'>" + t1[i][j].b3 + "</td><td id='b2' style='background-color:#72BBEF'>" + t1[i][j].b2 + "</td><td id='b1' style='background-color:#72BBEF'>" + t1[i][j].b1 + "</td></tr></table></td><td><table style='width:100%;'><tr><td id='l1' style='background-color:#FAA9BA'>" + t1[i][j].l1 + "</td><td id='l2' style='background-color:#FAA9BA'>" + t1[i][j].l2 + "</td><td id='l3' style='background-color:#FAA9BA'>" + t1[i][j].l3 + "</td></tr></table></td></tr>");
+                    html2 = html2.concat("<tr><td class='left-text'><b>" + t1[i][j].nat + "</b></td><td><table style='width:100%;'><tr><td id='b3' style='background-color:#72BBEF'>" + t1[i][j].b3 + "<br/><span class='lowertext'>" + t1[i][j].bs3 + "</span></td><td id='b2' style='background-color:#72BBEF'>" + t1[i][j].b2 + "<br/><span class='lowertext'>" + t1[i][j].bs2 + "</span></td><td id='b1' style='background-color:#72BBEF'>" + t1[i][j].b1 + "<br/><span class='lowertext'>" + t1[i][j].bs1 + "</span></td></tr></table></td><td><table style='width:100%;'><tr><td id='l1' style='background-color:#FAA9BA'>" + t1[i][j].l1 + "<br/><span class='lowertext'>" + t1[i][j].ls1 + "<span></td><td id='l2' style='background-color:#FAA9BA'>" + t1[i][j].l2 + "<br/><span class='lowertext'>" + t1[i][j].ls2 + "<span></td><td id='l3' style='background-color:#FAA9BA'>" + t1[i][j].l3 + "<br/><span class='lowertext'>" + t1[i][j].ls3 + "<span></td></tr></table></td></tr>");
             }
             var result = html1.concat(html2)
             $('#Table_t1').append(result);
@@ -285,9 +286,11 @@ function BindT2Details(t2) {
             GetMinMaxBookMakerMarketModal();
         }
         else {
-            var html1 = "<tr class='table2_header' style='cursor:pointer'><th colspan='3'>Bookmaker market <i id='bookmaker_Modal' class='fa fa-info-circle' style='font-size:24px;float:right;cursor: pointer'></i></th></tr><tr><td></td><td><table style='width:100%'><tr><td style='width:33%'></td><td style='width:33%'></td><td style='width:33%;background-color:#72BBEF'>BACK</td></tr></table></td><td><table style='width:100%'><tr><td style='width:33%; text-align:center; background-color:#FAA9BA'>LAY</td><td style='width:33%'></td><td style='width:33%'></td></tr></table></td></tr>";
+            var html1 = "<tr class='table2_header' style='cursor:pointer'><th colspan='3'>Bookmaker market <i id='bookmaker_Modal' class='fa fa-info-circle' style='font-size:24px;float:right;cursor: pointer'></i></th></tr><tr><td><table style='width:100%'><tr><td>Max : <span id='BookmakerMarketMaxValue'>0</span></td><td>Min : <span id='BookmakerMarketMinValue'>0</span></td><td><button style='display:none;' type='button' class='edit_item' id='btnEditMaxMinBookmakerMarket'></button></td></tr></table></td><td><table style='width:100%'><tr><td style='width:33%'></td><td style='width:33%'></td><td style='width:33%;background-color:#72BBEF'>BACK</td></tr></table></td><td><table style='width:100%'><tr><td style='width:33%; text-align:center; background-color:#FAA9BA'>LAY</td><td style='width:33%'></td><td style='width:33%'></td></tr></table></td></tr>";
             var html2 = "";
             var remark = "";
+            var maxValue = "";
+            var minValue = "";
             for (var i = 0; i < t2.length; i++) {
                 for (var j = 0; j < t2[i].bm1.length; j++) {
                     html2 = html2.concat("<tr><td class='left-text'><b>" + t2[i].bm1[j].nat + "</b></td>");
@@ -296,13 +299,19 @@ function BindT2Details(t2) {
                         html2 = html2.concat("<td colspan='2' style='text-align:center;background-color:#36454f;color:white;'><h2 style='color:red'>SUSPENDED</h2></td></tr>");
                     }
                     else {
-                        html2 = html2.concat("<td><table style='width:100%;'><tr style=' background-color:#72BBEF'><td style='width:33%'></td><td style='width:33%'></td><td style='width:33%'>" + t2[i].bm1[j].b1 + "</td></tr></table></td><td><table style='width:100%;'><tr style=' background-color:#FAA9BA'><td style='width:33%'>" + t2[i].bm1[j].l1 + "</td><td style='width:33%'></td><td style='width:33%'></td></tr></table></td></tr>");
+                        html2 = html2.concat("<td><table style='width:100%;'><tr style=' background-color:#72BBEF'><td style='width:33%'></td><td style='width:33%'></td><td style='width:33%'>" + t2[i].bm1[j].b1 + "<br/><span class='lowertext'>" + intToString(t2[i].bm1[j].bs1) + "</span></td></tr></table></td><td><table style='width:100%;'><tr style=' background-color:#FAA9BA'><td style='width:33%'>" + t2[i].bm1[j].l1 + "<br/><span class='lowertext'>" + intToString(t2[i].bm1[j].ls1) + "</span></td><td style='width:33%'></td><td style='width:33%'></td></tr></table></td></tr>");
                     }
+
+                    maxValue = t2[i].bm1[j].max;
+                    minValue = t2[i].bm1[j].min;
                 }
                 html2 = html2.concat("<Tr><td colspan='3' style='text-align:right'>" + remark + "</td></tr>")
             }
             var result = html1.concat(html2)
             $('#Table_t2').append(result);
+
+            $('#BookmakerMarketMaxValue').html(intToString(maxValue));
+            $('#BookmakerMarketMinValue').html(intToString(minValue));
         }
 
     }
@@ -339,7 +348,7 @@ function BindT3Details(t3) {
             var html1 = "<tr class='table3_header' style='cursor:pointer'><th colspan='4'>Session Market <i id='sessionMarket_Modal' class='fa fa-info-circle' style='font-size:24px;float:right;cursor: pointer'></i></th></tr><tr><td></td><td style='text-align:center; background-color:#FAA9BA'>NO</td><td style='text-align:center; background-color:#72BBEF'>YES</td><td></td></tr>";
             var html2 = "";
             for (var i = 0; i < t3.length; i++) {
-                html2 = html2.concat("<tr><td class='left-text'><b>" + t3[i].nat + "</b></td><td style=' background-color:#FAA9BA'>" + t3[i].l1 + "</td><td style=' background-color:#72BBEF'>" + t3[i].b1 + "</td><td>Min: " + intToString(t3[i].min) + " Max: " + intToString(t3[i].max) + " </td></tr>");
+                html2 = html2.concat("<tr><td class='left-text'><b>" + t3[i].nat + "</b></td><td style=' background-color:#FAA9BA'>" + t3[i].l1 + "<span class='lowertext'>" + intToString(t3[i].ls1) + "</span></td><td style=' background-color:#72BBEF'>" + t3[i].b1 + "<span class='lowertext'>" + intToString(t3[i].bs1) + "</span></td><td><table style='width:100%'><tr><td>Max : <span id='SessionMarketMax_" + t3[i].sid + "'>" + intToString(t3[i].max) + "</span></td><td>Min : <span id='SessionMarketMin_" + t3[i].sid + "'>" + intToString(t3[i].min) + "</span></td><td><button style='display:none;' type='button' id='Sessionbtn_" + t3[i].sid + "' class='edit_item sessionMinMaxEdit'></button></td></tr></table></td></tr>");
             }
             var result = html1.concat(html2)
             $('#Table_t3').append(result);
@@ -362,7 +371,7 @@ function BindT4Details(t4) {
             var html1 = "<tr class='table4_header' style='cursor:pointer'><th colspan='4'><input type='checkbox' id ='checkT4' class='check_all' > &nbsp;&nbsp; Fancy1 Market <i id='Fancy1Market_Modal' class='fa fa-info-circle' style='font-size:24px;float:right;cursor: pointer'></i></th></tr><tr><td></td><td style='text-align:center; background-color:#72BBEF'>BACK</td><td style='text-align:center; background-color:#FAA9BA'>LAY</td><td></td></tr>";
             var html2 = "";
             for (var i = 0; i < t4.length; i++) {
-                html2 = html2.concat("<tr><td class='left-text'><input type='checkbox' id=check_" + t4[i].sid + " class='check_all check_T4' > &nbsp;&nbsp;<b>" + t4[i].nat + "</b></td><td style=' background-color:#72BBEF'>" + t4[i].b1 + "<span class='lowertext'>" + intToString(t4[i].bs1) + "</span></td><td style=' background-color:#FAA9BA'>" + t4[i].l1 + "<span class='lowertext'>" + intToString(t4[i].ls1) + "</span></td><td><table style='width:100%'><tr><td>Max : <span id='Fancy1MarketMax_" + t4[i].sid + "'>" + intToString(t4[i].max) + "</span></td><td>Min : <span id='Fancy1MarketMin_" + t4[i].sid + "'>" + intToString(t4[i].min) + "</span></td><td><button type='button' id='Fancy1btn_" + t4[i].sid + "' class='edit_item fancy1MinMaxEdit'></button></td></tr></table> </td></tr>");
+                html2 = html2.concat("<tr><td class='left-text'><input type='checkbox' id=check_" + t4[i].sid + " class='check_all check_T4' > &nbsp;&nbsp;<b>" + t4[i].nat + "</b></td><td style=' background-color:#72BBEF'>" + t4[i].b1 + "<span class='lowertext'>" + intToString(t4[i].bs1) + "</span></td><td style=' background-color:#FAA9BA'>" + t4[i].l1 + "<span class='lowertext'>" + intToString(t4[i].ls1) + "</span></td><td><table style='width:100%'><tr><td>Max : <span id='Fancy1MarketMax_" + t4[i].sid + "'>" + intToString(t4[i].max) + "</span></td><td>Min : <span id='Fancy1MarketMin_" + t4[i].sid + "'>" + intToString(t4[i].min) + "</span></td><td><button type='button' id='Fancy1btn_" + t4[i].sid + "' class='edit_item fancy1MinMaxEdit'></button></td></tr></table></td></tr>");
             }
             var result = html1.concat(html2)
             $('#Table_t4').append(result);
@@ -379,7 +388,7 @@ function BindT4Details(t4) {
             var html1 = "<tr class='table4_header' style='cursor:pointer'><th colspan='4'>Fancy1 Market <i id='Fancy1Market_Modal' class='fa fa-info-circle' style='font-size:24px;float:right;cursor: pointer'></i></th></tr><tr><td></td><td style='text-align:center; background-color:#72BBEF'>BACK</td><td style='text-align:center; background-color:#FAA9BA'>LAY</td><td></td></tr>";
             var html2 = "";
             for (var i = 0; i < t4.length; i++) {
-                html2 = html2.concat("<tr><td class='left-text'><b>" + t4[i].nat + "</b></td><td style=' background-color:#72BBEF'>" + t4[i].b1 + "</td><td style=' background-color:#FAA9BA'>" + t4[i].l1 + "</td><td>Min : " + intToString(t4[i].min) + " Max : " + intToString(t4[i].max) + " </td></tr>");
+                html2 = html2.concat("<tr><td class='left-text'><b>" + t4[i].nat + "</b></td><td style=' background-color:#72BBEF'>" + t4[i].b1 + "<span class='lowertext'>" + intToString(t4[i].bs1) + "</span></td><td style=' background-color:#FAA9BA'>" + t4[i].l1 + "<span class='lowertext'>" + intToString(t4[i].ls1) + "</span></td><td><table style='width:100%'><tr><td>Max : <span id='Fancy1MarketMax_" + t4[i].sid + "'>" + intToString(t4[i].max) + "</span></td><td>Min : <span id='Fancy1MarketMin_" + t4[i].sid + "'>" + intToString(t4[i].min) + "</span></td><td><button style='display:none;' type='button' id='Fancy1btn_" + t4[i].sid + "' class='edit_item fancy1MinMaxEdit'></button></td></tr></table></td></tr>");
             }
             var result = html1.concat(html2)
             $('#Table_t4').append(result);

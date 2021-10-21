@@ -77,8 +77,15 @@ namespace Dream14.WebAdmin.Controllers
                             new Claim("FEUserID", Convert.ToString(result.UserId)),
                             new Claim("FEUserName", user.UserName),
                             new Claim("FEFullName", result.FullName),
-                            new Claim("FEBalance", result.Balance)
+                            new Claim("FEBalance", result.Balance),
+                            new Claim("UserType", result.UserType)
                         };
+
+                        // Add Roles
+                        role.Split(",").ToList().ForEach(r =>
+                        {
+                            claims.Add(new Claim(ClaimTypes.Role, r));
+                        });
 
                         ClaimsIdentity userIdentity = new ClaimsIdentity(claims, "Felogin");
                         ClaimsPrincipal principal = new ClaimsPrincipal(userIdentity);

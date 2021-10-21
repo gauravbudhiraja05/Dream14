@@ -2,7 +2,7 @@
     debugger;
     BindEventDetails();
 
-    setInterval(function () { BindEventDetails1(); }, 1000);
+    //setInterval(function () { BindEventDetails1(); }, 1000);
 });
 
 
@@ -10,13 +10,14 @@ function BindEventDetails() {
     var gameId = getUrlParameter('gameId')
     $.ajax({
         type: "POST",
-        url: "/SuperAdmin/GetEventDetail?gameId=" + gameId,
+        url: "/Event/GetEventDetail?gameId=" + gameId,
         success: function (eventList) {
             if (eventList != null) {
-                BindT1Details(eventList.t1);
+                BindT1Details(eventList.t1, eventList.t1PercentageDetail);
                 BindT2Details(eventList.t2);
                 BindT3Details(eventList.t3);
                 BindT4Details(eventList.t4);
+                BindHeaderDetails(eventList);
 
                 GetModalDetails();
 
@@ -52,35 +53,19 @@ function BindEventDetails1() {
     var gameId = getUrlParameter('gameId')
     $.ajax({
         type: "POST",
-        url: "/SuperAdmin/GetEventDetail?gameId=" + gameId,
+        url: "/Event/GetEventDetail?gameId=" + gameId,
         success: function (eventList) {
             if (eventList != null) {
-                BindT1Details(eventList.t1);
+                BindT1Details(eventList.t1, eventList.t1PercentageDetail);
                 BindT2Details(eventList.t2);
                 BindT3Details(eventList.t3);
                 BindT4Details(eventList.t4);
-
+                BindHeaderDetails(eventList);
                 GetModalDetails();
+                //AddToggle();
+                //FilterEventDetailStatus(eventList.eventDetailStatus);
+                BindMinMaxValue(eventList.minMaxList);
 
-                $('.table1_header').click(function () {
-                    $(this).nextUntil('tr.table1_header').slideToggle(100);
-                });
-
-                $('.table2_header').click(function () {
-                    $(this).nextUntil('tr.table2_header').slideToggle(100);
-                });
-
-                $('.table3_header').click(function () {
-                    $(this).nextUntil('tr.table3_header').slideToggle(100);
-                });
-
-                $('.table4_header').click(function () {
-                    $(this).nextUntil('tr.table4_header').slideToggle(100);
-                });
-
-                $('#th1_header').html(eventList.eventName);
-                $('#th2_header').html(eventList.eventDate);
-                $('#th3_header').html(eventList.eventTime);
             }
         },
         error: function (e) {
@@ -98,9 +83,11 @@ function BindT1Details(t1) {
     var old_l1 = parseFloat($('#l1').html());
     var old_l2 = parseFloat($('#l2').html());
     var old_l3 = parseFloat($('#l3').html());
+
     $('#Table_t1 tr').remove();
     if (t1 != null && t1.length > 0) {
-        var html1 = "<tr class='table1_header' style='cursor:pointer'><th colspan='3'>MATCH_ODDS <span style='margin-left: 610px;'>Maximum Bet 1</span><i id='matchOdds_Modal' class='fa fa-info-circle' style='font-size:24px;float:right;cursor: pointer'></i></th></tr><tr><td></td><td><table style='width:100%'><tr><td style='width:33%'></td><td style='width:33%'></td><td style='width:33%;background-color:#72BBEF'>BACK</td></tr></table></td><td><table style='width:100%'><tr><td style='width:33%; text-align:center; background-color:#FAA9BA'>LAY</td><td style='width:33%'></td><td style='width:33%'></td></tr></table></td></tr>";
+        //<span style='margin-left: 610px;'>Maximum Bet 1</span>
+        var html1 = "<tr class='table1_header' style='cursor:pointer'><th colspan='3'>MATCH_ODDS<i id='matchOdds_Modal' class='fa fa-info-circle' style='font-size:24px;float:right;cursor: pointer'></i></th></tr><tr><td></td><td><table style='width:100%'><tr><td style='width:33%'></td><td style='width:33%'></td><td style='width:33%;background-color:#72BBEF'>BACK</td></tr></table></td><td><table style='width:100%'><tr><td style='width:33%; text-align:center; background-color:#FAA9BA'>LAY</td><td style='width:33%'></td><td style='width:33%'></td></tr></table></td></tr>";
         var html2 = "";
         for (var i = 0; i < t1.length; i++) {
             for (var j = 0; j < t1[i].length; j++)
@@ -108,7 +95,7 @@ function BindT1Details(t1) {
         }
         var result = html1.concat(html2)
         $('#Table_t1').append(result);
-        debugger;
+
         var new_b3 = parseFloat($('#b3').html());
         var new_b2 = parseFloat($('#b2').html());
         var new_b1 = parseFloat($('#b1').html());
@@ -162,7 +149,8 @@ function BindT1Details(t1) {
         }
     }
     else {
-        var html = "<tr class='table1_header' style='cursor:pointer'><th colspan='3'>MATCH_ODDS <span style='margin-left: 610px;'>Maximum Bet 1</span><i id='matchOdds_Modal' class='fa fa-info-circle' style='font-size:24px;float:right;cursor: pointer'></i></th></tr><tr><td colspan='3' style='text-align: center'>No Records Found</td></tr>";
+        //<span style='margin-left: 610px;'>Maximum Bet 1</span>
+        var html = "<tr class='table1_header' style='cursor:pointer'><th colspan='3'>MATCH_ODDS <i id='matchOdds_Modal' class='fa fa-info-circle' style='font-size:24px;float:right;cursor: pointer'></i></th></tr><tr><td colspan='3' style='text-align: center'>No Records Found</td></tr>";
         $('#Table_t1').append(html);
     }
 }
@@ -226,6 +214,54 @@ function BindT4Details(t4) {
     else {
         var html = "<tr class='table4_header' style='cursor:pointer'><th colspan='3'>Fancy1 Market <i id='Fancy1Market_Modal' class='fa fa-info-circle' style='font-size:24px;float:right;cursor: pointer'></i></th></tr><tr><td colspan='4' style='text-align: center'>No Records Found</td></tr>";
         $('#Table_t4').append(html);
+    }
+}
+
+function BindHeaderDetails(eventList) {
+    $('#th1_header').html(eventList.eventName);
+    $('#th2_header').html(eventList.eventDate);
+    $('#th3_header').html(eventList.eventTime);
+}
+
+function AddToggle() {
+
+    $('.table1_header').click(function () {
+        $(this).nextUntil('tr.table1_header').slideToggle(100);
+    });
+
+    $('.table2_header').click(function () {
+        $(this).nextUntil('tr.table2_header').slideToggle(100);
+    });
+
+    $('.table3_header').click(function () {
+        $(this).nextUntil('tr.table3_header').slideToggle(100);
+    });
+
+    $('.table4_header').click(function () {
+        $(this).nextUntil('tr.table4_header').slideToggle(100);
+    });
+
+}
+
+function BindMinMaxValue(minMaxList) {
+
+    for (var i = 0; i < minMaxList.length; i++) {
+        if (minMaxList[i].eventDetailName == "T1") {
+            $('#MatchOddsMaxValue').html(intToString(minMaxList[i].maxValue));
+            $('#MatchOddsMinValue').html(intToString(minMaxList[i].minValue));
+        }
+        else if (minMaxList[i].eventDetailName == "T2") {
+            $('#BookmakerMarketMaxValue').html(intToString(minMaxList[i].maxValue));
+            $('#BookmakerMarketMinValue').html(intToString(minMaxList[i].minValue));
+        }
+        else if (minMaxList[i].eventDetailName == "T3") {
+            $('#SessionMarketMax_' + minMaxList[i].sid).html(intToString(minMaxList[i].maxValue));
+            $('#SessionMarketMin_' + minMaxList[i].sid).html(intToString(minMaxList[i].minValue));
+        }
+        else if (minMaxList[i].eventDetailName == "T4") {
+            $('#Fancy1MarketMax_' + minMaxList[i].sid).html(intToString(minMaxList[i].maxValue));
+            $('#Fancy1MarketMin_' + minMaxList[i].sid).html(intToString(minMaxList[i].minValue));
+        }
     }
 }
 

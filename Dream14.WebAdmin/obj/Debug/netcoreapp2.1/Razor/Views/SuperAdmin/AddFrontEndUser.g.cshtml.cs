@@ -70,7 +70,7 @@ using Dream14.WebAdmin.Models;
             WriteLiteral("\r\n");
             EndContext();
             BeginContext(153, 5107, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "83ba696d4a5f48af913c3b6a0a2ccf5b", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b68e76c971554480b629d048f17d30fe", async() => {
                 BeginContext(191, 117, true);
                 WriteLiteral("\r\n    <div class=\"tab_menu\">\r\n        <div class=\"center_wrap\">\r\n\r\n            <button type=\"button\" class=\"back_btn\"");
                 EndContext();
@@ -221,7 +221,7 @@ WriteAttributeValue("", 3972, Model.MobileNumber, 3972, 19, false);
                                         ");
                 EndContext();
                 BeginContext(4684, 32, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f44a647596cf43a5a5e46899867c403f", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "1296b3b2c7fe40b6b214aaf06ea31f43", async() => {
                     BeginContext(4704, 3, true);
                     WriteLiteral("Vip");
                     EndContext();
@@ -243,7 +243,7 @@ WriteAttributeValue("", 3972, Model.MobileNumber, 3972, 19, false);
                 WriteLiteral("\r\n                                        ");
                 EndContext();
                 BeginContext(4758, 58, false);
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "6d5826a2ffde49ea9bd04cfecd7c275e", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "547a583d87f44205a9bb36570e948d02", async() => {
                     BeginContext(4801, 6, true);
                     WriteLiteral("Normal");
                     EndContext();
@@ -309,7 +309,7 @@ WriteAttributeValue("", 3972, Model.MobileNumber, 3972, 19, false);
             WriteLiteral("\r\n<!--End full_width-->\r\n\r\n");
             EndContext();
             BeginContext(5287, 95, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0ff585e6ea424bc78553787bdf6ddc8a", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "98d7fe8836644c50bb48b4090e9eb905", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();

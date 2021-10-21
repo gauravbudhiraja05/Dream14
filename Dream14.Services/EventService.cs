@@ -60,7 +60,7 @@ namespace Dream14.Services
                     GameIds = gameIdList,
                 };
             }
-            else if (roleName == "Admin" || roleName == "Master" || roleName == "Agent")
+            else if (roleName == "Admin" || roleName == "Master" || roleName == "Agent" || roleName == "FrontEnd")
             {
                 if (userType == "Vip")
                 {
