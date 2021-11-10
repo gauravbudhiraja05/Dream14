@@ -130,8 +130,8 @@ namespace Dream14.WebAdmin.Controllers
         [HttpPost]
         public JsonResult CheckOldPassword(string oldPassword)
         {
-            var claims = (HttpContext.User.Identity as ClaimsIdentity).Claims;
-            int userId = Convert.ToInt32(claims.Where(x => x.Type == "UserID").FirstOrDefault().Value);
+            IEnumerable<Claim> claims = (HttpContext.User.Identity as ClaimsIdentity).Claims;
+            int userId = Convert.ToInt32(claims.Where(x => x.Type == "FEUserID").FirstOrDefault().Value);
             BaseResult result = _frontEndService.CheckOldPassword(oldPassword, userId);
             return Json(result);
         }
@@ -140,10 +140,58 @@ namespace Dream14.WebAdmin.Controllers
         [HttpPost]
         public JsonResult ChangePassword(string NewPassword)
         {
-            var claims = (HttpContext.User.Identity as ClaimsIdentity).Claims;
-            int userId = Convert.ToInt32(claims.Where(x => x.Type == "UserID").FirstOrDefault().Value);
+            IEnumerable<Claim> claims = (HttpContext.User.Identity as ClaimsIdentity).Claims;
+            int userId = Convert.ToInt32(claims.Where(x => x.Type == "FEUserID").FirstOrDefault().Value);
             BaseResult result = _frontEndService.ChangePassword(NewPassword, userId);
             return Json(result);
+        }
+
+        [HttpPost]
+        public JsonResult GetUserBetButtonValue()
+        {
+            IEnumerable<Claim> claims = (HttpContext.User.Identity as ClaimsIdentity).Claims;
+            int userId = Convert.ToInt32(claims.Where(x => x.Type == "FEUserID").FirstOrDefault().Value);
+            Dictionary<string, string> keyValuePairs = _frontEndService.GetUserBetButtonValue(userId);
+            return Json(keyValuePairs);
+        }
+
+        [HttpPost]
+        public JsonResult UpdateUserBetValue(string betValue, string stakeValue, string type, string gameId, string teamName)
+        {
+            IEnumerable<Claim> claims = (HttpContext.User.Identity as ClaimsIdentity).Claims;
+            int userId = Convert.ToInt32(claims.Where(x => x.Type == "FEUserID").FirstOrDefault().Value);
+            BaseResult baseResult = _frontEndService.UpdateUserBetValue(betValue, stakeValue, type, gameId, teamName, userId);
+            return Json(baseResult);
+        }
+
+        public JsonResult GetUserStakeValue(string teamName, string type, string gameId)
+        {
+            IEnumerable<Claim> claims = (HttpContext.User.Identity as ClaimsIdentity).Claims;
+            int userId = Convert.ToInt32(claims.Where(x => x.Type == "FEUserID").FirstOrDefault().Value);
+            string stakeValue = _frontEndService.GetUserStakeValue(type, gameId, teamName, userId);
+            return Json(stakeValue);
+        }
+
+        public JsonResult GetUserStakeValue1(string type, string gameId)
+        {
+            IEnumerable<Claim> claims = (HttpContext.User.Identity as ClaimsIdentity).Claims;
+            int userId = Convert.ToInt32(claims.Where(x => x.Type == "FEUserID").FirstOrDefault().Value);
+            string stakeValue = _frontEndService.GetUserStakeValue_New(type, gameId, userId);
+            return Json(stakeValue);
+        }
+
+        public IActionResult ChangeBtnValue()
+        {
+            return View();
+        }
+
+        //Dictionary<string, string> keyValuePairs
+        public JsonResult UpdateBetButtonValue(Dictionary<string, string>  btnValueList)
+        {
+            IEnumerable<Claim> claims = (HttpContext.User.Identity as ClaimsIdentity).Claims;
+            int userId = Convert.ToInt32(claims.Where(x => x.Type == "FEUserID").FirstOrDefault().Value);
+            BaseResult baseResult = _frontEndService.UpdateBetButtonValue(btnValueList, userId);
+            return Json(baseResult);
         }
 
     }

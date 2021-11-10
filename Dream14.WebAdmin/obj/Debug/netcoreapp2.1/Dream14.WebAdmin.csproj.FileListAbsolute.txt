@@ -112,3 +112,4 @@ D:\GitHub\Dream14\Dream14.WebAdmin\obj\Debug\netcoreapp2.1\Dream14.WebAdmin.View
 D:\GitHub\Dream14\Dream14.WebAdmin\obj\Debug\netcoreapp2.1\Dream14.WebAdmin.csproj.CopyComplete
 D:\GitHub\Dream14\Dream14.WebAdmin\obj\Debug\netcoreapp2.1\Dream14.WebAdmin.dll
 D:\GitHub\Dream14\Dream14.WebAdmin\obj\Debug\netcoreapp2.1\Dream14.WebAdmin.pdb
+D:\GitHub\Dream14\Dream14.WebAdmin\obj\Debug\netcoreapp2.1\Razor\Views\FrontEnd\ChangeBtnValue.g.cshtml.cs

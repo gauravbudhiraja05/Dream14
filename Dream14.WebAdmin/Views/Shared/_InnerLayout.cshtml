@@ -139,7 +139,7 @@ Licence URI: https://www.os-templates.com/template-terms
                             <li><a href="#">Bet History</a></li>
                             <li><a href="#">Casino Report History</a></li>
                             <li><a href="#">Unsetteled Bet</a></li>
-                            <li><a href="#">Set Button Values</a></li>
+                            <li><a href="@Url.Action("ChangeBtnValue", "FrontEnd")">Set Button Values</a></li>
                             <li><a id="btnChangePassword" href="#">Change Password</a></li>
                             <li><a href="@Url.Action("Logout", "FrontEnd")">Logout</a></li>
                         </ul>
@@ -192,6 +192,8 @@ Licence URI: https://www.os-templates.com/template-terms
         </div>
     </div>
 
+    <div id="popup_overlay" class="popup_window_overlay"></div>
+
     <script>
         // Get the modal
         var modal = document.getElementById("myModal");
@@ -212,12 +214,12 @@ Licence URI: https://www.os-templates.com/template-terms
             modal.style.display = "none";
         }
 
-                    // When the user clicks anywhere outside of the modal, close it
-                    //window.onclick = function (event) {
-                    //    if (event.target == modal) {
-                    //        modal.style.display = "none";
-                    //    }
-                    //}
+                        // When the user clicks anywhere outside of the modal, close it
+                        //window.onclick = function (event) {
+                        //    if (event.target == modal) {
+                        //        modal.style.display = "none";
+                        //    }
+                        //}
     </script>
 
 

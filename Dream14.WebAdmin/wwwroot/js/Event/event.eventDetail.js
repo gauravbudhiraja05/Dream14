@@ -295,7 +295,7 @@ function BindT2Details(t2) {
                 for (var j = 0; j < t2[i].bm1.length; j++) {
                     html2 = html2.concat("<tr><td class='left-text'><b>" + t2[i].bm1[j].nat + "</b></td>");
                     remark = t2[i].bm1[j].remark;
-                    if (t2[i].bm1[j].b1 == "0.00" && t2[i].bm1[j].l1) {
+                    if (t2[i].bm1[j].b1 == "0.00" && t2[i].bm1[j].l1 == "0.00") {
                         html2 = html2.concat("<td colspan='2' style='text-align:center;background-color:#36454f;color:white;'><h2 style='color:red'>SUSPENDED</h2></td></tr>");
                     }
                     else {
@@ -532,7 +532,6 @@ function RestoreOriginalColor(itemId, type) {
 function SetOriginalColor(itemId, colorCode) {
     $('#' + itemId).css("background-color", colorCode);
 }
-
 
 function FilterEventDetailStatus(eventDetailStatus) {
     if (eventDetailStatus != null) {

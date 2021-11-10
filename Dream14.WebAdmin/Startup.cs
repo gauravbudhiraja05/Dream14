@@ -144,8 +144,8 @@ namespace Dream14.WebAdmin
                 config.MapRoute(
                    name: "Default",
                    template: "{controller}/{action}/{id?}",
-                   defaults: new { controller = "Account", action = "Login" }
-                   //defaults: new { controller = "FrontEnd", action = "Login" }
+                   //defaults: new { controller = "Account", action = "Login" }
+                   defaults: new { controller = "FrontEnd", action = "Login" }
                    );
 
             });

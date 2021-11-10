@@ -13,7 +13,8 @@ namespace Dream14.Services
 {
     public class EventService : IEventService
     {
-        public const string ApiUrl = "http://marketsarket.in:3000/";
+        //public const string ApiUrl = "http://marketsarket.in:3000/";
+        public const string ApiUrl = "http://139.177.188.73:3000";
 
         /// <summary>
         /// Private IUnitOfWork Data Member
@@ -285,8 +286,8 @@ namespace Dream14.Services
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 //GET Method
-                string response = client.GetStringAsync("getcricketdemo11/" + gameId).Result;
-                if (!string.IsNullOrEmpty(response))
+                string response = client.GetStringAsync("getdata/" + gameId).Result;
+                if (!string.IsNullOrEmpty(response) && response != "[]")
                 {
                     eventDetail = JsonConvert.DeserializeObject<EventDetail>(response);
                     AddPercentageDetail(eventDetail, gameId);
@@ -407,11 +408,17 @@ namespace Dream14.Services
         private void AddPercentageDetail(EventDetail eventDetail, string gameId)
         {
             eventDetail.T1PercentageDetail = GetT1PercentageDetail(gameId);
+            eventDetail.T1BetValueDetail = GetT1BetValueDetail(gameId);
         }
 
         private T1PercentageDetail GetT1PercentageDetail(string gameId)
         {
             return _unitOfWork.EventRepo.GetT1PercentageDetail("usp_GetT1PercentageDetail", new { gameId, eventDetailName = "T1", sid = "T1" });
+        }
+
+        private T1BetValueDetail GetT1BetValueDetail(string gameId)
+        {
+            return _unitOfWork.EventRepo.GetT1BetValueDetail("usp_GetT1BetValueDetail", new { gameId, eventDetailName = "T1", sid = "T1" });
         }
     }
 }

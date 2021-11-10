@@ -355,6 +355,18 @@ namespace Dream14.Repo
             }
         }
 
+        public T1BetValueDetail GetT1BetValueDetail(string query, object param)
+        {
+            try
+            {
+                return Connection.Query<T1BetValueDetail>(query, param, commandType: CommandType.StoredProcedure).FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public BaseResult UpdateT1Percentage(string query, object param)
         {
             try

@@ -6,6 +6,16 @@
 
 
 <style>
+
+    .transpaprent-background {
+        background-color: transparent !important;
+    }
+
+    .lowertext {
+        font-size: small;
+        display: flow-root;
+    }
+
     .table-css1 {
         font-family: Arial, Helvetica, sans-serif;
         border-collapse: collapse;
@@ -13,7 +23,7 @@
         border: 1px solid;
         margin-bottom: 20px;
         text-align: center;
-        font-weight:800;
+        font-weight: 800;
     }
 
         .table-css1 tr td.left-text {
@@ -52,15 +62,15 @@
         font-size: larger;
     }
 
-        .table-css td{
-            line-height:60px;
+        .table-css td {
+            line-height: 40px;
         }
 
         .table-css tr td.left-text {
             text-align: left;
         }
 
-        .table-css td, #table-css th {
+        .table-css td, .table-css th {
             border: 1px solid #fff;
             padding: 8px;
         }
@@ -145,6 +155,40 @@
         margin-right: 10px;
     }
 
+    .btn-new {
+        display: inline-block !important;
+        width: 19.3%;
+        padding: 5px;
+        margin: 1px;
+        cursor: pointer;
+    }
+
+    .btn_danger {
+        color: #ffffff;
+        background-color: #DC3545;
+        float: left;
+        padding: 5px;
+        margin: 1px;
+        cursor: pointer;
+    }
+
+    .btn_Submit {
+        color: #ffffff;
+        background-color: #28A745;
+        float: right;
+        padding: 5px;
+        margin: 1px;
+        cursor: pointer;
+    }
+
+    .txt-new {
+        padding: 5px;
+        margin: 5px;
+    }
+
+    .lbl-new {
+        border: none !important;
+    }
 </style>
 
 
@@ -1024,6 +1068,68 @@
             <label>
                 Minimum 70 over has to be played by the particular team only then the Khado of the team will be considered as valid, else the same will be voided
             </label>
+        </div>
+        <div class="modal-footer">
+        </div>
+    </div>
+</div>
+
+<!-- The BetModal -->
+<div id="betModal" class="modal">
+    <div class="modal-content transpaprent-background" style="width:60%; height:50%">
+        <div class="modal-header">
+            <span class="close betClose">&times;</span>
+            <h3>Change Bet Value</h3>
+        </div>
+        <div class="modal-body">
+            <table>
+                <tr class="transpaprent-background">
+                    <th class="transpaprent-background">(Bet for)</th>
+                    <th class="transpaprent-background">Odds</th>
+                    <th class="transpaprent-background">Stake</th>
+                    <th class="transpaprent-background">Profit</th>
+                </tr>
+                <tr class="transpaprent-background">
+                    <td>
+                        <input type="text" class="txt-new" id="txtTeamName" style="background-color: #ffffff;" disabled />
+                    </td>
+                    <td>
+                        <input type="text" class="txt-new" id="txtBetValue" />
+                    </td>
+                    <td>
+                        <input type="text" class="txt-new" id="txtStakeValue" />
+                    </td>
+                    <td>
+                        <input type="text" class="txt-new" id="txtProfit" style="background-color: #ffffff;" disabled />
+                    </td>
+                </tr>
+                <tr class="transpaprent-background">
+                    <td colspan="4">
+                        <button class="btn_field btn-new" id="btn_bet1"></button>
+                        <button class="btn_field btn-new" id="btn_bet2"></button>
+                        <button class="btn_field btn-new" id="btn_bet3"></button>
+                        <button class="btn_field btn-new" id="btn_bet4"></button>
+                        <button class="btn_field btn-new" id="btn_bet5"></button>
+                    </td>
+                </tr>
+                <tr class="transpaprent-background">
+                    <td colspan="4">
+                        <button class="btn_field btn-new" id="btn_bet6"></button>
+                        <button class="btn_field btn-new" id="btn_bet7"></button>
+                        <button class="btn_field btn-new" id="btn_bet8"></button>
+                        <button class="btn_field btn-new" id="btn_bet9"></button>
+                        <button class="btn_field btn-new" id="btn_bet10"></button>
+                    </td>
+                </tr>
+                <tr class="transpaprent-background">
+                    <td colspan="2">
+                        <button id="btnResetBet" class="btn_danger">Reset</button>
+                    </td>
+                    <td colspan="2">
+                        <button id="btnSaveBet" class="btn_Submit">Submit</button>
+                    </td>
+                </tr>
+            </table>
         </div>
         <div class="modal-footer">
         </div>

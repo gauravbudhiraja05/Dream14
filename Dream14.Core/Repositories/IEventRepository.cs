@@ -57,8 +57,11 @@ namespace Dream14.Core.Repositories
 
         T1PercentageDetail GetT1PercentageDetail(string query, object param);
 
+        T1BetValueDetail GetT1BetValueDetail(string query, object param);
+
         BaseResult UpdateT1Percentage(string query, object param);
 
         BaseResult RemoveT1Percentage(string query, object param);
+
     }
 }

@@ -1,0 +1,297 @@
+﻿
+@{
+    ViewData["Title"] = "ChangeBtnValue";
+    Layout = "~/Views/Shared/_InnerLayout.cshtml";
+}
+
+
+<style>
+
+    .lowertext {
+        font-size: small;
+        display: flow-root;
+    }
+
+    .table-css1 {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+        border: 1px solid;
+        margin-bottom: 20px;
+        text-align: center;
+        font-weight: 800;
+    }
+
+        .table-css1 tr td.left-text {
+            text-align: left;
+        }
+
+        .table-css1 td, #table-css th {
+            border: 1px solid #fff;
+            padding: 8px;
+        }
+
+        .table-css1 tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .table-css1 tr:hover {
+            background-color: #ddd;
+        }
+
+        .table-css1 th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #ff5000;
+            color: white;
+        }
+
+    .table-css {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+        border: 1px solid;
+        margin-bottom: 20px;
+        text-align: center;
+        font-weight: 800;
+        font-size: larger;
+    }
+
+        .table-css td {
+            line-height: 40px;
+        }
+
+        .table-css tr td.left-text {
+            text-align: left;
+        }
+
+        .table-css td, .table-css th {
+            border: 1px solid #fff;
+            padding: 8px;
+        }
+
+        .table-css tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .table-css tr:hover {
+            background-color: #ddd;
+        }
+
+        .table-css th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #ff5000;
+            color: white;
+        }
+
+    /* The Close Button */
+    .close {
+        color: #000;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+    .red-color {
+        color: red
+    }
+
+    .gray-color {
+        background-color: #CCCCCC;
+        /* color: gray; */
+        text-align: center;
+    }
+
+    .modal label {
+        border: 1px solid black;
+        margin: 12px;
+        padding: 5px;
+        font: caption;
+    }
+
+    .modal-body {
+        height: 400px;
+        overflow: auto;
+    }
+
+    .sub-header {
+        color: white;
+        background-color: #ff5000;
+        padding: 11px;
+        font-weight: 900;
+        text-align: left;
+    }
+
+    .modal h3 {
+        background-color: #001240;
+        color: white;
+        padding: 10px;
+        margin-top: 20px;
+        text-align: left;
+    }
+
+    .modal-content {
+        width: 85%;
+    }
+
+    .close {
+        color: white;
+        margin: 19px;
+        margin-top: 28px;
+        margin-right: 10px;
+    }
+
+    .btn-new {
+        display: inline-block !important;
+        width: 19.3%;
+        padding: 5px;
+        margin: 1px;
+        cursor: pointer;
+    }
+
+    .btn_danger {
+        color: #ffffff;
+        background-color: #DC3545;
+        float: left;
+        padding: 5px;
+        margin: 1px;
+        cursor: pointer;
+    }
+
+    .btn_Submit {
+        color: #ffffff;
+        background-color: #28A745;
+        /*float: right;*/
+        padding: 5px;
+        margin: 1px;
+        cursor: pointer;
+    }
+
+    .txt-new, .text {
+        padding: 5px;
+        margin: 5px;
+    }
+
+    .lbl-new {
+        border: none !important;
+    }
+</style>
+
+
+<table class="table-css1">
+    <tr>
+        <th>Change Btn Value</th>
+    </tr>
+</table>
+<div>
+    <table class="table-css">
+        <tr>
+            <th>
+                Price Label
+            </th>
+            <th>
+                Price Value
+            </th>
+        </tr>
+        <tr>
+            <td>
+                <input type="text" class="text" id="btn1lbl" />
+            </td>
+            <td>
+                <input type="number" class="text"  id="btn1Value" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="text" class="text"  id="btn2lbl" />
+            </td>
+            <td>
+                <input type="number" class="text"  id="btn2Value" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="text" class="text"  id="btn3lbl" />
+            </td>
+            <td>
+                <input type="number" class="text"  id="btn3Value" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="text" class="text"  id="btn4lbl" />
+            </td>
+            <td>
+                <input type="number" class="text"  id="btn4Value" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="text" class="text"  id="btn5lbl" />
+            </td>
+            <td>
+                <input type="number" class="text"  id="btn5Value" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="text" class="text"  id="btn6lbl" />
+            </td>
+            <td>
+                <input type="number" class="text"  id="btn6Value" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="text" class="text"  id="btn7lbl" />
+            </td>
+            <td>
+                <input type="number" class="text" id="btn7Value" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="text" class="text"  id="btn8lbl" />
+            </td>
+            <td>
+                <input type="number" class="text"  id="btn8Value" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="text" class="text"  id="btn9lbl" />
+            </td>
+            <td>
+                <input type="number" class="text"  id="btn9Value" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="text" class="text"  id="btn10lbl" />
+            </td>
+            <td>
+                <input type="number" class="text"  id="btn10Value" />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="button" id="btnUpdate" class="btn_Submit" value="Update" />
+            </td>
+        </tr>
+    </table>
+</div>
+
+
+
+<script src="~/js/FrontEnd/frontend.btnValue.js"></script>
+

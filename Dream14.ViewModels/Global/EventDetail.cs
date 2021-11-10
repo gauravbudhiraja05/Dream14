@@ -20,6 +20,8 @@ namespace Dream14.ViewModels.Global
 
         public T1PercentageDetail T1PercentageDetail { get; set; }
 
+        public T1BetValueDetail T1BetValueDetail { get; set; }
+
     }
 
     public class T1PercentageDetail
@@ -34,6 +36,15 @@ namespace Dream14.ViewModels.Global
         public string TeamBB1Value { get; set; }
     }
 
+    public class T1BetValueDetail
+    {
+        public string Sid { get; set; }
+        public string GameId { get; set; }
+        public string EventDetailName { get; set; }
+        public float Team1BetValue { get; set; } = 0;
+        public float Team2BetValue { get; set; } = 0;
+    }
+
     public class MinMax
     {
         public string Sid { get; set; }
@@ -43,7 +54,7 @@ namespace Dream14.ViewModels.Global
         public string MinValue { get; set; }
 
         public string MaxValue { get; set; }
-  
+
         public string GameId { get; set; }
     }
 
