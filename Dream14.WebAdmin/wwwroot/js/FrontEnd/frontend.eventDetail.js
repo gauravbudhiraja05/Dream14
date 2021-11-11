@@ -1,7 +1,7 @@
 ﻿
 $(document).ready(function () {
-    BindEventDetails();
-    //setInterval(function () { BindEventDetails1(); }, 1000);
+    //BindEventDetails();
+    setInterval(function () { BindEventDetails1(); }, 1000);
 });
 
 
@@ -79,7 +79,7 @@ function BindT1Details(t1, t1PercentageDetail, t1BetValueDetail) {
         var html2 = "";
         for (var i = 0; i < t1.length; i++) {
             for (var j = 0; j < t1[i].length; j++)
-                html2 = html2.concat("<tr style='cursor:pointer'><td class='left-text'><table><tr><td><b>" + t1[i][j].nat + "</b></td><td><p id='t1_betValue_team" + j + "'>0</p></td></tr><tr><td colspan='2'><p id='t1Bet_team" + j + "'></p></td></tr></table></td><td><table style='width:100%;'><tr><td class='bet-click' id='b3_Team" + j + "_" + t1[i][j].b3 + "' style='background-color:#72BBEF'>" + t1[i][j].b3 + "<br/><span class='lowertext'>" + t1[i][j].bs3 + "</span></td><td class='bet-click' id='b2_Team" + j + "_" + t1[i][j].b2 + "' style='background-color:#72BBEF'>" + t1[i][j].b2 + "<br/><span class='lowertext'>" + t1[i][j].bs2 + "</span></td><td class='bet-click' id='b1_Team" + j + "_" + t1[i][j].b1 + "' style='background-color:#72BBEF'>" + t1[i][j].b1 + "<br/><span class='lowertext'>" + t1[i][j].bs1 + "</span></td></tr></table></td><td><table style='width:100%;'><tr><td class='bet-click' id='l1_Team" + j + "_" + t1[i][j].l1 + "' style='background-color:#FAA9BA'>" + t1[i][j].l1 + "<br/><span class='lowertext'>" + t1[i][j].ls1 + "</span></td><td class='bet-click' id='l2_Team" + j + "_" + t1[i][j].l2 + "' style='background-color:#FAA9BA'>" + t1[i][j].l2 + "<br/><span class='lowertext'>" + t1[i][j].ls2 + "</span></td><td class='bet-click' id='l3_Team" + j + "_" + t1[i][j].l3 + "' style='background-color:#FAA9BA'>" + t1[i][j].l3 + "<br/><span class='lowertext'>" + t1[i][j].ls3 + "</span></td></tr></table></td></tr>");
+                html2 = html2.concat("<tr style='cursor:pointer'><td class='left-text'><table><tr><td><b>" + t1[i][j].nat + "</b></td><td><p id='t1_betValue_team" + j + "'>0</p></td></tr><tr><td colspan='2'><p id='t1Bet_team" + j + "'></p></td></tr></table></td><td><table style='width:100%;'><tr><td  id='b3_Team" + j + "_" + t1[i][j].b3 + "' style='background-color:#72BBEF'>" + t1[i][j].b3 + "<br/><span class='lowertext'>" + t1[i][j].bs3 + "</span></td><td id='b2_Team" + j + "_" + t1[i][j].b2 + "' style='background-color:#72BBEF'>" + t1[i][j].b2 + "<br/><span class='lowertext'>" + t1[i][j].bs2 + "</span></td><td class='bet-click' id='b1_Team" + j + "_" + t1[i][j].b1 + "' style='background-color:#72BBEF'>" + t1[i][j].b1 + "<br/><span class='lowertext'>" + t1[i][j].bs1 + "</span></td></tr></table></td><td><table style='width:100%;'><tr><td class='bet-click' id='l1_Team" + j + "_" + t1[i][j].l1 + "' style='background-color:#FAA9BA'>" + t1[i][j].l1 + "<br/><span class='lowertext'>" + t1[i][j].ls1 + "</span></td><td id='l2_Team" + j + "_" + t1[i][j].l2 + "' style='background-color:#FAA9BA'>" + t1[i][j].l2 + "<br/><span class='lowertext'>" + t1[i][j].ls2 + "</span></td><td id='l3_Team" + j + "_" + t1[i][j].l3 + "' style='background-color:#FAA9BA'>" + t1[i][j].l3 + "<br/><span class='lowertext'>" + t1[i][j].ls3 + "</span></td></tr></table></td></tr>");
         }
         var result = html1.concat(html2)
         $('#Table_t1').append(result);
@@ -171,12 +171,14 @@ function BindBetValue() {
         url: "/FrontEnd/GetUserStakeValue1",
         data: { type: type, gameId: gameId },
         success: function (stakeValue) {
-            var bet = stakeValue.split(':')[0];
-            var stake = stakeValue.split(':')[1];
-            $('#t1Bet_team0').html("-" + stake);
-            bet = bet.substr(bet.indexOf("."));
-            var profit = bet * stake;
-            $('#t1Bet_team1').html(profit);
+            if (stakeValue != null) {
+                var bet = stakeValue.split(':')[0];
+                var stake = stakeValue.split(':')[1];
+                $('#t1Bet_team0').html("-" + stake);
+                bet = bet.substr(bet.indexOf("."));
+                var profit = bet * stake;
+                $('#t1Bet_team1').html(profit);
+            }
         },
         error: function (e) {
             onFailed(e);
@@ -214,14 +216,18 @@ function AddBet(betValue, team, type) {
     $('#txtBetValue').val(betValue);
 
     betCloseSpan.onclick = function () {
+        $('#t1_betValue_team0').html('0').css('color', 'black');
+        $('#t1_betValue_team1').html('0').css('color', 'black');
         betModal.style.display = "none";
     }
 
     btnResetBet.onclick = function () {
+        $('#t1_betValue_team0').html('0').css('color', 'black');
+        $('#t1_betValue_team1').html('0').css('color', 'black');
         betModal.style.display = "none";
     }
 
-    GetUserBetButtonValue();
+    GetUserBetButtonValue(team);
 
     $('#txtStakeValue').change(function () {
         var btnValue = $(this).val();
@@ -239,20 +245,27 @@ function AddBet(betValue, team, type) {
     });
 
     btnSaveBet.onclick = function () {
-        var betValue = $('#txtBetValue').val();
-        var stakeValue = $('#txtStakeValue').val();
-        $.ajax({
-            type: "POST",
-            url: "/FrontEnd/UpdateUserBetValue",
-            data: { betValue: betValue, stakeValue: stakeValue, type: type, gameId: gameId, teamName: teamName },
-            success: function () {
-                betModal.style.display = "none";
-            },
-            error: function (e) {
-                onFailed(e);
-                return false;
-            }
-        });
+
+        if ($('#txtStakeValue').val() == "") {
+            alert("Please enter Stake Value");
+            return false;
+        }
+        else {
+            var betValue = $('#txtBetValue').val();
+            var stakeValue = $('#txtStakeValue').val();
+            $.ajax({
+                type: "POST",
+                url: "/FrontEnd/UpdateUserBetValue",
+                data: { betValue: betValue, stakeValue: stakeValue, type: type, gameId: gameId, teamName: teamName },
+                success: function () {
+                    betModal.style.display = "none";
+                },
+                error: function (e) {
+                    onFailed(e);
+                    return false;
+                }
+            });
+        }
     }
 }
 
@@ -282,7 +295,7 @@ function GetStakeValue(teamName, type, gameId) {
     });
 }
 
-function GetUserBetButtonValue() {
+function GetUserBetButtonValue(team) {
 
     $.ajax({
         type: "POST",
@@ -303,19 +316,41 @@ function GetUserBetButtonValue() {
 
 
                 $('.btn-new').click(function () {
+                    var id = $(this).attr("id");
                     var btnValue = $(this).html();
                     $('#txtStakeValue').val(btnValue);
                     var betValue = $('#txtBetValue').val().substr($('#txtBetValue').val().indexOf("."));
                     var percentageValue = btnValue * betValue;
                     $('#txtProfit').val(percentageValue);
 
-                    if ($('#txtStakeValue').val() == "") {
-                        $('#t1_betValue_team1').html("0");
+                    if (team.includes("Team0")) {
+
+                        $('#t1_betValue_team0').html($('#txtProfit').val());
+                        $('#t1_betValue_team0').css('color', '#50A650');
+
+                        if ($('#txtStakeValue').val() == "") {
+                            $('#t1_betValue_team1').html("0");
+                        }
+                        else {
+                            $('#t1_betValue_team1').html(-$('#txtStakeValue').val());
+                        }
+                        $('#t1_betValue_team1').css('color', '#F79595');
                     }
-                    else {
-                        $('#t1_betValue_team1').html($('#txtStakeValue').val());
+                    else if (team.includes("Team1")) {
+
+                        $('#t1_betValue_team1').html($('#txtProfit').val());
+                        $('#t1_betValue_team1').css('color', '#50A650');
+
+                        if ($('#txtStakeValue').val() == "") {
+                            $('#t1_betValue_team0').html("0");
+                        }
+                        else {
+                            $('#t1_betValue_team0').html(-$('#txtStakeValue').val());
+                        }
+                        $('#t1_betValue_team0').css('color', '#F79595');
                     }
-                    $('#t1_betValue_team0').html($('#txtProfit').val());
+
+
 
                 });
             }

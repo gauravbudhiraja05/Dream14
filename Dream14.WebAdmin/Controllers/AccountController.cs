@@ -70,7 +70,7 @@ namespace Dream14.WebAdmin.Controllers
                 {
                     var result = _authService.UserAuthenticate(user);
 
-                    if (result.IsSuccess == true)
+                    if (result.IsSuccess == true && result.RoleName != "FrontEnd")
                     {
                         // Remove commma from Roles
                         //result.RoleName = result.RoleName.Substring(1);
@@ -105,6 +105,7 @@ namespace Dream14.WebAdmin.Controllers
                     }
                     else
                     {
+                        result.Message = "Invalid Credentials.Please try with different one.";
                         TempData["UserLoginFailed"] = result.Message;
                         return View();
                     }

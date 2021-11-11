@@ -65,7 +65,7 @@ namespace Dream14.WebAdmin.Controllers
                 {
                     var result = _authService.UserAuthenticate(user);
 
-                    if (result.IsSuccess == true)
+                    if (result.IsSuccess == true && result.RoleName == "FrontEnd")
                     {
                         // Remove commma from Roles
                         //result.RoleName = result.RoleName.Substring(1);
@@ -101,6 +101,7 @@ namespace Dream14.WebAdmin.Controllers
                     }
                     else
                     {
+                        result.Message = "Invalid Credentials.Please try with different one.";
                         TempData["UserLoginFailed"] = result.Message;
                         return View();
                     }
@@ -186,7 +187,7 @@ namespace Dream14.WebAdmin.Controllers
         }
 
         //Dictionary<string, string> keyValuePairs
-        public JsonResult UpdateBetButtonValue(Dictionary<string, string>  btnValueList)
+        public JsonResult UpdateBetButtonValue(Dictionary<string, string> btnValueList)
         {
             IEnumerable<Claim> claims = (HttpContext.User.Identity as ClaimsIdentity).Claims;
             int userId = Convert.ToInt32(claims.Where(x => x.Type == "FEUserID").FirstOrDefault().Value);
